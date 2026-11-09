@@ -1,0 +1,311 @@
+:host {
+  --btb-ivory: #F6EFE4;
+  --btb-ivory-light: #FBF8F3;
+  --btb-ivory-border: #DECBB1;
+  --btb-ticker-bg: #E3D1B4;
+  --btb-gold: #B58A55;
+  --btb-gold-dark: #966E3D;
+  --btb-magenta: #C21867;
+  --btb-charcoal: #181818;
+  --btb-text-dark: #121212;
+  --btb-text-muted: #5A5248;
+  --btb-up-green: #16A34A;
+  --btb-down-red: #DC2626;
+
+  --font-logo: 'Cinzel', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  display: block;
+  font-family: var(--font-sans);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btb-header {
+  background-color: var(--btb-ivory);
+  border-bottom: 1px solid var(--btb-ivory-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+// Tier 1: Top Utility Bar
+.top-utility-bar {
+  background-color: var(--btb-charcoal);
+  color: #EAEAEA;
+  font-size: 12px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+
+  .utility-inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .edition-tag {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+  }
+
+  .trending-strip {
+    .trending-label {
+      color: var(--btb-gold);
+      font-weight: 600;
+      margin-right: 6px;
+    }
+    .trending-link {
+      color: #D6D6D6;
+      text-decoration: none;
+      transition: color 0.2s;
+      &:hover {
+        color: #FFFFFF;
+      }
+    }
+    .comma {
+      color: #888;
+    }
+  }
+
+  .lang-switcher a {
+    color: #EAEAEA;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      color: var(--btb-gold);
+    }
+  }
+}
+
+// Tier 2: Main Brand Masthead
+.masthead-bar {
+  background-color: var(--btb-ivory);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--btb-ivory-border);
+
+  .masthead-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .header-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .masthead-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+}
+
+// Tier 3: Primary Navigation Bar
+.primary-nav-bar {
+  background-color: var(--btb-ivory-light);
+  min-height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid var(--btb-ivory-border);
+  position: relative;
+
+  .nav-inner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--btb-text-dark);
+      padding: 14px 0;
+      position: relative;
+      transition: color 0.2s;
+
+      &:hover,
+      &.active {
+        color: var(--btb-magenta);
+      }
+
+      &.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2.5px;
+        background-color: var(--btb-magenta);
+      }
+    }
+  }
+
+  .nav-search-btn {
+    margin-left: 24px;
+  }
+
+  .search-drawer {
+    background-color: var(--btb-ivory);
+    border-top: 1px solid var(--btb-ivory-border);
+    padding: 10px 0;
+
+    .search-drawer-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      input {
+        flex: 1;
+        background: #FFFFFF;
+        border: 1px solid var(--btb-ivory-border);
+        padding: 8px 14px;
+        font-size: 13px;
+        border-radius: 4px;
+        outline: none;
+        &:focus {
+          border-color: var(--btb-gold);
+        }
+      }
+    }
+  }
+}
+
+// Tier 4: Live Market Ticker Strip
+.market-ticker-bar {
+  background-color: var(--btb-ticker-bg);
+  height: 34px;
+  display: flex;
+  align-items: center;
+
+  .ticker-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ticker-indicator {
+    font-weight: 700;
+    &.up {
+      color: var(--btb-up-green);
+    }
+    &.down {
+      color: var(--btb-down-red);
+    }
+  }
+
+  .ticker-sep {
+    color: var(--btb-text-muted);
+    margin-left: 10px;
+  }
+}
+
+// Buttons
+.btn-gold {
+  background-color: var(--btb-gold);
+  color: #121212;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  padding: 9px 18px;
+  border: 1px solid var(--btb-gold-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--btb-gold-dark);
+    color: #FFFFFF;
+  }
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--btb-text-dark);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+// Responsive Viewports
+@media (max-width: 960px) {
+  .top-utility-bar .trending-strip {
+    display: none;
+  }
+
+  .masthead-bar {
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .brand-logo .header-logo-img {
+      height: 38px;
+    }
+  }
+
+  .primary-nav-bar {
+    display: none;
+    &.mobile-open {
+      display: flex;
+      padding: 12px 0;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      a {
+        padding: 8px 0;
+      }
+    }
+
+    .nav-search-btn {
+      display: none;
+    }
+  }
+}

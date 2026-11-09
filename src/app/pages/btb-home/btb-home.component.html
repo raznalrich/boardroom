@@ -1,0 +1,410 @@
+<main class="btb-home">
+  <!-- SECTION A: TOP EDITORIAL HERO & VOICES GRID -->
+  <section class="hero-voices-section">
+    <div class="container">
+      <div class="hero-voices-grid">
+        <!-- Left: Main Feature Story Card -->
+        <article class="hero-feature-card" style="position: relative; height: 430px; overflow: hidden; border-radius: 8px;">
+          <img
+            src="https://i.pinimg.com/1200x/89/b5/1a/89b51abbd6177492d21a1022a2cb67a2.jpg"
+            alt="Billion Dollar Vision"
+            class="hero-bg-img"
+            style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"
+          />
+          <!-- Dark Gradient Overlay -->
+          <div class="hero-overlay" style="position: absolute; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.45) 42%, rgba(0,0,0,0.92) 100%); inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 32px;">
+            <!-- Top-Right Brand Monogram -->
+           
+            <!-- Bottom-Right Gold Monogram -->
+            <div class="monogram-watermark bottom-right" style="position: absolute; bottom: 18px; right: 18px;">
+              <img src="assets/images/logo-gold.png" alt="Monogram" style="width: 40px; height: 40px; opacity: 0.5;">
+            </div>
+
+            <!-- Overlay Text Stack (Bottom-Left, max-width: 88%) -->
+            <div class="hero-content" style="max-width: 88%; margin-bottom: 20px;">
+              <!-- 1. Category Tag -->
+              <span class="hero-tag" style="background-color: #C21867; color: #FFFFFF; padding: 4px 10px; font-weight: 700; font-size: 10.5px; border-radius: 2px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px;">
+                EDITORIAL
+              </span>
+
+              <!-- 2. Main Feature Heading -->
+              <h1 class="hero-title" style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; margin: 0 0 10px 0; letter-spacing: -0.3px; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                THE BILLION-DOLLAR VISION: How India's Next-Gen Industrialists Are Rewriting Global Logistics
+              </h1>
+
+              <!-- 3. Author & Read-Time Metadata Row -->
+              <div class="hero-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #E2E2E2; margin-bottom: 12px;">
+                <span style="color: #FFFFFF; font-weight: 700;">By Priya Nair</span>
+                <span style="color: #888888;">|</span>
+                <span style="color: #B58A55;">⏳</span>
+                <span style="color: #E2E2E2;">7 min read</span>
+              </div>
+
+              <!-- 4. Summary Bullet Points -->
+              <ul class="hero-bullets" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                <li style="font-size: 13px; color: #D4D4D4; line-height: 1.4; display: flex; align-items: center; gap: 8px;">
+                  <span style="color: #B58A55; font-size: 14px;">•</span>
+                  Business leaders driving vision in Next-Gen Global Logistics
+                </li>
+                <li style="font-size: 13px; color: #D4D4D4; line-height: 1.4; display: flex; align-items: center; gap: 8px;">
+                  <span style="color: #B58A55; font-size: 14px;">•</span>
+                  Summary of key industrialists rewriting global supply chain corridors
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: People & Voices Column -->
+        <aside class="people-voices-col">
+          <div class="voices-top-block">
+            <!-- Vertical Section Title -->
+            <h2 class="vertical-section-title">PEOPLE & VOICES</h2>
+
+            <!-- Featured Interview Card -->
+            <div class="voices-featured-card">
+              <img
+                src="https://i.pinimg.com/1200x/47/c0/59/47c059fdb3b56a3e0082c21bc7c6670b.jpg"
+                alt="Aditi Roy"
+                class="voices-featured-img"
+              />
+              <h3 class="voices-featured-title">
+                Shaping the Future of FinTech: Interview with Aditi Roy
+              </h3>
+            </div>
+
+            <!-- Accent Bar -->
+            <div class="magenta-accent-bar"></div>
+          </div>
+
+          <!-- Compact Thumbnail Story Items -->
+          <div class="voices-mini-list">
+            <article class="voices-mini-item">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=200&auto=format&fit=crop" alt="Supply Chain" class="mini-thumb" />
+              <div>
+                <h4 class="mini-title">The Reimagined Supply Chain With Digital Resilience</h4>
+                <span class="mini-time">12 minutes ago</span>
+              </div>
+            </article>
+
+            <article class="voices-mini-item">
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=200&auto=format&fit=crop" alt="Saudi" class="mini-thumb" />
+              <div>
+                <h4 class="mini-title">Saudi Capital Flows: VC Alliances Take Center Stage</h4>
+                <span class="mini-time">1 minute ago</span>
+              </div>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION B: BREAKING / LATEST NEWS STRIP -->
+  <section class="latest-news-strip">
+    <div class="container news-strip-inner">
+      <div class="news-label">LATEST NEWS</div>
+      <div class="news-items-wrapper">
+        <ng-container *ngFor="let news of latestNews; let last = last">
+          <span class="news-text">{{ news }}</span>
+          <span class="news-bullet" *ngIf="!last">•</span>
+        </ng-container>
+      </div>
+      <button class="news-next-btn" aria-label="Next news item">
+        <span>❯</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- SECTION C: BOARDROOM ROUNDTABLE BANNER -->
+  <section class="boardroom-roundtable-banner">
+    <div class="roundtable-outer-frame">
+      <img src="assets/images/infinity-logo.png" alt="" class="infinity-bg-watermark" />
+      <div class="container roundtable-inner">
+        <!-- Left Column -->
+        <div class="roundtable-col-left">
+          <h2 class="roundtable-title">THE BOARDROOM ROUNDTABLE:</h2>
+          <p class="roundtable-subtitle">Elite networking for forward-thinking leaders</p>
+          <a href="#" class="roundtable-rsvp" (click)="$event.preventDefault()">
+            RSVP: Contact or 18 places left →
+          </a>
+        </div>
+
+        <!-- Center Column -->
+        <div class="roundtable-col-center">
+          <span class="roundtable-pill-badge">INTERVIEWS</span>
+          <div class="avatars-row">
+            <div class="avatar-item" *ngFor="let av of roundtableAvatars">
+              <img [src]="av.img" [alt]="av.name" class="avatar-img" />
+              <div class="avatar-info">
+                <span class="avatar-role">{{ av.role }}</span><br>
+                <span class="avatar-org">{{ av.org }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="roundtable-col-right">
+          <div class="regional-social-bar">
+            <span class="regional-tag">Regional</span>
+            <div class="social-pills">
+              <a href="#" class="social-pill" (click)="$event.preventDefault()" aria-label="Facebook">f</a>
+              <a href="#" class="social-pill" (click)="$event.preventDefault()" aria-label="Instagram">ig</a>
+              <img src="assets/images/infinite-pink.png" alt="Boardroom" class="social-pill infinity-pill" />
+            </div>
+          </div>
+          <button class="btn-gold-cta">Apply for Membership</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION D: PROFILES IN LEADERSHIP ROW -->
+  <section class="profiles-grid-section">
+    <div class="container">
+      <div class="profiles-3col-grid">
+        <div class="profile-card" *ngFor="let card of profileCards">
+          <div class="profile-card-left">
+            <span class="profile-cat-badge">{{ card.category }}</span>
+            <h3 class="profile-headline">{{ card.headline }}</h3>
+            <span class="profile-author">{{ card.author }}</span>
+          </div>
+          <div class="profile-card-right">
+            <img [src]="card.image" [alt]="card.headline" class="profile-portrait" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION E: SECTOR DEEP DIVES & STRATEGY -->
+  <section class="sector-deep-dives">
+    <div class="container">
+      <h2 class="sector-main-title">SECTOR DEEP DIVES & STRATEGY</h2>
+
+      <!-- 4-Column Category Header Bar -->
+      <div class="sector-tabs-grid">
+        <button
+          *ngFor="let tab of sectorTabs"
+          class="sector-tab-btn"
+          [class.active]="activeSectorTab === tab"
+          (click)="selectTab(tab)"
+        >
+          {{ tab }}
+        </button>
+      </div>
+
+      <!-- 4-Column Grid Displaying Stacked Articles -->
+      <div class="sector-4col-grid">
+        <div class="sector-col" *ngFor="let tab of sectorTabs">
+          <article
+            class="sector-article-card"
+            *ngFor="let art of sectorArticlesMap[tab]"
+          >
+            <span
+              class="badge-category"
+              [class.badge-gold]="art.badgeType === 'gold'"
+              [class.badge-magenta]="art.badgeType === 'magenta'"
+            >
+              {{ art.category }}
+            </span>
+            <h3 class="sector-article-title">{{ art.headline }}</h3>
+            <p class="sector-article-summary" *ngIf="art.summary">
+              {{ art.summary }}
+            </p>
+            <div class="sector-article-meta">
+              <span>{{ art.author }}</span>
+              <span class="meta-dot">•</span>
+              <span>{{ art.readTime }}</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION F: POWER LIST TOP 50 VISIONARIES -->
+  <section class="power-list-banner">
+    <div class="power-list-chevron-top"></div>
+    <div class="power-list-inner">
+      <!-- Left Column: Title Stack & Interlocking B Monogram -->
+      <div class="power-list-left">
+        <div class="power-title-group">
+          <span class="power-eyebrow">THE POWER LIST:</span>
+          <span class="power-main-num">TOP 50</span>
+          <span class="power-sub-word">VISIONARIES</span>
+        </div>
+        <svg class="power-b-monogram" width="58" height="74" viewBox="0 0 58 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4C6 2.89543 6.89543 2 8 2H30C41.0457 2 50 10.9543 50 22C50 28.761 46.6343 34.7371 41.4422 38.3374C47.2471 41.8752 51 48.2435 51 55.5C51 65.7173 42.7173 74 32.5 74H8C6.89543 74 6 73.1046 6 72V4ZM15 10V33H30C36.0751 33 41 28.0751 41 22C41 15.9249 36.0751 11 30 11H15V10ZM15 40V66H32.5C38.299 66 43 61.299 43 55.5C43 49.701 38.299 45 32.5 45H15V40Z" fill="#B58A55"/>
+          <path d="M22 17H30C32.7614 17 35 19.2386 35 22C35 24.7614 32.7614 27 30 27H22V17Z" fill="#DCC5A1" opacity="0.7"/>
+          <path d="M22 49H32.5C36.0899 49 39 51.9101 39 55.5C39 59.0899 36.0899 62 32.5 62H22V49Z" fill="#DCC5A1" opacity="0.7"/>
+        </svg>
+      </div>
+
+      <!-- Right Column: 3 Visionary Pair Groups -->
+      <div class="power-list-right">
+        <div class="visionary-group" *ngFor="let group of powerListGroups">
+          <div class="visionary-avatars-row">
+            <div class="avatar-wrapper" *ngFor="let member of group.members" [class.has-rank]="member.rank">
+              <span class="rank-num" *ngIf="member.rank">{{ member.rank }}</span>
+              <img [src]="member.image" [alt]="member.name" class="visionary-avatar" />
+            </div>
+          </div>
+          <div class="visionary-info">
+            <h4 class="visionary-role">{{ group.title }}</h4>
+            <p class="visionary-blurb">{{ group.blurb }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION G: MULTIMEDIA & PODCAST SPLIT -->
+  
+
+  <!-- SECTION H: EVENTS & ROUNDTABLES CALENDAR -->
+  
+  <!-- SECTION J: PRINT ARCHIVE & SPECIAL REPORTS -->
+  <section class="print-archive-section">
+    <div class="container">
+      <div class="archive-header-row">
+        <h2 class="archive-main-title">THE PRINT ARCHIVE & SPECIAL REPORTS</h2>
+        <div class="header-rule"></div>
+      </div>
+
+      <div class="archive-content-grid">
+        <!-- Left: Issue Showcase -->
+        <div class="issue-showcase-col">
+          <h3 class="showcase-subtitle">Issue Showcase</h3>
+          <div class="magazine-covers-grid">
+            <div class="magazine-item" *ngFor="let issue of printArchiveIssues">
+              <div class="magazine-cover-card">
+                <img [src]="issue.image" [alt]="issue.title" class="cover-bg-img" />
+                <div class="cover-overlay">
+                  <div class="cover-masthead">
+                    <div class="monogram-box">B</div>
+                    <div class="brand-text">
+                      <small>BEYOND THE</small>
+                      <strong>BOARDROOM</strong>
+                    </div>
+                  </div>
+                  <h3 class="cover-story-title">{{ issue.title }}</h3>
+                </div>
+              </div>
+              <p class="magazine-caption">{{ issue.subtitle }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Executive Intelligence -->
+        <div class="intelligence-report-card">
+          <p class="intelligence-tag">Executive intelligence report</p>
+          <h3 class="intelligence-title">The 2027 C-Suite Agenda Reports</h3>
+          <p class="intelligence-text">
+            Comprehensive deep-dives into regional market shifts, M&A activity, and strategic foresight for 2027.
+          </p>
+          <div>
+            <button class="intelligence-download">Download →</button>
+            <button class="intelligence-cta">Access Archive Library →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION K: MARKETS, WEALTH & UNICORN TRACKER -->
+  
+</main>
+
+<!-- SECTION I: FULL-WIDTH DARK EXECUTIVE FOOTER -->
+<footer class="btb-full-footer">
+  <div class="container">
+    <div class="footer-6col-grid">
+      <!-- Col 1: Brand Monogram & Infinity Logo -->
+      <div class="footer-col brand-col">
+        <div class="footer-monogram">B</div>
+        <div class="footer-brand-title">
+          <span>BEYOND THE BOARDROOM</span>
+          <span class="footer-infinity">∞</span>
+        </div>
+        <p class="footer-tagline">Executive Intelligence & Global Leadership</p>
+      </div>
+
+      <!-- Col 2: RESOURCES -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">RESOURCES</h4>
+        <ul class="footer-links">
+          <li><a href="#" (click)="$event.preventDefault()">Home</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Business</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Connect & Links</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">News</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Contract Links</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: INSIGHTS & EVENTS -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">INSIGHTS & EVENTS</h4>
+        <ul class="footer-links">
+          <li><a href="#" (click)="$event.preventDefault()">Market Intelligence</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">CEO Keynotes</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Annual Summit 2026</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Private Dinners</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Webinars</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: ABOUT US -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">ABOUT US</h4>
+        <ul class="footer-links">
+          <li><a href="#" (click)="$event.preventDefault()">Editorial Board</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Corporate Strategy</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Leadership</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Governance</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 5: THE NETWORK -->
+      <div class="footer-col">
+        <h4 class="footer-col-heading">THE NETWORK</h4>
+        <ul class="footer-links">
+          <li><a href="#" (click)="$event.preventDefault()">Executive Club</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Partnerships</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Regional Chapters</a></li>
+          <li><a href="#" (click)="$event.preventDefault()">Advisory Council</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 6: Stay Ahead of the Curve (Newsletter) -->
+      <div class="footer-col newsletter-col">
+        <h4 class="footer-col-heading white">Stay Ahead of the Curve</h4>
+        <p class="newsletter-sub">Get exclusive executive briefs directly to your inbox.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter email address" class="newsletter-input" />
+          <button class="btn-gold-full">Subscribe</button>
+        </div>
+        <div class="footer-social-icons">
+          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Facebook">f</a>
+          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Instagram">ig</a>
+          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="X">x</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom-bar">
+      <div class="footer-bottom-handles">
+        <span>beyondtheboardroom.com</span>
+        <span class="bar-sep">|</span>
+        <span>Boardroom TV</span>
+      </div>
+      <div class="footer-copyright">
+        © 2026 Beyond The Boardroom. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

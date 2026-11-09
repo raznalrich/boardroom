@@ -1,0 +1,88 @@
+<header class="btb-header" *ngIf="isVisible">
+  <!-- Tier 1: Top Utility Bar -->
+  <div class="top-utility-bar">
+    <div class="container utility-inner">
+      <div class="edition-tag">{{ editionLabel }}</div>
+      <div class="trending-strip" *ngIf="trendingTopics.length > 0">
+        <span class="trending-label">TRENDING:</span>
+        <ng-container *ngFor="let topic of trendingTopics; let last = last">
+          <a [routerLink]="topic.route" class="trending-link">{{ topic.label }}</a>
+          <span class="comma" *ngIf="!last">, </span>
+        </ng-container>
+      </div>
+      <div class="lang-switcher">
+        <a href="#" (click)="$event.preventDefault()">EN / AR</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 2: Main Brand Masthead -->
+  <div class="masthead-bar">
+    <div class="container masthead-inner">
+      <!-- Brand Logo (Left) -->
+      <a routerLink="/" class="brand-logo">
+        <img src="assets/images/logo.png" alt="BoardRoom" class="header-logo-img">
+      </a>
+
+      <!-- Actions (Right) -->
+      <div class="masthead-actions">
+        <button class="btn-gold" (click)="subscribeClick.emit()">SUBSCRIBE</button>
+        <button class="icon-btn" (click)="toggleSearch()" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier 3: Primary Navigation Bar -->
+  <nav class="primary-nav-bar" [class.mobile-open]="isMobileMenuOpen">
+    <div class="container nav-inner">
+      <ul class="nav-list">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.route === '/'}">{{ item.label }}</a>
+        </li>
+      </ul>
+      <button class="icon-btn nav-search-btn" (click)="toggleSearch()" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Search Drawer -->
+    <div class="search-drawer" *ngIf="isSearchOpen">
+      <div class="container search-drawer-inner">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A5248" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="text" placeholder="Search executive news, CEOs, markets..." (keyup.enter)="onSearchKey($event)" autofocus />
+        <button class="icon-btn" (click)="toggleSearch()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Tier 4: Live Market Ticker Strip -->
+  <div class="market-ticker-bar" *ngIf="showTicker">
+    <div class="container ticker-inner">
+      <ng-container *ngFor="let t of marketTickers; let last = last">
+        <div class="ticker-item">
+          <span>{{ t.name }}</span>
+          <span *ngIf="t.value">{{ t.value }}</span>
+          <span class="ticker-indicator" [class.up]="t.isPositive" [class.down]="!t.isPositive">
+            {{ t.isPositive ? '▲' : '▼' }} {{ t.change }}
+          </span>
+        </div>
+        <span class="ticker-sep" *ngIf="!last">/</span>
+      </ng-container>
+    </div>
+  </div>
+</header>
