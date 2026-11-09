@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BtbHeaderComponent } from './core/layout/btb-header/btb-header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, BtbHeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('boardroom');
+  openSubscriptionModal(): void {
+    console.log('Open subscription modal');
+  }
+
+  handleGlobalSearch(query: string): void {
+    console.log('Global search query:', query);
+  }
 }
