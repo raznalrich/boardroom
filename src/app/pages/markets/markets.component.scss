@@ -1,0 +1,14 @@
+.mk-grid { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
+.quote-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.quote { padding: 18px; }
+.q-top { display: flex; justify-content: space-between; gap: 8px; }
+.q-name { font-weight: 700; font-size: 14px; }
+.q-val { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; margin: 12px 0 6px; }
+.spark { width: 100%; height: 40px; }
+.q-chg { font-weight: 700; font-size: 12.5px; white-space: nowrap; color: var(--btb-text-muted);
+  &.up { color: var(--btb-up); } &.down { color: var(--btb-down); } }
+.story { padding: 16px 0; border-bottom: 1px solid var(--btb-ivory-border);
+  h3 { font-family: 'Inter', sans-serif; font-size: 20px; margin: 8px 0 6px; } }
+.movers { padding: 20px; h3 { margin: 0 0 8px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; } }
+.mover { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--btb-ivory-border); font-size: 14px; }
+@media (max-width: 960px) { .mk-grid { grid-template-columns: 1fr; } }

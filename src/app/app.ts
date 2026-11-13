@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BtbHeaderComponent } from './core/layout/btb-header/btb-header.component';
+import { BtbFooterComponent } from './core/layout/btb-footer/btb-footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BtbHeaderComponent],
+  imports: [RouterOutlet, BtbHeaderComponent, BtbFooterComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

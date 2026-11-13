@@ -1,0 +1,37 @@
+<section class="pg-hero ld-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Leadership &amp; CEO Profiles</span>
+    <h1>The people behind the decisions</h1>
+    <p>In-depth conversations with the chief executives, chairs and founders steering the region's most influential organisations.</p>
+    <div class="stats">
+      @for (s of stats; track s.l) {
+        <div><strong>{{ s.v }}</strong><span>{{ s.l }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Executive Profiles</h2><span class="rule"></span></div>
+    <div class="pg-tabs">
+      @for (r of regions; track r) {
+        <button [class.on]="active() === r" (click)="active.set(r)">{{ r }}</button>
+      }
+    </div>
+    <div class="leader-grid">
+      @for (l of filtered(); track l.name) {
+        <article class="pg-card leader">
+          <div class="pg-img portrait" [style.background-image]="'url(' + url(l.img) + ')'"></div>
+          <div class="l-body">
+            <span class="pg-badge">{{ l.region }}</span>
+            <h3>{{ l.name }}</h3>
+            <div class="l-role">{{ l.title }}, {{ l.company }}</div>
+            <blockquote>“{{ l.quote }}”</blockquote>
+            <div class="l-foot"><span class="pg-meta">{{ l.since }}</span><a class="read">Read profile →</a></div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

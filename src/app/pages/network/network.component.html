@@ -1,0 +1,59 @@
+<section class="pg-hero">
+  <div class="pg-container net-hero">
+    <div>
+      <span class="eyebrow">The Network</span>
+      <h1>A private community of decision-makers</h1>
+      <p>Peer-to-peer connection for executives, founders and investors — through chapters, curated dinners and a members-only directory.</p>
+      <button class="pg-btn" style="margin-top:24px">Request membership</button>
+    </div>
+    <div class="stat-box">
+      @for (s of stats; track s.l) {
+        <div><strong>{{ s.v }}</strong><span>{{ s.l }}</span></div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Membership Tiers</h2><span class="rule"></span></div>
+    <div class="tiers">
+      @for (t of tiers; track t.name) {
+        <div class="pg-card tier" [class.featured]="t.featured">
+          @if (t.featured) { <span class="pg-badge magenta">Most popular</span> }
+          <h3>{{ t.name }}</h3>
+          <div class="price">{{ t.price }}</div>
+          <ul>
+            @for (p of t.perks; track p) { <li>{{ p }}</li> }
+          </ul>
+          <button class="pg-btn" [class.ghost]="!t.featured" style="width:100%">Apply</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section alt">
+  <div class="pg-container two-col">
+    <div>
+      <div class="pg-title-row"><h2>Regional Chapters</h2><span class="rule"></span></div>
+      @for (c of chapters; track c.city) {
+        <div class="chap">
+          <span class="city">{{ c.city }}</span>
+          <div class="bar"><div [style.width.%]="c.members / 10"></div></div>
+          <span class="pg-meta">{{ c.members }}</span>
+        </div>
+      }
+    </div>
+    <div>
+      <div class="pg-title-row"><h2>Featured Members</h2><span class="rule"></span></div>
+      @for (m of members; track m.name) {
+        <div class="member">
+          <span class="avatar">{{ m.initials }}</span>
+          <div><strong>{{ m.name }}</strong><div class="pg-meta">{{ m.role }}</div></div>
+          <button class="pg-btn ghost sm">Connect</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

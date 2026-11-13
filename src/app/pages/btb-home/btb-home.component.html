@@ -4,54 +4,36 @@
     <div class="container">
       <div class="hero-voices-grid">
         <!-- Left: Main Feature Story Card -->
-        <article class="hero-feature-card" style="position: relative; height: 430px; overflow: hidden; border-radius: 8px;">
-          <img
-            src="https://i.pinimg.com/1200x/89/b5/1a/89b51abbd6177492d21a1022a2cb67a2.jpg"
-            alt="Billion Dollar Vision"
-            class="hero-bg-img"
-            style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"
-          />
-          <!-- Dark Gradient Overlay -->
-          <div class="hero-overlay" style="position: absolute; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.45) 42%, rgba(0,0,0,0.92) 100%); inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 32px;">
-            <!-- Top-Right Brand Monogram -->
-           
-            <!-- Bottom-Right Gold Monogram -->
-            <div class="monogram-watermark bottom-right" style="position: absolute; bottom: 18px; right: 18px;">
-              <img src="assets/images/logo-gold.png" alt="Monogram" style="width: 40px; height: 40px; opacity: 0.5;">
-            </div>
-
-            <!-- Overlay Text Stack (Bottom-Left, max-width: 88%) -->
-            <div class="hero-content" style="max-width: 88%; margin-bottom: 20px;">
-              <!-- 1. Category Tag -->
-              <span class="hero-tag" style="background-color: #C21867; color: #FFFFFF; padding: 4px 10px; font-weight: 700; font-size: 10.5px; border-radius: 2px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px;">
-                EDITORIAL
-              </span>
-
-              <!-- 2. Main Feature Heading -->
-              <h1 class="hero-title" style="color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; margin: 0 0 10px 0; letter-spacing: -0.3px; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
-                THE BILLION-DOLLAR VISION: How India's Next-Gen Industrialists Are Rewriting Global Logistics
-              </h1>
-
-              <!-- 3. Author & Read-Time Metadata Row -->
-              <div class="hero-meta" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #E2E2E2; margin-bottom: 12px;">
-                <span style="color: #FFFFFF; font-weight: 700;">By Priya Nair</span>
-                <span style="color: #888888;">|</span>
-                <span style="color: #B58A55;">⏳</span>
-                <span style="color: #E2E2E2;">7 min read</span>
+        <article class="hero-feature-card hero-slider" (mouseenter)="pauseAutoSlide()" (mouseleave)="startAutoSlide()" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+          <div class="hero-track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+            @for (s of heroSlides; track s.title) {
+              <div class="hero-slide">
+                <img [src]="s.image" [alt]="s.title" class="hero-bg-img" />
+                <div class="hero-slide-overlay">
+                  <div class="hero-content">
+                    <span class="hero-slide-tag">{{ s.tag }}</span>
+                    <h1 class="hero-slide-title">{{ s.title }}</h1>
+                    <div class="hero-slide-meta">
+                      <span class="by">By {{ s.author }}</span>
+                      <span class="sep">|</span>
+                      <span class="time">⏳ {{ s.readTime }}</span>
+                    </div>
+                    <ul class="hero-slide-bullets">
+                      @for (b of s.bullets; track b) { <li>{{ b }}</li> }
+                    </ul>
+                  </div>
+                </div>
               </div>
+            }
+          </div>
 
-              <!-- 4. Summary Bullet Points -->
-              <ul class="hero-bullets" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-                <li style="font-size: 13px; color: #D4D4D4; line-height: 1.4; display: flex; align-items: center; gap: 8px;">
-                  <span style="color: #B58A55; font-size: 14px;">•</span>
-                  Business leaders driving vision in Next-Gen Global Logistics
-                </li>
-                <li style="font-size: 13px; color: #D4D4D4; line-height: 1.4; display: flex; align-items: center; gap: 8px;">
-                  <span style="color: #B58A55; font-size: 14px;">•</span>
-                  Summary of key industrialists rewriting global supply chain corridors
-                </li>
-              </ul>
-            </div>
+          <button class="hero-arrow prev" (click)="prevSlide()" aria-label="Previous story">‹</button>
+          <button class="hero-arrow next" (click)="nextSlide()" aria-label="Next story">›</button>
+
+          <div class="hero-dots">
+            @for (s of heroSlides; track s.title; let i = $index) {
+              <button class="dot" [class.active]="i === currentSlide" (click)="goToSlide(i)" [attr.aria-label]="'Go to story ' + (i + 1)"></button>
+            }
           </div>
         </article>
 
@@ -317,94 +299,3 @@
   
 </main>
 
-<!-- SECTION I: FULL-WIDTH DARK EXECUTIVE FOOTER -->
-<footer class="btb-full-footer">
-  <div class="container">
-    <div class="footer-6col-grid">
-      <!-- Col 1: Brand Monogram & Infinity Logo -->
-      <div class="footer-col brand-col">
-        <div class="footer-monogram">B</div>
-        <div class="footer-brand-title">
-          <span>BEYOND THE BOARDROOM</span>
-          <span class="footer-infinity">∞</span>
-        </div>
-        <p class="footer-tagline">Executive Intelligence & Global Leadership</p>
-      </div>
-
-      <!-- Col 2: RESOURCES -->
-      <div class="footer-col">
-        <h4 class="footer-col-heading">RESOURCES</h4>
-        <ul class="footer-links">
-          <li><a href="#" (click)="$event.preventDefault()">Home</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Business</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Connect & Links</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">News</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Contract Links</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: INSIGHTS & EVENTS -->
-      <div class="footer-col">
-        <h4 class="footer-col-heading">INSIGHTS & EVENTS</h4>
-        <ul class="footer-links">
-          <li><a href="#" (click)="$event.preventDefault()">Market Intelligence</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">CEO Keynotes</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Annual Summit 2026</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Private Dinners</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Webinars</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: ABOUT US -->
-      <div class="footer-col">
-        <h4 class="footer-col-heading">ABOUT US</h4>
-        <ul class="footer-links">
-          <li><a href="#" (click)="$event.preventDefault()">Editorial Board</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Corporate Strategy</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Leadership</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Governance</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Careers</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 5: THE NETWORK -->
-      <div class="footer-col">
-        <h4 class="footer-col-heading">THE NETWORK</h4>
-        <ul class="footer-links">
-          <li><a href="#" (click)="$event.preventDefault()">Executive Club</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Partnerships</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Regional Chapters</a></li>
-          <li><a href="#" (click)="$event.preventDefault()">Advisory Council</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 6: Stay Ahead of the Curve (Newsletter) -->
-      <div class="footer-col newsletter-col">
-        <h4 class="footer-col-heading white">Stay Ahead of the Curve</h4>
-        <p class="newsletter-sub">Get exclusive executive briefs directly to your inbox.</p>
-        <div class="newsletter-form">
-          <input type="email" placeholder="Enter email address" class="newsletter-input" />
-          <button class="btn-gold-full">Subscribe</button>
-        </div>
-        <div class="footer-social-icons">
-          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Facebook">f</a>
-          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Instagram">ig</a>
-          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="LinkedIn">in</a>
-          <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="X">x</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Copyright Bar -->
-    <div class="footer-bottom-bar">
-      <div class="footer-bottom-handles">
-        <span>beyondtheboardroom.com</span>
-        <span class="bar-sep">|</span>
-        <span>Boardroom TV</span>
-      </div>
-      <div class="footer-copyright">
-        © 2026 Beyond The Boardroom. All rights reserved.
-      </div>
-    </div>
-  </div>
-</footer>

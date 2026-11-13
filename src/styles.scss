@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ---------- Shared page primitives (used by all section pages) ---------- */
+:root {
+  --btb-ivory: #F6EFE4;
+  --btb-ivory-light: #FBF8F3;
+  --btb-ivory-border: #DECBB1;
+  --btb-gold: #B58A55;
+  --btb-gold-dark: #966E3D;
+  --btb-magenta: #C21867;
+  --btb-charcoal: #181818;
+  --btb-text-dark: #121212;
+  --btb-text-muted: #5A5248;
+  --btb-up: #16A34A;
+  --btb-down: #DC2626;
+}
+body { margin: 0; background: var(--btb-ivory); font-family: 'Inter', sans-serif; color: var(--btb-text-dark); }
+* { box-sizing: border-box; }
+.pg { display: block; background: var(--btb-ivory); min-height: 60vh; }
+.pg-container { max-width: 1380px; margin: 0 auto; padding: 0 24px; }
+.pg-hero { padding: 56px 0 44px; border-bottom: 1px solid var(--btb-ivory-border); }
+.pg-hero .eyebrow { color: var(--btb-magenta); font-weight: 700; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; }
+.pg-hero h1 { font-family: 'Inter', sans-serif; font-size: 48px; line-height: 1.1; margin: 10px 0 14px; }
+.pg-hero p { max-width: 720px; font-size: 16px; line-height: 1.6; color: var(--btb-text-muted); margin: 0; }
+.pg-section { padding: 44px 0; }
+.pg-title-row { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
+.pg-title-row h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; white-space: nowrap; }
+.pg-title-row .rule { flex: 1; height: 1.5px; background: #C8B79E; }
+.pg-badge { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; background: var(--btb-gold); color: #121212; }
+.pg-badge.magenta { background: var(--btb-magenta); color: #fff; }
+.pg-badge.dark { background: var(--btb-charcoal); color: #fff; }
+.pg-btn { display: inline-block; border: 1px solid var(--btb-gold-dark); background: var(--btb-gold); color: #121212; font-weight: 700; font-size: 12px; letter-spacing: .6px; padding: 10px 18px; border-radius: 4px; cursor: pointer; text-transform: uppercase; }
+.pg-btn:hover { background: var(--btb-gold-dark); color: #fff; }
+.pg-btn.ghost { background: transparent; color: var(--btb-text-dark); border-color: var(--btb-text-dark); }
+.pg-btn.ghost:hover { background: var(--btb-text-dark); color: #fff; }
+.pg-meta { font-size: 12px; color: var(--btb-text-muted); }
+.pg-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pg-tabs button { border: 1px solid var(--btb-ivory-border); background: var(--btb-ivory-light); padding: 7px 16px; font-size: 12px; font-weight: 600; border-radius: 20px; cursor: pointer; color: var(--btb-text-dark); }
+.pg-tabs button.on { background: var(--btb-charcoal); color: #fff; border-color: var(--btb-charcoal); }
+.pg-card { background: var(--btb-ivory-light); border: 1px solid var(--btb-ivory-border); border-radius: 6px; }
+.pg-img { background-size: cover; background-position: center; background-color: #d9c8ab; }
+@media (max-width: 760px) { .pg-hero h1 { font-size: 34px; } }

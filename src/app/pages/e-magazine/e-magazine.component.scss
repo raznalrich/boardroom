@@ -1,0 +1,20 @@
+.mag-hero { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: center; }
+.cover { aspect-ratio: 3/4; background: linear-gradient(160deg, #181818, #5a1a3a); border-radius: 4px; box-shadow: 14px 14px 0 var(--btb-gold), 0 20px 40px rgba(0,0,0,.25); display: flex; }
+.cover-inner { margin: auto 0 0; padding: 28px; color: #fff; display: flex; flex-direction: column; gap: 10px;
+  .brand { font-family: 'Inter', sans-serif; letter-spacing: 2px; font-size: 12px; color: var(--btb-gold); }
+  h2 { font-family: 'Inter', sans-serif; font-size: 42px; line-height: 1.05; margin: 0; }
+  .cover-month { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: #cfc7bb; } }
+.toc { padding-left: 18px; margin: 18px 0 24px; li { padding: 6px 0; font-size: 15px; } }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.arch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 24px; }
+.issue { display: flex; flex-direction: column; gap: 4px; cursor: pointer; font-size: 14px;
+  &:hover .thumb { transform: translateY(-4px); } }
+.thumb { aspect-ratio: 3/4; border-radius: 3px; display: flex; align-items: flex-end; padding: 14px; color: #fff; transition: transform .2s; box-shadow: 0 8px 18px rgba(0,0,0,.2);
+  span { font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.1; } }
+.alt { background: var(--btb-ivory-light); border-top: 1px solid var(--btb-ivory-border); }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 360px)); gap: 24px; }
+.plan { padding: 28px; display: flex; flex-direction: column; gap: 12px; &.featured { border: 2px solid var(--btb-gold); }
+  h3 { margin: 0; font-family: 'Inter', sans-serif; font-size: 24px; }
+  .price { font-size: 34px; font-weight: 700; small { font-size: 13px; color: var(--btb-text-muted); font-weight: 400; margin-left: 4px; } }
+  ul { padding-left: 18px; margin: 0 0 8px; } li { padding: 4px 0; font-size: 14px; } }
+@media (max-width: 860px) { .mag-hero { grid-template-columns: 1fr; } .cover { max-width: 280px; } }

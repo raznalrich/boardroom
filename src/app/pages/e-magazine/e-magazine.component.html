@@ -1,0 +1,54 @@
+<section class="pg-hero">
+  <div class="pg-container mag-hero">
+    <div class="cover">
+      <div class="cover-inner">
+        <span class="brand">BEYOND THE BOARDROOM</span>
+        <h2>{{ current.title }}</h2>
+        <span class="cover-month">{{ current.month }}</span>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">The E-Magazine · Current Issue</span>
+      <h1>{{ current.title }}</h1>
+      <p>{{ current.month }} · {{ current.pages }} pages</p>
+      <ul class="toc">
+        @for (c of current.contents; track c) { <li>{{ c }}</li> }
+      </ul>
+      <div class="actions">
+        <button class="pg-btn">Read online</button>
+        <button class="pg-btn ghost">Download PDF</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Past Issues</h2><span class="rule"></span></div>
+    <div class="arch-grid">
+      @for (a of archive; track a.title) {
+        <div class="issue">
+          <div class="thumb" [style.background]="a.color"><span>{{ a.title }}</span></div>
+          <strong>{{ a.title }}</strong>
+          <span class="pg-meta">{{ a.month }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section alt">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Subscribe</h2><span class="rule"></span></div>
+    <div class="plans">
+      @for (p of plans; track p.name) {
+        <div class="pg-card plan" [class.featured]="p.featured">
+          <h3>{{ p.name }}</h3>
+          <div class="price">{{ p.price }}<small>{{ p.per }}</small></div>
+          <ul>@for (x of p.perks; track x) { <li>{{ x }}</li> }</ul>
+          <button class="pg-btn" style="width:100%">Subscribe</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

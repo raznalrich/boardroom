@@ -1,0 +1,49 @@
+<section class="pg-hero ev-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Events</span>
+    <h1>Annual Leadership Summit 2026</h1>
+    <p>Two days. 80 speakers. 1,200 senior executives. Join the conversation shaping the next decade of business.</p>
+    <div class="count">
+      <div><strong>20</strong><span>Days</span></div>
+      <div><strong>08</strong><span>Hours</span></div>
+      <div><strong>45</strong><span>Mins</span></div>
+    </div>
+    <button class="pg-btn">Register now</button>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Upcoming Events</h2><span class="rule"></span></div>
+    <div class="pg-tabs">
+      @for (t of types; track t) {
+        <button [class.on]="active() === t" (click)="active.set(t)">{{ t }}</button>
+      }
+    </div>
+    @for (e of filtered(); track e.title) {
+      <div class="pg-card ev-row">
+        <div class="date"><strong>{{ e.day }}</strong><span>{{ e.month }}</span></div>
+        <div class="ev-main">
+          <span class="pg-badge" [class.magenta]="e.type === 'Summit'" [class.dark]="e.type === 'Dinner'">{{ e.type }}</span>
+          <h3>{{ e.title }}</h3>
+          <span class="pg-meta">📍 {{ e.city }} · 🕘 {{ e.time }}</span>
+        </div>
+        <div class="ev-cta">
+          <span class="pg-meta">{{ e.seats }}</span>
+          <button class="pg-btn ghost">Details</button>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="pg-section alt">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Featured Speakers</h2><span class="rule"></span></div>
+    <div class="spk-grid">
+      @for (s of speakers; track s.name) {
+        <div class="spk"><span class="avatar">{{ s.initials }}</span><strong>{{ s.name }}</strong><span class="pg-meta">{{ s.role }}</span></div>
+      }
+    </div>
+  </div>
+</section>

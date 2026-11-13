@@ -1,0 +1,61 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Insights</span>
+    <h1>Analysis for people who decide</h1>
+    <p>Long-form analysis, research and expert opinion on the economics, strategy and technology reshaping business.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-tabs">
+      @for (c of categories; track c) {
+        <button [class.on]="active() === c" (click)="active.set(c)">{{ c }}</button>
+      }
+    </div>
+
+    <div class="ins-grid">
+      <div>
+        @if (featured(); as f) {
+          <article class="feature">
+            <div class="pg-img feature-img" [style.background-image]="'url(' + url(f.img) + ')'"></div>
+            <div class="feature-body">
+              <span class="pg-badge magenta">{{ f.category }}</span>
+              <h2>{{ f.title }}</h2>
+              <p>{{ f.summary }}</p>
+              <span class="pg-meta">By {{ f.author }} · {{ f.read }} read · {{ f.date }}</span>
+            </div>
+          </article>
+        }
+        <div class="card-grid">
+          @for (a of rest(); track a.title) {
+            <article class="pg-card art">
+              <div class="pg-img art-img" [style.background-image]="'url(' + url(a.img) + ')'"></div>
+              <div class="art-body">
+                <span class="pg-badge">{{ a.category }}</span>
+                <h3>{{ a.title }}</h3>
+                <p>{{ a.summary }}</p>
+                <span class="pg-meta">{{ a.author }} · {{ a.read }}</span>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+
+      <aside>
+        <div class="pg-card side">
+          <h4>Trending Now</h4>
+          <ol>
+            @for (t of trending; track t) { <li>{{ t }}</li> }
+          </ol>
+        </div>
+        <div class="side dark">
+          <h4>The Weekly Brief</h4>
+          <p>Five ideas worth your attention, every Friday.</p>
+          <input type="email" placeholder="Email address" />
+          <button class="pg-btn" style="width:100%">Subscribe</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

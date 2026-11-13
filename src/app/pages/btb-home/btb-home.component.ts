@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+export interface HeroSlide {
+  tag: string;
+  title: string;
+  author: string;
+  readTime: string;
+  image: string;
+  bullets: string[];
+}
 
 export interface SectorArticle {
   category: string;
@@ -36,7 +45,90 @@ export interface PowerListGroup {
   templateUrl: './btb-home.component.html',
   styleUrls: ['./btb-home.component.scss']
 })
-export class BtbHomeComponent implements OnInit {
+export class BtbHomeComponent implements OnInit, OnDestroy {
+  // Main feature story slider
+  heroSlides: HeroSlide[] = [
+    {
+      tag: 'EDITORIAL',
+      title: "THE BILLION-DOLLAR VISION: How India's Next-Gen Industrialists Are Rewriting Global Logistics",
+      author: 'Priya Nair',
+      readTime: '7 min read',
+      image: 'https://i.pinimg.com/1200x/89/b5/1a/89b51abbd6177492d21a1022a2cb67a2.jpg',
+      bullets: [
+        'Business leaders driving vision in Next-Gen Global Logistics',
+        'Summary of key industrialists rewriting global supply chain corridors'
+      ]
+    },
+    {
+      tag: 'MARKETS',
+      title: 'GULF CAPITAL GOES GLOBAL: Sovereign Funds Reshape the Flow of International Investment',
+      author: 'Layla Haddad',
+      readTime: '9 min read',
+      image: 'https://images.pexels.com/photos/22719284/pexels-photo-22719284.jpeg',
+      bullets: ['State-backed investors now deploy more outbound capital than ever', 'What it means for regional deal-making in 2027']
+    },
+    {
+      tag: 'INNOVATION',
+      title: 'AI IN THE C-SUITE: Three Operating Models That Actually Work',
+      author: 'Sara Al-Qahtani',
+      readTime: '8 min read',
+      image: 'https://images.pexels.com/photos/7845285/pexels-photo-7845285.jpeg',
+      bullets: ['Lessons from 40 regional enterprises', 'Governance structures behind successful AI rollouts']
+    },
+    {
+      tag: 'LEADERSHIP',
+      title: "THE CHAIRMAN'S PLAYBOOK: Family Governance in the Next Generation of Conglomerates",
+      author: 'Khalid Nasser',
+      readTime: '10 min read',
+      image: 'https://images.pexels.com/photos/3733584/pexels-photo-3733584.jpeg',
+      bullets: ['Succession, transparency and public listing', "Advice from the region's most influential chairs"]
+    }
+  ];
+  currentSlide = 0;
+  private slideTimer: ReturnType<typeof setInterval> | null = null;
+  private touchStartX = 0;
+
+  startAutoSlide(): void {
+    this.pauseAutoSlide();
+    this.slideTimer = setInterval(() => this.nextSlide(), 5000);
+  }
+
+  pauseAutoSlide(): void {
+    if (this.slideTimer) {
+      clearInterval(this.slideTimer);
+      this.slideTimer = null;
+    }
+  }
+
+  nextSlide(): void {
+    this.currentSlide = (this.currentSlide + 1) % this.heroSlides.length;
+  }
+
+  prevSlide(): void {
+    this.currentSlide = (this.currentSlide - 1 + this.heroSlides.length) % this.heroSlides.length;
+  }
+
+  goToSlide(i: number): void {
+    this.currentSlide = i;
+  }
+
+  onTouchStart(e: TouchEvent): void {
+    this.pauseAutoSlide();
+    this.touchStartX = e.touches[0].clientX;
+  }
+
+  onTouchEnd(e: TouchEvent): void {
+    const dx = e.changedTouches[0].clientX - this.touchStartX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) { this.nextSlide(); } else { this.prevSlide(); }
+    }
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy(): void {
+    this.pauseAutoSlide();
+  }
+
   // Section B: Breaking News Ticker Items
   latestNews: string[] = [
     'SMEs secure $400M in Saudi expansion funds',
@@ -295,7 +387,9 @@ intelligenceReport = {
   // Section I: Newsletter state
   newsletterEmail = '';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.startAutoSlide();
+  }
 
   selectTab(tab: string): void {
     this.activeSectorTab = tab;

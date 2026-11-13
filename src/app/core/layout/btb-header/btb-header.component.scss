@@ -12,11 +12,11 @@
   --btb-up-green: #16A34A;
   --btb-down-red: #DC2626;
 
-  --font-logo: 'Cinzel', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-logo: 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif;
 
   display: block;
-  font-family: var(--font-sans);
+  font-family: 'Inter', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;

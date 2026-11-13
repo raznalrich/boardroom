@@ -1,0 +1,51 @@
+<section class="pg-hero inn-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Innovation</span>
+    <h1>Where tomorrow's market leaders begin</h1>
+    <p>Technologies, ventures and ideas redefining industries across the Middle East, India and beyond.</p>
+    <button class="pg-btn" style="margin-top:24px">Nominate a startup</button>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Innovation Themes</h2><span class="rule"></span></div>
+    <div class="theme-grid">
+      @for (t of themes; track t.name) {
+        <div class="pg-card theme">
+          <span class="ico">{{ t.icon }}</span>
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.blurb }}</p>
+          <span class="pg-meta">{{ t.count }} stories</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section dark-band">
+  <div class="pg-container">
+    <div class="pg-title-row light"><h2>Startups to Watch</h2><span class="rule"></span></div>
+    <div class="su-grid">
+      @for (s of startups; track s.name) {
+        <div class="su">
+          <div class="su-top"><span class="pg-badge">{{ s.sector }}</span><span class="raised">{{ s.raised }}</span></div>
+          <h3>{{ s.name }}</h3>
+          <p>{{ s.desc }}</p>
+          <div class="su-meta">{{ s.stage }} · {{ s.hq }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Innovation Awards 2027</h2><span class="rule"></span></div>
+    <div class="steps">
+      @for (p of pipeline; track p.step) {
+        <div class="step"><span class="num">{{ p.step }}</span><h4>{{ p.title }}</h4><p>{{ p.text }}</p></div>
+      }
+    </div>
+  </div>
+</section>

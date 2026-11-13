@@ -1,0 +1,59 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Markets</span>
+    <h1>Markets Overview</h1>
+    <p>Real-time indices, commodities and currency moves shaping boardroom decisions across the GCC, India and global exchanges.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container mk-grid">
+    <div>
+      <div class="pg-tabs">
+        @for (t of tabs; track t) {
+          <button [class.on]="active() === t" (click)="active.set(t)">{{ t }}</button>
+        }
+      </div>
+
+      <div class="quote-grid">
+        @for (q of rows(); track q.name) {
+          <div class="pg-card quote">
+            <div class="q-top">
+              <div>
+                <div class="q-name">{{ q.name }}</div>
+                <div class="pg-meta">{{ q.region }}</div>
+              </div>
+              <span class="q-chg" [class.up]="q.change > 0" [class.down]="q.change < 0">
+                {{ q.change > 0 ? '▲' : q.change < 0 ? '▼' : '–' }} {{ q.change < 0 ? -q.change : q.change }}%
+              </span>
+            </div>
+            <div class="q-val">{{ q.value }}</div>
+            <svg viewBox="0 0 84 40" preserveAspectRatio="none" class="spark">
+              <polyline [attr.points]="bars(q.spark)" fill="none" [attr.stroke]="q.change < 0 ? '#DC2626' : '#16A34A'" stroke-width="2" />
+            </svg>
+          </div>
+        }
+      </div>
+
+      <div class="pg-title-row" style="margin-top:44px"><h2>Market Headlines</h2><span class="rule"></span></div>
+      @for (s of stories; track s.title) {
+        <article class="story">
+          <span class="pg-badge magenta">{{ s.tag }}</span>
+          <h3>{{ s.title }}</h3>
+          <span class="pg-meta">{{ s.time }}</span>
+        </article>
+      }
+    </div>
+
+    <aside class="pg-card movers">
+      <h3>Top Movers</h3>
+      @for (m of movers; track m.ticker) {
+        <div class="mover">
+          <div><strong>{{ m.name }}</strong><div class="pg-meta">{{ m.ticker }}</div></div>
+          <span class="q-chg" [class.up]="m.change > 0" [class.down]="m.change < 0">{{ m.change > 0 ? '+' : '' }}{{ m.change }}%</span>
+        </div>
+      }
+      <button class="pg-btn" style="width:100%;margin-top:16px">Open Watchlist</button>
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+.net-hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.stat-box { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--btb-ivory-border); border: 1px solid var(--btb-ivory-border); border-radius: 6px; overflow: hidden;
+  div { background: var(--btb-ivory-light); padding: 22px; display: flex; flex-direction: column; }
+  strong { font-family: 'Inter', sans-serif; font-size: 30px; color: var(--btb-gold-dark); }
+  span { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--btb-text-muted); } }
+.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+.tier { padding: 28px; display: flex; flex-direction: column; gap: 12px;
+  &.featured { background: var(--btb-charcoal); color: #fff; border-color: var(--btb-gold); transform: translateY(-8px); }
+  .pg-badge { align-self: flex-start; } h3 { font-family: 'Inter', sans-serif; font-size: 24px; margin: 0; }
+  .price { color: var(--btb-gold); font-weight: 700; font-size: 18px; }
+  ul { padding-left: 18px; margin: 0 0 12px; flex: 1; } li { padding: 5px 0; font-size: 14px; }
+  .pg-btn.ghost { color: inherit; border-color: currentColor; } }
+.alt { background: var(--btb-ivory-light); border-top: 1px solid var(--btb-ivory-border); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.chap { display: grid; grid-template-columns: 90px 1fr 50px; align-items: center; gap: 14px; padding: 8px 0;
+  .city { font-weight: 600; font-size: 14px; }
+  .bar { height: 8px; background: var(--btb-ivory-border); border-radius: 4px; overflow: hidden; div { height: 100%; background: var(--btb-magenta); } } }
+.member { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--btb-ivory-border); div { flex: 1; } }
+.avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--btb-gold); display: grid; place-items: center; font-weight: 700; }
+.sm { padding: 6px 12px; }
+@media (max-width: 960px) { .net-hero, .two-col { grid-template-columns: 1fr; } .tier.featured { transform: none; } }
