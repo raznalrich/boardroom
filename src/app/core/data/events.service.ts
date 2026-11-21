@@ -13,6 +13,10 @@ export interface AppEvent {
   time: string;
   city: string;
   seats: string;
+  /** Where "Register now" sends the visitor ('' when not set) */
+  registerUrl: string;
+  /** Text for the details pop-up ('' when not set) */
+  description: string;
 }
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -27,6 +31,16 @@ export function eventMonth(date: string): string {
 
 export function eventYear(date: string): string {
   return date.slice(0, 4);
+}
+
+/**
+ * When the event starts: its date plus the first clock time found in the time text
+ * (e.g. "09:00 – 18:00" or "15:00 GST" -> 09:00 / 15:00). Uses the viewer's local time; midnight if no time is given.
+ */
+export function eventStart(e: AppEvent): Date {
+  const m = /(\d{1,2}):(\d{2})/.exec(e.time ?? '');
+  const [y, mo, d] = e.date.split('-').map(Number);
+  return new Date(y, mo - 1, d, m ? Math.min(23, +m[1]) : 0, m ? Math.min(59, +m[2]) : 0, 0);
 }
 
 function todayIso(): string {
@@ -44,6 +58,8 @@ export class EventsService {
   /** Every event, soonest first. */
   readonly all = signal<AppEvent[]>([]);
   readonly loaded = signal(false);
+  /** True once the database returns the registration columns (see supabase/events-register.sql). */
+  private hasExtraColumns = false;
 
   /** Only events that have not happened yet. */
   readonly upcoming = computed<AppEvent[]>(() => {
@@ -58,6 +74,7 @@ export class EventsService {
   async refresh(): Promise<void> {
     const { data, error } = await supabase.from('events').select('*').order('event_date', { ascending: true });
     if (error) console.error('Could not load events:', error.message);
+    this.hasExtraColumns = !!data?.length && 'register_url' in data[0];
     this.all.set((data ?? []).map(toEvent));
     this.loaded.set(true);
   }
@@ -67,7 +84,12 @@ export class EventsService {
   }
 
   async save(e: Omit<AppEvent, 'id'> & { id?: string }): Promise<SaveResult> {
-    const row = { title: e.title.trim(), type: e.type, event_date: e.date, time_label: e.time.trim(), city: e.city.trim(), seats: e.seats };
+    const row: Record<string, unknown> = { title: e.title.trim(), type: e.type, event_date: e.date, time_label: e.time.trim(), city: e.city.trim(), seats: e.seats };
+    // only send the new columns once they exist (or when they are being used), so saving never breaks before the SQL is run
+    if (this.hasExtraColumns || e.registerUrl.trim() || e.description.trim()) {
+      row['register_url'] = e.registerUrl.trim() || null;
+      row['description'] = e.description.trim() || null;
+    }
     const { error } = e.id
       ? await supabase.from('events').update(row).eq('id', e.id)
       : await supabase.from('events').insert(row);
@@ -85,5 +107,8 @@ export class EventsService {
 }
 
 function toEvent(r: any): AppEvent {
-  return { id: r.id, title: r.title, type: r.type, date: r.event_date, time: r.time_label, city: r.city, seats: r.seats };
+  return {
+    id: r.id, title: r.title, type: r.type, date: r.event_date, time: r.time_label, city: r.city, seats: r.seats,
+    registerUrl: r.register_url ?? '', description: r.description ?? ''
+  };
 }

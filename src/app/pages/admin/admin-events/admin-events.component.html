@@ -42,6 +42,14 @@
         <input id="city" name="city" [(ngModel)]="model.city" required placeholder="e.g. Dubai, DIFC or Online" #c="ngModel" />
         @if (c.invalid && (c.touched || f.submitted)) { <span class="e">Enter the venue or city.</span> }
 
+        <label for="url">Registration URL</label>
+        <input id="url" name="url" type="url" [(ngModel)]="model.registerUrl" [pattern]="urlPattern" placeholder="https://example.com/register" #u="ngModel" />
+        @if (u.invalid && (u.touched || f.submitted)) { <span class="e">Enter a full link starting with http:// or https://</span> }
+        <span class="hint">The “Register now” button in the event pop-up opens this link. Leave empty to show “Registration link coming soon”.</span>
+
+        <label for="desc">Event details (shown in the pop-up)</label>
+        <textarea id="desc" name="desc" rows="5" maxlength="1500" [(ngModel)]="model.description" placeholder="What is this event about? Agenda, who it is for, dress code…"></textarea>
+
         <div class="actions">
           <button type="submit" class="btn primary" [disabled]="saving()">{{ editingId() ? 'Save changes' : 'Add event' }}</button>
           <button type="button" class="btn" (click)="cancel(f)">Cancel</button>
@@ -70,6 +78,7 @@
               </div>
               <h4>{{ e.title }}</h4>
               <small>📍 {{ e.city }} · 🕘 {{ e.time }} · {{ e.seats }}</small>
+              @if (e.registerUrl) { <a class="reg" [href]="e.registerUrl" target="_blank" rel="noopener">🔗 {{ e.registerUrl }}</a> } @else { <span class="reg none">No registration link yet</span> }
             </div>
             <div class="row-actions">
               <button class="btn sm" (click)="edit(e)">Edit</button>

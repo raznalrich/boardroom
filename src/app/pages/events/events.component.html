@@ -1,14 +1,15 @@
 <section class="pg-hero ev-hero">
   <div class="pg-container">
     <span class="eyebrow">Events</span>
-    <h1>Annual Leadership Summit 2026</h1>
-    <p>Two days. 80 speakers. 1,200 senior executives. Join the conversation shaping the next decade of business.</p>
-    <div class="count">
-      <div><strong>20</strong><span>Days</span></div>
-      <div><strong>08</strong><span>Hours</span></div>
-      <div><strong>45</strong><span>Mins</span></div>
-    </div>
-    <button class="pg-btn">Register now</button>
+    @if (next(); as n) {
+      <h1>{{ n.title }}</h1>
+      <p>{{ day(n.date) }} {{ month(n.date) }} {{ n.date.slice(0, 4) }} &nbsp;·&nbsp; {{ n.time }} &nbsp;·&nbsp; {{ n.city }}</p>
+      <div class="count-wrap"><app-event-countdown [event]="n" /></div>
+      <button type="button" class="pg-btn" (click)="selected.set(n)">Details &amp; registration</button>
+    } @else {
+      <h1>Events &amp; Roundtables</h1>
+      <p>Summits, keynotes and private gatherings for senior executives. New dates are announced here first.</p>
+    }
   </div>
 </section>
 
@@ -30,20 +31,13 @@
         </div>
         <div class="ev-cta">
           <span class="pg-meta">{{ e.seats }}</span>
-          <button class="pg-btn ghost">Details</button>
+          <button type="button" class="pg-btn ghost" (click)="selected.set(e)">Details</button>
         </div>
       </div>
     }
   </div>
 </section>
 
-<section class="pg-section alt">
-  <div class="pg-container">
-    <div class="pg-title-row"><h2>Featured Speakers</h2><span class="rule"></span></div>
-    <div class="spk-grid">
-      @for (s of speakers; track s.name) {
-        <div class="spk"><span class="avatar">{{ s.initials }}</span><strong>{{ s.name }}</strong><span class="pg-meta">{{ s.role }}</span></div>
-      }
-    </div>
-  </div>
-</section>
+@if (selected(); as ev) {
+  <app-event-detail-modal [event]="ev" (closed)="selected.set(null)" />
+}

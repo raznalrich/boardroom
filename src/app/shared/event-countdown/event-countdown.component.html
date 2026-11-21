@@ -1,0 +1,9 @@
+@if (started()) {
+  <div class="started">● Happening now</div>
+} @else {
+  <div class="count" role="timer" aria-live="off">
+    @for (u of units(); track u.label) {
+      <div class="unit"><strong>{{ u.value }}</strong><span>{{ u.label }}</span></div>
+    }
+  </div>
+}

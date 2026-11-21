@@ -34,15 +34,6 @@
           </div>
         }
       </div>
-
-      <div class="pg-title-row" style="margin-top:44px"><h2>Market Headlines</h2><span class="rule"></span></div>
-      @for (s of stories; track s.title) {
-        <article class="story">
-          <span class="pg-badge magenta">{{ s.tag }}</span>
-          <h3>{{ s.title }}</h3>
-          <span class="pg-meta">{{ s.time }}</span>
-        </article>
-      }
     </div>
 
     <aside class="pg-card movers">

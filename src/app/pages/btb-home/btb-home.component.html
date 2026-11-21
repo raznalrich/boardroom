@@ -79,7 +79,7 @@
   </section>
 
   <!-- SECTION B: BREAKING / LATEST NEWS STRIP -->
-  <section class="latest-news-strip">
+  <!-- <section class="latest-news-strip">
     <div class="container news-strip-inner">
       <div class="news-label">LATEST NEWS</div>
       <div class="news-items-wrapper">
@@ -92,7 +92,7 @@
         <span>❯</span>
       </button>
     </div>
-  </section>
+  </section> -->
 
   <!-- SECTION C: BOARDROOM ROUNDTABLE BANNER -->
   <section class="boardroom-roundtable-banner">
@@ -323,9 +323,21 @@
         <a routerLink="/events" class="he-all">View all →</a>
       </div>
 
+      @if (nextEvent; as n) {
+        <div class="he-next">
+          <div class="he-next-info">
+            <span class="he-next-label"><i></i>UPCOMING EVENT</span>
+            <h3>{{ n.title }}</h3>
+            <p>📅 {{ evDay(n.date) }} {{ evMonth(n.date) }} {{ evYear(n.date) }} &nbsp;·&nbsp; 🕘 {{ n.time }} &nbsp;·&nbsp; 📍 {{ n.city }}</p>
+            <button type="button" class="he-next-btn" (click)="selectedEvent = n">View details</button>
+          </div>
+          <app-event-countdown [event]="n" />
+        </div>
+      }
+
       <div class="he-grid">
         @for (e of homeEvents; track e.id) {
-          <a class="he-card" routerLink="/events">
+          <article class="he-card">
             <div class="he-date">
               <strong>{{ evDay(e.date) }}</strong>
               <span>{{ evMonth(e.date) }}</span>
@@ -337,14 +349,19 @@
               <div class="he-meta">📍 {{ e.city }}</div>
               <div class="he-meta">🕘 {{ e.time }}</div>
               <span class="he-seats">{{ e.seats }}</span>
+              <button type="button" class="he-details" (click)="selectedEvent = e">Details</button>
             </div>
-          </a>
+          </article>
         } @empty {
           <p class="he-empty">No upcoming events right now. Check back soon.</p>
         }
       </div>
     </div>
   </section>
+
+  @if (selectedEvent; as ev) {
+    <app-event-detail-modal [event]="ev" (closed)="selectedEvent = null" />
+  }
 
   <!-- SECTION J: PRINT ARCHIVE & SPECIAL REPORTS -->
   <section class="print-archive-section">

@@ -16,6 +16,8 @@ export class AdminEventsComponent {
   readonly upcomingCount = () => this.svc.upcoming().length;
   readonly types = EVENT_TYPES;
   readonly seatOptions = EVENT_SEATS;
+  /** Must start with http:// or https:// */
+  readonly urlPattern = '^https?://\\S+$';
   readonly day = eventDay;
   readonly month = eventMonth;
   readonly year = eventYear;
@@ -29,7 +31,7 @@ export class AdminEventsComponent {
   model = this.emptyModel();
 
   private emptyModel() {
-    return { title: '', type: '', date: '', time: '', city: '', seats: 'Open' };
+    return { title: '', type: '', date: '', time: '', city: '', seats: 'Open', registerUrl: '', description: '' };
   }
 
   isPast(e: AppEvent): boolean {
@@ -65,7 +67,7 @@ export class AdminEventsComponent {
   edit(e: AppEvent): void {
     this.view.set('form');
     this.editingId.set(e.id);
-    this.model = { title: e.title, type: e.type, date: e.date, time: e.time, city: e.city, seats: e.seats };
+    this.model = { title: e.title, type: e.type, date: e.date, time: e.time, city: e.city, seats: e.seats, registerUrl: e.registerUrl, description: e.description };
     this.message.set(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

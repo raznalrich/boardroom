@@ -51,11 +51,6 @@ export class MarketsComponent {
     { name: 'Careem Holdings', ticker: 'CRM', change: -2.3 }
   ];
 
-  stories = [
-    { tag: 'GCC Equities', title: 'Dubai bourse hits 17-year high as foreign inflows accelerate', time: '2h ago' },
-    { tag: 'Energy', title: 'OPEC+ signals phased output increase through Q2', time: '4h ago' },
-    { tag: 'Fixed Income', title: 'Sukuk issuance on pace for record year as spreads tighten', time: '6h ago' }
-  ];
 
   bars(spark: number[]): string {
     return spark.map((v, i) => `${i * 12},${40 - v * 4}`).join(' ');

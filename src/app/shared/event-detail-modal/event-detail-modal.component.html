@@ -1,0 +1,38 @@
+<div class="backdrop" (click)="close()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ev-title" (click)="$event.stopPropagation()">
+    <button type="button" class="x" (click)="close()" aria-label="Close">×</button>
+
+    <div class="head">
+      <div class="date">
+        <strong>{{ day(event().date) }}</strong><span>{{ month(event().date) }}</span><small>{{ year(event().date) }}</small>
+      </div>
+      <div class="title-block">
+        <span class="type" [class.summit]="event().type === 'Summit'">{{ event().type }}</span>
+        <h2 id="ev-title">{{ event().title }}</h2>
+      </div>
+    </div>
+
+    <dl class="facts">
+      <div><dt>📅 Date</dt><dd>{{ longDate(event()) }}</dd></div>
+      <div><dt>🕘 Time</dt><dd>{{ event().time }}</dd></div>
+      <div><dt>📍 Venue</dt><dd>{{ event().city }}</dd></div>
+      <div><dt>🎟️ Availability</dt><dd [class.warn]="event().seats !== 'Open'">{{ event().seats }}</dd></div>
+    </dl>
+
+    @if (event().description) {
+      <h3>About this event</h3>
+      <p class="desc">{{ event().description }}</p>
+    }
+
+    <div class="actions">
+      @if (event().seats === 'Sold out') {
+        <span class="soon">This event is sold out.</span>
+      } @else if (event().registerUrl) {
+        <a class="register" [href]="event().registerUrl" target="_blank" rel="noopener noreferrer">Register now →</a>
+      } @else {
+        <span class="soon">Registration link coming soon.</span>
+      }
+      <button type="button" class="close-btn" (click)="close()">Close</button>
+    </div>
+  </div>
+</div>

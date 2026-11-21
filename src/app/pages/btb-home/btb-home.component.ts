@@ -11,7 +11,9 @@ import { Leader, leaderImageUrl, leaderSlug } from '../../core/data/leaders.data
 import { LeadersService } from '../../core/data/leaders.service';
 import { SubscribersService } from '../../core/data/subscribers.service';
 import { InsightsService, insightImage } from '../../core/data/insights.service';
-import { EventsService, eventDay, eventMonth, eventYear } from '../../core/data/events.service';
+import { AppEvent, EventsService, eventDay, eventMonth, eventYear, eventStart } from '../../core/data/events.service';
+import { EventCountdownComponent } from '../../shared/event-countdown/event-countdown.component';
+import { EventDetailModalComponent } from '../../shared/event-detail-modal/event-detail-modal.component';
 
 export interface ProfileCard {
   category: string;
@@ -35,7 +37,7 @@ export interface PowerListGroup {
 @Component({
   selector: 'app-btb-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, EventCountdownComponent, EventDetailModalComponent],
   templateUrl: './btb-home.component.html',
   styleUrls: ['./btb-home.component.scss']
 })
@@ -97,7 +99,19 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   readonly evDay = eventDay;
   readonly evMonth = eventMonth;
   readonly evYear = eventYear;
-  /** Next four upcoming events (sample + admin-added). */
+  /** The event whose details pop-up is open. */
+  selectedEvent: AppEvent | null = null;
+
+  /**
+   * The next event that has not started yet. Re-read on every change-detection pass (the countdown ticks each second),
+   * so once an event starts the banner moves on to the following one by itself.
+   */
+  get nextEvent(): AppEvent | null {
+    const now = Date.now();
+    return this.eventsSvc.upcoming().find(e => eventStart(e).getTime() > now) ?? null;
+  }
+
+  /** Next four upcoming events. */
   get homeEvents() {
     return this.eventsSvc.upcoming().slice(0, 4);
   }
