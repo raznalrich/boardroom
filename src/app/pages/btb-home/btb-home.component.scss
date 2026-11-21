@@ -2862,3 +2862,28 @@ a.intelligence-download, a.intelligence-cta { display: inline-block; text-decora
 .he-details { margin-top: 8px; padding: 7px 16px; border: 1.5px solid var(--btb-text-dark); border-radius: 4px; background: transparent; color: var(--btb-text-dark); font-family: inherit; font-weight: 700; font-size: 11.5px; letter-spacing: .8px; text-transform: uppercase; cursor: pointer; transition: all .2s; &:hover { background: var(--btb-text-dark); color: #fff; } }
 article.he-card { cursor: default; }
 @media (max-width: 600px) { .he-next { padding: 18px 16px; gap: 18px; } .he-next-info h3 { font-size: 19px; } }
+
+/* Phones: the banner shows only the label and a two-line title (ending in "…" if longer) */
+@media (max-width: 640px) {
+  .hero-feature-card.hero-slider { height: 300px; }
+
+  .hero-slider {
+    .hero-slide-meta,
+    .hero-slide-bullets { display: none; }
+
+    .hero-slide-overlay { padding: 20px 16px 38px; }
+    .hero-content { max-width: 100%; margin: 0; }
+
+    .hero-slide-title {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

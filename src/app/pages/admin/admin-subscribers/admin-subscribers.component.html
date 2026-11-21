@@ -1,36 +1,54 @@
 <div class="card">
   <div class="head">
-    <h3>Subscribers <span class="count">{{ all().length }}</span></h3>
+    <h3>Subscribers &amp; applications <span class="count">{{ leads().length }}</span></h3>
     <div class="tools">
-      <input type="search" placeholder="Search name or email…" [value]="query()" (input)="query.set($any($event.target).value)" />
+      <input type="search" placeholder="Search name, email or phone…" [value]="query()" (input)="query.set($any($event.target).value)" />
+      <button type="button" class="btn" (click)="refresh()">Refresh</button>
       <button type="button" class="btn" (click)="exportCsv()">Export CSV</button>
     </div>
   </div>
 
-  @if (error()) { <div class="errbox">Could not load subscribers: {{ error() }}</div> }
+  <div class="tabs">
+    <button [class.on]="filter() === 'all'" (click)="filter.set('all')">All <b>{{ leads().length }}</b></button>
+    <button [class.on]="filter() === 'applications'" (click)="filter.set('applications')">Membership applications <b>{{ applicationCount() }}</b></button>
+    <button [class.on]="filter() === 'subscribers'" (click)="filter.set('subscribers')">Get in touch <b>{{ subscriberCount() }}</b></button>
+  </div>
+
+  @for (e of errors(); track e) {
+    <div class="errbox">Could not load — {{ e }}<br /><small>Run <code>supabase/admin-read-leads.sql</code> in the Supabase SQL Editor to let this page read these tables.</small></div>
+  }
   @if (loading()) { <p class="loading">Loading…</p> }
 
   <div class="scroll">
     <table>
       <thead>
-        <tr><th class="n">#</th><th>Name</th><th>Email</th><th>Subscribed on</th><th>Source</th></tr>
+        <tr><th class="n">#</th><th>Name</th><th>Email</th><th>Phone</th><th>Date</th><th>Source</th></tr>
       </thead>
       <tbody>
-        @for (s of filtered(); track s.email; let i = $index) {
+        @for (l of filtered(); track l.key; let i = $index) {
           <tr>
             <td class="n">{{ i + 1 }}</td>
             <td>
               <div class="person">
-                <span class="avatar">{{ initials(s.name) }}</span>
-                <strong>{{ s.name }}</strong>
+                <span class="avatar">{{ initials(l.name) }}</span>
+                <strong>{{ l.name }}</strong>
               </div>
             </td>
-            <td><a [href]="'mailto:' + s.email">{{ s.email }}</a></td>
-            <td>{{ s.date | date: 'mediumDate' }}</td>
-            <td>{{ s.source }}</td>
+            <td><a [href]="'mailto:' + l.email">{{ l.email }}</a></td>
+            <td>@if (l.phone) { <a [href]="'tel:' + l.phone.replaceAll(' ', '')">{{ l.phone }}</a> } @else { <span class="dash">—</span> }</td>
+            <td>{{ l.date | date: 'medium' }}</td>
+            <td>
+              <span class="src" [class.app]="l.source === 'Membership application'">{{ l.source }}</span>
+              @if (l.status === 'new') { <span class="new">New</span> }
+            </td>
           </tr>
         } @empty {
-          <tr><td colspan="5" class="empty">No subscribers match your search.</td></tr>
+          <tr><td colspan="6" class="empty">
+            @if (leads().length) { Nothing matches your search or filter. } @else {
+              No submissions to show yet.
+              <small>If people have submitted forms but nothing appears here, the database is not allowing this page to read them. Run <code>supabase/admin-read-leads.sql</code> in the Supabase SQL Editor, then press Refresh.</small>
+            }
+          </td></tr>
         }
       </tbody>
     </table>

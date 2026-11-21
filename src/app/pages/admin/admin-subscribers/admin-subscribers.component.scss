@@ -20,3 +20,16 @@ table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 62
 .empty { text-align: center; color: #8C8379; padding: 28px 0; }
 .errbox { background: #FDECEC; color: #B91C1C; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; }
 .loading { color: #8C8379; font-size: 13px; margin: 0 0 10px; }
+
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+  button { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid #DECBB1; border-radius: 18px; background: #fff; font-family: inherit; font-size: 12.5px; font-weight: 700; color: #121212; cursor: pointer;
+    b { background: #E6E1D8; border-radius: 10px; padding: 0 8px; font-size: 11px; }
+    &.on { background: #181818; border-color: #181818; color: #fff; b { background: #B58A55; color: #121212; } } } }
+.src { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; background: #E6E1D8; color: #5A5248; white-space: nowrap;
+  &.app { background: #FBE4F0; color: #A3124F; } }
+.new { margin-left: 6px; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 10px; background: #FDF0D5; color: #A16207; }
+.dash { color: #B9B1A5; }
+.errbox code { background: #F8D7D7; padding: 1px 6px; border-radius: 3px; }
+.errbox small { color: #7f1d1d; }
+.empty small { display: block; margin-top: 8px; font-size: 12.5px; color: #8C8379; line-height: 1.5; max-width: 560px; margin-left: auto; margin-right: auto; }
+.empty code { background: #EFE6D6; padding: 1px 6px; border-radius: 3px; }

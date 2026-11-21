@@ -252,3 +252,11 @@
   .footer-copyright { display: flex; flex-direction: column; gap: 8px; }
   .footer-legal { margin-right: 0; }
 }
+
+/* "LumiTeq Solutions" credit: plain text like the rest of the bar, no browser-blue underlined link */
+.footer-bottom-handles a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: var(--btb-gold); text-decoration: none; }
+}
