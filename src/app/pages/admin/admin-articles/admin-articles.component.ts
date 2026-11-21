@@ -59,7 +59,7 @@ export class AdminArticlesComponent {
   }
 
   async submit(form: NgForm): Promise<void> {
-    if (form.invalid || this.saving()) return;
+    if (form.invalid || !this.model.image || this.saving() || this.uploading()) return;
     this.saving.set(true);
     const editing = this.editingId() !== null;
     const { error } = await this.svc.save({ ...this.model, id: this.editingId() ?? undefined });
