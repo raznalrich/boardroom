@@ -1,4 +1,15 @@
 <div class="wrap">
+  @if (pendingDelete(); as insight) {
+    <app-confirm-dialog
+      heading="Delete insight?"
+      [message]="'Are you sure you want to delete “' + insight.title + '”? This action cannot be undone.'"
+      confirmLabel="Delete insight"
+      pendingLabel="Deleting…"
+      [busy]="deleting()"
+      (confirmed)="confirmDelete()"
+      (cancelled)="cancelDelete()" />
+  }
+
   @if (view() === 'form') {
     <div class="card">
       <h3>{{ editingId() ? 'Edit insight' : 'Add new insight' }}</h3>

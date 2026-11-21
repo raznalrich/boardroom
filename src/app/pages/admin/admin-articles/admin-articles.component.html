@@ -1,4 +1,15 @@
 <div class="wrap">
+  @if (pendingDelete(); as article) {
+    <app-confirm-dialog
+      heading="Delete article?"
+      [message]="'Are you sure you want to delete “' + article.title + '”? This action cannot be undone.'"
+      confirmLabel="Delete article"
+      pendingLabel="Deleting…"
+      [busy]="deleting()"
+      (confirmed)="confirmDelete()"
+      (cancelled)="cancelDelete()" />
+  }
+
   @if (view() === 'form') {
   <!-- Add / edit form -->
   <div class="card">
@@ -9,7 +20,7 @@
         <div class="col">
           <label for="title">Title</label>
           <input id="title" name="title" [(ngModel)]="model.title" required minlength="5" placeholder="Article headline" #t="ngModel" />
-          @if (t.invalid && (t.touched || f.submitted)) { <span class="e">Title must be at least 5 characters.</span> }
+          @if (t.invalid && f.submitted) { <span class="e">Title must be at least 5 characters.</span> }
 
           <div class="two">
             <div>
@@ -54,7 +65,7 @@
           <input id="file" type="file" accept="image/*" hidden (change)="onFile($event)" />
           @if (uploading()) { <span class="hint">Uploading image…</span> }
           @if (imageError()) { <span class="e">{{ imageError() }}</span> }
-          @if (!model.image && f.touched || f.submitted) { <span class="e">Please upload a cover image.</span> }
+          @if (!model.image && f.submitted) { <span class="e">Please upload a cover image.</span> }
         </div>
       </div>
 

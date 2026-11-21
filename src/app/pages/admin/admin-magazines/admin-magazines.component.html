@@ -1,4 +1,15 @@
 <div class="wrap">
+  @if (pendingDelete(); as magazine) {
+    <app-confirm-dialog
+      heading="Delete magazine?"
+      [message]="'Delete “' + magazine.title + '”? The PDF and cover remain in your R2 bucket; only the listing is removed.'"
+      confirmLabel="Delete magazine"
+      pendingLabel="Deleting…"
+      [busy]="deleting()"
+      (confirmed)="confirmDelete()"
+      (cancelled)="cancelDelete()" />
+  }
+
   @if (view() === 'form') {
     <div class="card">
       <h3>{{ editingId() ? 'Edit magazine' : 'Upload a magazine' }}</h3>
