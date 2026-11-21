@@ -1,0 +1,11 @@
+:host { display: contents; }
+
+.confirm-backdrop { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 20px; background: rgba(24, 24, 24, .62); }
+.confirm-dialog { width: min(100%, 440px); padding: 26px; border: 1px solid #DECBB1; border-top: 4px solid #B58A55; border-radius: 8px; background: #FBF8F3; color: #121212; box-shadow: 0 24px 60px rgba(0, 0, 0, .3);
+  h3 { margin: 0 0 10px; font-size: 14px; letter-spacing: .6px; text-transform: uppercase; }
+  p { margin: 0; color: #5A5248; font-size: 14px; line-height: 1.5; } }
+.confirm-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;
+  .btn { padding: 10px 20px; border: 1px solid #181818; border-radius: 4px; background: transparent; font-family: inherit; font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; cursor: pointer; }
+  .btn.danger { background: #181818; border-color: #181818; color: #fff; &:hover { background: #B58A55; border-color: #966E3D; color: #121212; } }
+  .btn:focus-visible { outline: 3px solid rgba(181, 138, 85, .45); outline-offset: 2px; }
+  .btn:disabled { cursor: not-allowed; opacity: .6; } }

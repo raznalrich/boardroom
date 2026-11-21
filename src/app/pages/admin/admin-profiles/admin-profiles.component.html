@@ -1,4 +1,15 @@
 <div class="wrap">
+  @if (pendingDelete(); as profile) {
+    <app-confirm-dialog
+      heading="Delete profile?"
+      [message]="'Are you sure you want to delete the profile of “' + profile.name + '”? This action cannot be undone.'"
+      confirmLabel="Delete profile"
+      pendingLabel="Deleting…"
+      [busy]="deleting()"
+      (confirmed)="confirmDelete()"
+      (cancelled)="cancelDelete()" />
+  }
+
   @if (view() === 'form') {
     <!-- Add / edit profile -->
     <div class="card">

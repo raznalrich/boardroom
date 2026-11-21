@@ -4,11 +4,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Article, ArticlesService } from '../../../core/data/articles.service';
 import { SECTOR_TABS } from '../../../core/data/sector.data';
 import { uploadImage } from '../../../core/util/image.util';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-articles',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, ConfirmDialogComponent],
   templateUrl: './admin-articles.component.html',
   styleUrls: ['./admin-articles.component.scss']
 })
@@ -21,6 +22,8 @@ export class AdminArticlesComponent {
   /** 'list' shows uploaded articles (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<Article | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   imageError = signal('');
   uploading = signal(false);
@@ -59,7 +62,7 @@ export class AdminArticlesComponent {
   }
 
   async submit(form: NgForm): Promise<void> {
-    if (form.invalid || this.saving()) return;
+    if (form.invalid || !this.model.image || this.saving() || this.uploading()) return;
     this.saving.set(true);
     const editing = this.editingId() !== null;
     const { error } = await this.svc.save({ ...this.model, id: this.editingId() ?? undefined });
@@ -102,14 +105,29 @@ export class AdminArticlesComponent {
       : { type: 'ok', text: `“${a.title}” is now published.` });
   }
 
-  async remove(a: Article): Promise<void> {
-    if (!confirm(`Delete “${a.title}”?`)) return;
-    const { error } = await this.svc.remove(a.id);
+  remove(a: Article): void {
+    this.pendingDelete.set(a);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const article = this.pendingDelete();
+    if (!article || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(article.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === a.id) this.reset();
+    if (this.editingId() === article.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Article deleted successfully.' });
   }
 
   reset(form?: NgForm): void {

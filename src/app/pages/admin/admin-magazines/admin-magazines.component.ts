@@ -3,11 +3,12 @@ import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Magazine, MagazinesService } from '../../../core/data/magazines.service';
 import { uploadImage, uploadPdf } from '../../../core/util/image.util';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-magazines',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, ConfirmDialogComponent],
   templateUrl: './admin-magazines.component.html',
   styleUrls: ['./admin-magazines.component.scss']
 })
@@ -19,6 +20,8 @@ export class AdminMagazinesComponent {
   /** 'list' shows the uploaded magazines (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<Magazine | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   coverError = signal('');
   pdfError = signal('');
@@ -126,14 +129,29 @@ export class AdminMagazinesComponent {
     this.message.set(error ? { type: 'err', text: `Could not update: ${error}` } : null);
   }
 
-  async remove(m: Magazine): Promise<void> {
-    if (!confirm(`Delete the magazine “${m.title}”?\n\nThe PDF and cover stay in your R2 bucket; only the listing is removed.`)) return;
-    const { error } = await this.svc.remove(m.id);
+  remove(m: Magazine): void {
+    this.pendingDelete.set(m);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const magazine = this.pendingDelete();
+    if (!magazine || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(magazine.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === m.id) this.reset();
+    if (this.editingId() === magazine.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Magazine deleted successfully.' });
   }
 
   reset(form?: NgForm): void {

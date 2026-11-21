@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AppEvent, EVENT_SEATS, EVENT_TYPES, EventsService, eventDay, eventMonth, eventYear } from '../../../core/data/events.service';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-events',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ConfirmDialogComponent],
   templateUrl: './admin-events.component.html',
   styleUrls: ['./admin-events.component.scss']
 })
@@ -25,6 +26,8 @@ export class AdminEventsComponent {
   /** 'list' shows the events (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<AppEvent | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   saving = signal(false);
 
@@ -72,14 +75,29 @@ export class AdminEventsComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async remove(e: AppEvent): Promise<void> {
-    if (!confirm(`Delete “${e.title}”?`)) return;
-    const { error } = await this.svc.remove(e.id);
+  remove(e: AppEvent): void {
+    this.pendingDelete.set(e);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const event = this.pendingDelete();
+    if (!event || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(event.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === e.id) this.reset();
+    if (this.editingId() === event.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Event deleted successfully.' });
   }
 
   reset(form?: NgForm): void {

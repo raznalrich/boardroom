@@ -1,4 +1,15 @@
 <div class="wrap">
+  @if (pendingDelete(); as banner) {
+    <app-confirm-dialog
+      heading="Delete banner?"
+      [message]="'Are you sure you want to delete “' + banner.title + '”? This action cannot be undone.'"
+      confirmLabel="Delete banner"
+      pendingLabel="Deleting…"
+      [busy]="deleting()"
+      (confirmed)="confirmDelete()"
+      (cancelled)="cancelDelete()" />
+  }
+
   @if (view() === 'form') {
     <div class="card">
       <h3>{{ editingId() ? 'Edit banner' : 'Add new banner' }}</h3>

@@ -4,11 +4,12 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { LeadersService } from '../../../core/data/leaders.service';
 import { LEADER_REGIONS, Leader } from '../../../core/data/leaders.data';
 import { uploadImage } from '../../../core/util/image.util';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-profiles',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, ConfirmDialogComponent],
   templateUrl: './admin-profiles.component.html',
   styleUrls: ['./admin-profiles.component.scss']
 })
@@ -21,6 +22,8 @@ export class AdminProfilesComponent {
   /** 'list' shows the profiles (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<Leader | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   imageError = signal('');
   uploading = signal(false);
@@ -96,14 +99,29 @@ export class AdminProfilesComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async remove(p: Leader): Promise<void> {
-    if (!p.id || !confirm(`Delete the profile of ${p.name}?`)) return;
-    const { error } = await this.svc.remove(p.id);
+  remove(p: Leader): void {
+    if (p.id) this.pendingDelete.set(p);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const profile = this.pendingDelete();
+    if (!profile?.id || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(profile.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === p.id) this.reset();
+    if (this.editingId() === profile.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Profile deleted successfully.' });
   }
 
   reset(form?: NgForm): void {

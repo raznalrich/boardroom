@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Banner, BannersService } from '../../../core/data/banners.service';
 import { uploadImage } from '../../../core/util/image.util';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-banners',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ConfirmDialogComponent],
   templateUrl: './admin-banners.component.html',
   styleUrls: ['./admin-banners.component.scss']
 })
@@ -19,6 +20,8 @@ export class AdminBannersComponent {
   /** 'list' shows the banners (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<Banner | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   imageError = signal('');
   uploading = signal(false);
@@ -115,14 +118,29 @@ export class AdminBannersComponent {
     this.message.set(error ? { type: 'err', text: `Could not update: ${error}` } : null);
   }
 
-  async remove(b: Banner): Promise<void> {
-    if (!confirm(`Delete the banner “${b.title}”?`)) return;
-    const { error } = await this.svc.remove(b.id);
+  remove(b: Banner): void {
+    this.pendingDelete.set(b);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const banner = this.pendingDelete();
+    if (!banner || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(banner.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === b.id) this.reset();
+    if (this.editingId() === banner.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Banner deleted successfully.' });
   }
 
   reset(form?: NgForm): void {

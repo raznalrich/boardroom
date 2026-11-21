@@ -3,11 +3,12 @@ import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { INSIGHT_CATEGORIES, Insight, InsightsService, insightImage } from '../../../core/data/insights.service';
 import { uploadImage } from '../../../core/util/image.util';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-insights',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, ConfirmDialogComponent],
   templateUrl: './admin-insights.component.html',
   styleUrls: ['./admin-insights.component.scss']
 })
@@ -21,6 +22,8 @@ export class AdminInsightsComponent {
   /** 'list' shows all insights (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
   editingId = signal<string | null>(null);
+  pendingDelete = signal<Insight | null>(null);
+  deleting = signal(false);
   message = signal<{ type: 'ok' | 'err'; text: string } | null>(null);
   imageError = signal('');
   uploading = signal(false);
@@ -99,14 +102,29 @@ export class AdminInsightsComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async remove(i: Insight): Promise<void> {
-    if (!confirm(`Delete “${i.title}”?`)) return;
-    const { error } = await this.svc.remove(i.id);
+  remove(i: Insight): void {
+    this.pendingDelete.set(i);
+  }
+
+  cancelDelete(): void {
+    if (!this.deleting()) this.pendingDelete.set(null);
+  }
+
+  async confirmDelete(): Promise<void> {
+    const insight = this.pendingDelete();
+    if (!insight || this.deleting()) return;
+
+    this.deleting.set(true);
+    const { error } = await this.svc.remove(insight.id);
+    this.deleting.set(false);
     if (error) {
       this.message.set({ type: 'err', text: `Could not delete: ${error}` });
+      this.pendingDelete.set(null);
       return;
     }
-    if (this.editingId() === i.id) this.reset();
+    if (this.editingId() === insight.id) this.reset();
+    this.pendingDelete.set(null);
+    this.message.set({ type: 'ok', text: 'Insight deleted successfully.' });
   }
 
   reset(form?: NgForm): void {
