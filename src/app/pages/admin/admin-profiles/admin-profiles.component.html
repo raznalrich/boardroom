@@ -1,0 +1,112 @@
+<div class="wrap">
+  @if (view() === 'form') {
+    <!-- Add / edit profile -->
+    <div class="card">
+      <h3>{{ editingId() ? 'Edit profile' : 'Add new profile' }}</h3>
+
+      <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+        <div class="form-grid">
+          <div class="col">
+            <label for="name">Full name</label>
+            <input id="name" name="name" [(ngModel)]="model.name" required minlength="2" placeholder="e.g. Tariq Al-Mansoor" #n="ngModel" />
+            @if (n.invalid && (n.touched || f.submitted)) { <span class="e">Enter the leader's name.</span> }
+
+            <div class="two">
+              <div>
+                <label for="title">Role / title</label>
+                <input id="title" name="title" [(ngModel)]="model.title" required placeholder="e.g. Regional CEO" #t="ngModel" />
+                @if (t.invalid && (t.touched || f.submitted)) { <span class="e">Enter the role.</span> }
+              </div>
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" [(ngModel)]="model.company" required placeholder="e.g. Gulf Investments" #c="ngModel" />
+                @if (c.invalid && (c.touched || f.submitted)) { <span class="e">Enter the company.</span> }
+              </div>
+            </div>
+
+            <div class="two">
+              <div>
+                <label for="region">Region</label>
+                <select id="region" name="region" [(ngModel)]="model.region" required #r="ngModel">
+                  <option value="" disabled>Select region</option>
+                  @for (rg of regions; track rg) { <option [value]="rg">{{ rg }}</option> }
+                </select>
+                @if (r.invalid && (r.touched || f.submitted)) { <span class="e">Choose a region.</span> }
+              </div>
+              <div>
+                <label for="since">Tenure (optional)</label>
+                <input id="since" name="since" [(ngModel)]="model.since" placeholder="e.g. CEO since 2020" />
+              </div>
+            </div>
+
+            <label for="quote">Quote</label>
+            <textarea id="quote" name="quote" rows="3" maxlength="200" [(ngModel)]="model.quote" required minlength="10" placeholder="A short, memorable quote" #q="ngModel"></textarea>
+            @if (q.invalid && (q.touched || f.submitted)) { <span class="e">Quote must be at least 10 characters.</span> }
+
+            <label for="bio">Biography (optional)</label>
+            <textarea id="bio" name="bio" rows="5" [(ngModel)]="model.bio" placeholder="A longer story shown on the leader's profile page"></textarea>
+          </div>
+
+          <div class="col">
+            <label>Profile photo</label>
+            @if (model.img) {
+              <div class="preview">
+                <img [src]="model.img" alt="Profile preview" />
+                <button type="button" class="rm" (click)="removeImage()">Remove photo</button>
+              </div>
+            } @else {
+              <label class="drop" for="file">
+                <span class="ico">👤</span>
+                <strong>Click to upload a photo</strong>
+                <small>JPG, PNG or WebP · max 8 MB</small>
+              </label>
+            }
+            <input id="file" type="file" accept="image/*" hidden (change)="onFile($event)" />
+            @if (uploading()) { <span class="hint">Uploading image…</span> }
+            @if (imageError()) { <span class="e">{{ imageError() }}</span> }
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploading()">{{ editingId() ? 'Save changes' : 'Add profile' }}</button>
+          <button type="button" class="btn" (click)="cancel(f)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <!-- Uploaded profiles -->
+    <div class="card">
+      <div class="head">
+        <h3>Uploaded profiles <span class="count">{{ profiles().length }}</span></h3>
+        <button type="button" class="btn primary" (click)="addNew()">+ Add new</button>
+      </div>
+
+      @if (message(); as m) {
+        <div class="msg" [class.ok]="m.type === 'ok'" [class.err]="m.type === 'err'" role="status">{{ m.text }}</div>
+      }
+
+      @if (profiles().length === 0) {
+        <p class="empty">No profiles uploaded yet. Click “Add new” to add a leader to the Leadership &amp; CEO Profiles section.</p>
+      } @else {
+        <div class="grid">
+          @for (p of profiles(); track p.id) {
+            <article class="pcard">
+              <div class="photo" [style.background-image]="'url(' + p.img + ')'"><span class="region">{{ p.region }}</span></div>
+              <div class="pbody">
+                <h4>{{ p.name }}</h4>
+                <div class="role">{{ p.title }}</div>
+                <div class="comp">{{ p.company }}</div>
+                <p>“{{ p.quote }}”</p>
+                <small>Added {{ p.createdAt | date: 'mediumDate' }}</small>
+              </div>
+              <div class="pactions">
+                <button class="btn sm" (click)="edit(p)">Edit</button>
+                <button class="btn sm danger" (click)="remove(p)">Delete</button>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

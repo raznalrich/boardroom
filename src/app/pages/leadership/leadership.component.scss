@@ -12,3 +12,5 @@
 blockquote { margin: 6px 0; padding-left: 12px; border-left: 3px solid var(--btb-magenta); font-style: italic; font-size: 14px; line-height: 1.5; color: var(--btb-text-muted); }
 .l-foot { display: flex; justify-content: space-between; align-items: center; }
 .read { color: var(--btb-magenta); font-weight: 700; font-size: 12px; cursor: pointer; }
+.portrait-link { display: block; }
+.read { text-decoration: none; &:hover { text-decoration: underline; } }

@@ -1,23 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-export interface HeroSlide {
-  tag: string;
-  title: string;
-  author: string;
-  readTime: string;
-  image: string;
-  bullets: string[];
-}
-
-export interface SectorArticle {
-  category: string;
-  badgeType: 'gold' | 'magenta';
-  headline: string;
-  summary?: string;
-  author: string;
-  readTime: string;
-}
+import { Component, OnInit, OnDestroy, HostListener, inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { SECTOR_TABS, sectorCover } from '../../core/data/sector.data';
+import { Article, ArticlesService } from '../../core/data/articles.service';
+import { Banner, BannersService } from '../../core/data/banners.service';
+import { Leader, leaderImageUrl, leaderSlug } from '../../core/data/leaders.data';
+import { LeadersService } from '../../core/data/leaders.service';
+import { SubscribersService } from '../../core/data/subscribers.service';
+import { InsightsService, insightImage } from '../../core/data/insights.service';
+import { EventsService, eventDay, eventMonth, eventYear } from '../../core/data/events.service';
 
 export interface ProfileCard {
   category: string;
@@ -41,49 +33,124 @@ export interface PowerListGroup {
 @Component({
   selector: 'app-btb-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './btb-home.component.html',
   styleUrls: ['./btb-home.component.scss']
 })
 export class BtbHomeComponent implements OnInit, OnDestroy {
-  // Main feature story slider
-  heroSlides: HeroSlide[] = [
-    {
-      tag: 'EDITORIAL',
-      title: "THE BILLION-DOLLAR VISION: How India's Next-Gen Industrialists Are Rewriting Global Logistics",
-      author: 'Priya Nair',
-      readTime: '7 min read',
-      image: 'https://i.pinimg.com/1200x/89/b5/1a/89b51abbd6177492d21a1022a2cb67a2.jpg',
-      bullets: [
-        'Business leaders driving vision in Next-Gen Global Logistics',
-        'Summary of key industrialists rewriting global supply chain corridors'
-      ]
-    },
-    {
-      tag: 'MARKETS',
-      title: 'GULF CAPITAL GOES GLOBAL: Sovereign Funds Reshape the Flow of International Investment',
-      author: 'Layla Haddad',
-      readTime: '9 min read',
-      image: 'https://images.pexels.com/photos/22719284/pexels-photo-22719284.jpeg',
-      bullets: ['State-backed investors now deploy more outbound capital than ever', 'What it means for regional deal-making in 2027']
-    },
-    {
-      tag: 'INNOVATION',
-      title: 'AI IN THE C-SUITE: Three Operating Models That Actually Work',
-      author: 'Sara Al-Qahtani',
-      readTime: '8 min read',
-      image: 'https://images.pexels.com/photos/7845285/pexels-photo-7845285.jpeg',
-      bullets: ['Lessons from 40 regional enterprises', 'Governance structures behind successful AI rollouts']
-    },
-    {
-      tag: 'LEADERSHIP',
-      title: "THE CHAIRMAN'S PLAYBOOK: Family Governance in the Next Generation of Conglomerates",
-      author: 'Khalid Nasser',
-      readTime: '10 min read',
-      image: 'https://images.pexels.com/photos/3733584/pexels-photo-3733584.jpeg',
-      bullets: ['Succession, transparency and public listing', "Advice from the region's most influential chairs"]
+  // Main feature story slider: banners managed in the admin console (Supabase `banners` table)
+  private bannersSvc = inject(BannersService);
+  get heroSlides(): Banner[] {
+    return this.bannersSvc.active();
+  }
+  // Get in touch form
+  private subscribersSvc = inject(SubscribersService);
+  gitName = '';
+  gitEmail = '';
+  gitSubmitted = false;
+
+  gitSending = false;
+  gitError = '';
+
+  async submitGetInTouch(form: NgForm): Promise<void> {
+    if (form.invalid || this.gitSending) {
+      return;
     }
-  ];
+    this.gitSending = true;
+    this.gitError = '';
+    // 'duplicate' (already subscribed) is treated as success so we never reveal who is on the list.
+    const result = await this.subscribersSvc.add(this.gitName, this.gitEmail);
+    this.gitSending = false;
+    if (result === 'error') {
+      this.gitError = 'Something went wrong. Please try again.';
+      return;
+    }
+    this.gitSubmitted = true;
+  }
+
+  resetGetInTouch(): void {
+    this.gitName = '';
+    this.gitEmail = '';
+    this.gitSubmitted = false;
+  }
+
+  // Leaders in Focus: stacked card carousel
+  readonly slugOf = leaderSlug;
+  private insightsSvc = inject(InsightsService);
+  readonly insightImg = insightImage;
+  /** People & Voices column: the newest insight is featured, the next two sit below it. */
+  get voicesFeatured() {
+    return this.insightsSvc.all()[0] ?? null;
+  }
+  get voicesMini() {
+    return this.insightsSvc.all().slice(1, 3);
+  }
+
+  /** Three newest insights for the Latest Insights strip. */
+  get homeInsights() {
+    return this.insightsSvc.all().slice(0, 3);
+  }
+
+  private eventsSvc = inject(EventsService);
+  readonly evDay = eventDay;
+  readonly evMonth = eventMonth;
+  readonly evYear = eventYear;
+  /** Next four upcoming events (sample + admin-added). */
+  get homeEvents() {
+    return this.eventsSvc.upcoming().slice(0, 4);
+  }
+
+  private leadersSvc = inject(LeadersService);
+  get focusLeaders(): Leader[] {
+    return this.leadersSvc.all();
+  }
+  focusIndex = 0;
+  private focusTimer: ReturnType<typeof setInterval> | null = null;
+
+  leaderImg(id: string): string {
+    return leaderImageUrl(id, 600);
+  }
+
+  /** Shortest circular distance of card i from the active card (negative = left of it). */
+  focusOffset(i: number): number {
+    const n = this.focusLeaders.length;
+    if (n === 0) return 0;
+    let d = (i - this.focusIndex) % n;
+    if (d > n / 2) d -= n;
+    if (d < -n / 2) d += n;
+    return d;
+  }
+
+  focusAbs(i: number): number {
+    return Math.abs(this.focusOffset(i));
+  }
+
+  startFocusAuto(): void {
+    this.pauseFocusAuto();
+    this.focusTimer = setInterval(() => this.focusNext(), 3500);
+  }
+
+  pauseFocusAuto(): void {
+    if (this.focusTimer) {
+      clearInterval(this.focusTimer);
+      this.focusTimer = null;
+    }
+  }
+
+  focusNext(): void {
+    const n = this.focusLeaders.length;
+    if (n > 0) this.focusIndex = (this.focusIndex + 1) % n;
+  }
+
+  focusPrev(): void {
+    const n = this.focusLeaders.length;
+    if (n > 0) this.focusIndex = (this.focusIndex - 1 + n) % n;
+  }
+
+  focusGo(i: number): void {
+    this.focusIndex = i;
+  }
+
   currentSlide = 0;
   private slideTimer: ReturnType<typeof setInterval> | null = null;
   private touchStartX = 0;
@@ -101,11 +168,13 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   }
 
   nextSlide(): void {
-    this.currentSlide = (this.currentSlide + 1) % this.heroSlides.length;
+    const n = this.heroSlides.length;
+    if (n > 0) this.currentSlide = (this.currentSlide + 1) % n;
   }
 
   prevSlide(): void {
-    this.currentSlide = (this.currentSlide - 1 + this.heroSlides.length) % this.heroSlides.length;
+    const n = this.heroSlides.length;
+    if (n > 0) this.currentSlide = (this.currentSlide - 1 + n) % n;
   }
 
   goToSlide(i: number): void {
@@ -127,6 +196,7 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.pauseAutoSlide();
+    this.pauseFocusAuto();
   }
 
   // Section B: Breaking News Ticker Items
@@ -181,80 +251,38 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Section E: Sector Deep Dives Tabbed Articles
-  activeSectorTab = 'LEADERSHIP';
-  sectorTabs = ['LEADERSHIP', 'STRATEGY', 'AI & TECH', 'GCC MARKETS'];
+  // Section E: Sector Deep Dives (filterable blog cards)
+  activeSectorTab = 'ALL';
+  sectorTabs = SECTOR_TABS;
+  private articlesSvc = inject(ArticlesService);
+  get sectorArticles(): Article[] {
+    return this.articlesSvc.published();
+  }
+  sectorCover = sectorCover;
+  sectorCols = 4;
 
-  sectorArticlesMap: Record<string, SectorArticle[]> = {
-    'LEADERSHIP': [
-      {
-        category: 'LEADERSHIP',
-        badgeType: 'gold',
-        headline: 'The Next AI Wave in Enterprise Strategy',
-        author: 'By Dr. Aris Thorne',
-        readTime: '5 min read'
-      },
-      {
-        category: 'LEADERSHIP',
-        badgeType: 'gold',
-        headline: 'Executive Mindset: Resilience in Volatile Markets',
-        summary: 'How C-suite leaders navigate macroeconomic shifts through adaptive governance models.',
-        author: 'By Neha Kapoor',
-        readTime: '6 min read'
-      }
-    ],
-    'STRATEGY': [
-      {
-        category: 'STRATEGY',
-        badgeType: 'magenta',
-        headline: 'Navigating Cross-Border Trade in 2027',
-        author: 'By Marcus Vance',
-        readTime: '8 min read'
-      },
-      {
-        category: 'STRATEGY',
-        badgeType: 'magenta',
-        headline: 'The Era of Circular Manufacturing',
-        summary: 'Sustainable supply chains move from ESG compliance to core competitive advantage.',
-        author: 'By Leila Al-Harthi',
-        readTime: '4 min read'
-      }
-    ],
-    'AI & TECH': [
-      {
-        category: 'AI & TECH',
-        badgeType: 'magenta',
-        headline: 'Generative Models in Sovereign Cloud Infrastructure',
-        author: 'By Rahul Deshmukh',
-        readTime: '6 min read'
-      },
-      {
-        category: 'AI & TECH',
-        badgeType: 'magenta',
-        headline: 'Autonomous Supply Chains: Realities vs Hyped Claims',
-        summary: 'Evaluating real-world ROI of agentic AI deployments in regional fulfillment hubs.',
-        author: 'By Sarah Jenkins',
-        readTime: '7 min read'
-      }
-    ],
-    'GCC MARKETS': [
-      {
-        category: 'GCC MARKETS',
-        badgeType: 'magenta',
-        headline: 'Sovereign Wealth: Investing in Next-Gen Innovation',
-        author: 'By Hamdan Al-Rashid',
-        readTime: '9 min read'
-      },
-      {
-        category: 'GCC MARKETS',
-        badgeType: 'magenta',
-        headline: 'Riyadh as the New Regional Business Capital',
-        summary: 'Multinational regional headquarters expand operations under Vision 2030 initiatives.',
-        author: 'By Omar Al-Ghamdi',
-        readTime: '5 min read'
-      }
-    ]
-  };
+  /** Cards matching the active category. */
+  get filteredSectorArticles(): Article[] {
+    return this.activeSectorTab === 'ALL'
+      ? this.sectorArticles
+      : this.sectorArticles.filter(a => a.category === this.activeSectorTab);
+  }
+
+  /** Home shows only two rows; "Read more" opens the Articles page. */
+  get visibleSectorArticles(): Article[] {
+    const all = this.filteredSectorArticles;
+    return all.slice(0, this.sectorCols * 2);
+  }
+
+  get sectorHasMore(): boolean {
+    return this.filteredSectorArticles.length > this.sectorCols * 2;
+  }
+
+  @HostListener('window:resize')
+  updateSectorCols(): void {
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1440;
+    this.sectorCols = w > 1100 ? 4 : w > 800 ? 3 : w > 520 ? 2 : 1;
+  }
 
   // Section F: Power List Visionaries
   powerListGroups: PowerListGroup[] = [
@@ -388,7 +416,9 @@ intelligenceReport = {
   newsletterEmail = '';
 
   ngOnInit(): void {
+    this.updateSectorCols();
     this.startAutoSlide();
+    this.startFocusAuto();
   }
 
   selectTab(tab: string): void {

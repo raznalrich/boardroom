@@ -17,27 +17,29 @@
     <div class="ins-grid">
       <div>
         @if (featured(); as f) {
-          <article class="feature">
+          <a class="feature" [routerLink]="['/insights', f.id]">
             <div class="pg-img feature-img" [style.background-image]="'url(' + url(f.img) + ')'"></div>
             <div class="feature-body">
               <span class="pg-badge magenta">{{ f.category }}</span>
               <h2>{{ f.title }}</h2>
               <p>{{ f.summary }}</p>
-              <span class="pg-meta">By {{ f.author }} · {{ f.read }} read · {{ f.date }}</span>
+              <span class="pg-meta">By {{ f.author }} · {{ f.mins }} min read · {{ f.date | date: 'MMM d' }}</span>
+              <span class="more">Read full insight →</span>
             </div>
-          </article>
+          </a>
         }
         <div class="card-grid">
-          @for (a of rest(); track a.title) {
-            <article class="pg-card art">
+          @for (a of rest(); track a.id) {
+            <a class="pg-card art" [routerLink]="['/insights', a.id]">
               <div class="pg-img art-img" [style.background-image]="'url(' + url(a.img) + ')'"></div>
               <div class="art-body">
                 <span class="pg-badge">{{ a.category }}</span>
                 <h3>{{ a.title }}</h3>
                 <p>{{ a.summary }}</p>
-                <span class="pg-meta">{{ a.author }} · {{ a.read }}</span>
+                <span class="pg-meta">{{ a.author }} · {{ a.mins }} min read</span>
+                <span class="more">Read full insight →</span>
               </div>
-            </article>
+            </a>
           }
         </div>
       </div>

@@ -1,0 +1,103 @@
+<div class="shell">
+  <aside class="sidebar" [class.open]="sidebarOpen()">
+    <div class="brand"><img src="assets/images/logo-gold.png" alt="" /><span>BoardRoom Admin</span></div>
+    <nav>
+      @for (n of nav; track n) {
+        <a [class.active]="activeNav() === n" (click)="activeNav.set(n); sidebarOpen.set(false)">{{ n }}</a>
+      }
+    </nav>
+    <button class="logout" (click)="logout()">Sign out</button>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu" (click)="sidebarOpen.set(!sidebarOpen())" aria-label="Toggle menu">☰</button>
+      <h1>{{ activeNav() }}</h1>
+      <div class="user"><span class="avatar">A</span><span class="uname">admin&#64;boardroom</span></div>
+    </header>
+
+    <main class="content">
+      @if (activeNav() === 'Articles') {
+        <app-admin-articles />
+      } @else if (activeNav() === 'Banners') {
+        <app-admin-banners />
+      } @else if (activeNav() === 'Insights') {
+        <app-admin-insights />
+      } @else if (activeNav() === 'Profiles') {
+        <app-admin-profiles />
+      } @else if (activeNav() === 'Events') {
+        <app-admin-events />
+      } @else if (activeNav() === 'Subscribers') {
+        <app-admin-subscribers />
+      } @else if (activeNav() !== 'Dashboard') {
+        <div class="card placeholder"><h3>{{ activeNav() }}</h3><p>This section is coming soon.</p></div>
+      } @else {
+      <section class="kpis">
+        @for (k of kpis; track k.label) {
+          <div class="card kpi">
+            <span class="lbl">{{ k.label }}</span>
+            <strong>{{ k.value }}</strong>
+            <span class="chg" [class.up]="k.up" [class.down]="!k.up">{{ k.up ? '▲' : '▼' }} {{ k.change }} vs last week</span>
+          </div>
+        }
+      </section>
+
+      <section class="row">
+        <div class="card chart">
+          <h3>Visitors this week <small>(thousands)</small></h3>
+          <div class="bars">
+            @for (w of weekly; track w.d) {
+              <div class="bar-col">
+                <span class="bar-val">{{ w.v }}</span>
+                <div class="bar" [style.height.%]="w.v"></div>
+                <span class="bar-lbl">{{ w.d }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Traffic by section</h3>
+          @for (s of sections; track s.name) {
+            <div class="sec">
+              <div class="sec-top"><span>{{ s.name }}</span><span>{{ s.pct }}%</span></div>
+              <div class="track"><div [style.width.%]="s.pct * 3"></div></div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="card table-card">
+          <h3>Recent articles</h3>
+          <div class="scroll">
+            <table>
+              <thead><tr><th>Title</th><th>Section</th><th>Author</th><th>Status</th><th>Views</th></tr></thead>
+              <tbody>
+                @for (a of articles; track a.title) {
+                  <tr>
+                    <td class="t">{{ a.title }}</td>
+                    <td>{{ a.section }}</td>
+                    <td>{{ a.author }}</td>
+                    <td><span class="status" [class.pub]="a.status === 'Published'" [class.rev]="a.status === 'In review'">{{ a.status }}</span></td>
+                    <td>{{ a.views }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Recent activity</h3>
+          <ul class="activity">
+            @for (a of activity; track a.what) {
+              <li><strong>{{ a.who }}</strong> {{ a.what }}<span>{{ a.when }}</span></li>
+            }
+          </ul>
+        </div>
+      </section>
+      }
+    </main>
+  </div>
+</div>

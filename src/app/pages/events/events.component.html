@@ -20,9 +20,9 @@
         <button [class.on]="active() === t" (click)="active.set(t)">{{ t }}</button>
       }
     </div>
-    @for (e of filtered(); track e.title) {
+    @for (e of filtered(); track e.id) {
       <div class="pg-card ev-row">
-        <div class="date"><strong>{{ e.day }}</strong><span>{{ e.month }}</span></div>
+        <div class="date"><strong>{{ day(e.date) }}</strong><span>{{ month(e.date) }}</span></div>
         <div class="ev-main">
           <span class="pg-badge" [class.magenta]="e.type === 'Summit'" [class.dark]="e.type === 'Dinner'">{{ e.type }}</span>
           <h3>{{ e.title }}</h3>

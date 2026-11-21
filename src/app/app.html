@@ -1,8 +1,12 @@
-<app-btb-header
-  (subscribeClick)="openSubscriptionModal()"
-  (searchSubmit)="handleGlobalSearch($event)">
-</app-btb-header>
+@if (!isAdmin()) {
+  <app-btb-header
+    (subscribeClick)="openSubscriptionModal()"
+    (searchSubmit)="handleGlobalSearch($event)">
+  </app-btb-header>
+}
 
 <router-outlet></router-outlet>
 
-<app-btb-footer></app-btb-footer>
+@if (!isAdmin()) {
+  <app-btb-footer></app-btb-footer>
+}

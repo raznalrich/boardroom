@@ -1,0 +1,59 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Contribute</span>
+    <h1>Send us your magazine</h1>
+    <p>Publish your magazine or report with BoardRoom. Request a submission below and send the file to our editors by email.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="steps">
+      @for (s of steps; track s.n) {
+        <div class="step"><span class="num">{{ s.n }}</span><h3>{{ s.t }}</h3><p>{{ s.d }}</p></div>
+      }
+    </div>
+
+    <div class="mag-grid">
+      <div class="pg-card form-card">
+        <h2>Request to upload</h2>
+        <form #f="ngForm" (ngSubmit)="send(f)" novalidate>
+          <label for="name">Your name</label>
+          <input id="name" name="name" [(ngModel)]="name" required minlength="2" placeholder="e.g. Tariq Al-Mansoor" #n="ngModel" />
+          @if (n.invalid && (n.touched || f.submitted)) { <span class="err">Please enter your name.</span> }
+
+          <label for="title">Magazine title</label>
+          <input id="title" name="title" [(ngModel)]="title" required minlength="3" placeholder="e.g. The Gulf Business Review" #t="ngModel" />
+          @if (t.invalid && (t.touched || f.submitted)) { <span class="err">Please enter the magazine title.</span> }
+
+          <button type="submit" class="pg-btn submit">✉ Send your magazine through mail</button>
+          <span class="note">This opens your email app with a message to <strong>{{ email }}</strong>. Attach your PDF and send.</span>
+        </form>
+
+        @if (opened) {
+          <div class="opened">
+            Your email app should have opened. If not, <a [href]="mailto">click here</a> or email us directly at
+            <strong>{{ email }}</strong>.
+          </div>
+        }
+      </div>
+
+      <aside class="side">
+        <div class="pg-card tips">
+          <h3>Submission checklist</h3>
+          <ul>
+            <li>PDF format, under 25 MB</li>
+            <li>Cover image and issue date included</li>
+            <li>You own the rights to the content</li>
+            <li>Large files: share a download link</li>
+          </ul>
+        </div>
+        <div class="pg-card tips">
+          <h3>Prefer to write a blog?</h3>
+          <p>Submit an article straight from our website.</p>
+          <a class="pg-btn ghost" routerLink="/submit-blog">Submit a blog</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

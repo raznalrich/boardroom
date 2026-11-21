@@ -1,0 +1,59 @@
+:host { display: block; font-family: 'Inter', sans-serif; color: #121212; }
+.shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; background: #F3EEE6; }
+
+.sidebar { background: #181818; color: #D6D6D6; display: flex; flex-direction: column; padding: 20px 14px; position: sticky; top: 0; height: 100vh;
+  .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 22px; img { width: 32px; height: 32px; object-fit: contain; } span { font-weight: 700; color: #fff; font-size: 15px; } }
+  nav { display: flex; flex-direction: column; gap: 2px; flex: 1;
+    a { padding: 10px 12px; border-radius: 4px; font-size: 14px; cursor: pointer; border-left: 3px solid transparent;
+      &:hover { background: #262626; }
+      &.active { background: #262626; color: #fff; border-left-color: #C21867; } } }
+  .logout { background: transparent; border: 1px solid #4a4540; color: #D6D6D6; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: 600;
+    &:hover { border-color: #B58A55; color: #B58A55; } } }
+
+.main { min-width: 0; }
+.topbar { display: flex; align-items: center; gap: 14px; padding: 16px 28px; background: #FBF8F3; border-bottom: 1px solid #DECBB1;
+  h1 { margin: 0; font-size: 20px; flex: 1; }
+  .menu { display: none; background: none; border: 0; font-size: 22px; cursor: pointer; }
+  .user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #5A5248; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; background: #B58A55; display: grid; place-items: center; font-weight: 700; color: #121212; } }
+
+.content { padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+.card { background: #FBF8F3; border: 1px solid #DECBB1; border-radius: 8px; padding: 20px; min-width: 0;
+  h3 { margin: 0 0 16px; font-size: 14px; letter-spacing: .6px; text-transform: uppercase; small { text-transform: none; color: #5A5248; font-weight: 400; letter-spacing: 0; } } }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.kpi { display: flex; flex-direction: column; gap: 6px;
+  .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .8px; color: #5A5248; }
+  strong { font-size: 30px; }
+  .chg { font-size: 12px; font-weight: 600; &.up { color: #16A34A; } &.down { color: #DC2626; } } }
+
+.row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; }
+
+.bars { display: flex; align-items: flex-end; gap: 14px; height: 220px; padding-top: 10px; }
+.bar-col { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px;
+  .bar { width: 100%; max-width: 46px; background: linear-gradient(180deg, #C21867, #B58A55); border-radius: 4px 4px 0 0; min-height: 4px; }
+  .bar-val { font-size: 11px; color: #5A5248; } .bar-lbl { font-size: 12px; font-weight: 600; } }
+
+.sec { margin-bottom: 14px; .sec-top { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+  .track { height: 8px; background: #E6D9C5; border-radius: 4px; overflow: hidden; div { height: 100%; background: #B58A55; } } }
+
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px;
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: #5A5248; padding: 8px 10px; border-bottom: 1px solid #DECBB1; }
+  td { padding: 12px 10px; border-bottom: 1px solid #EADFCF; } .t { font-weight: 600; max-width: 280px; } }
+.status { padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700; background: #E6E1D8; color: #5A5248;
+  &.pub { background: #DCF5E5; color: #15803D; } &.rev { background: #FDF0D5; color: #A16207; } }
+
+.activity { list-style: none; margin: 0; padding: 0;
+  li { padding: 12px 0; border-bottom: 1px solid #EADFCF; font-size: 13px; line-height: 1.45; &:last-child { border: 0; }
+    span { display: block; font-size: 11px; color: #8C8379; margin-top: 2px; } } }
+
+@media (max-width: 980px) {
+  .row { grid-template-columns: 1fr; }
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { position: fixed; z-index: 50; width: 240px; transform: translateX(-100%); transition: transform .25s; &.open { transform: none; } }
+  .topbar .menu { display: block; } .topbar .uname { display: none; }
+  .content { padding: 16px; }
+}
+
+.placeholder { text-align: center; padding: 60px 20px; p { margin: 0; color: #5A5248; } }

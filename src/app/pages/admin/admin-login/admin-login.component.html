@@ -1,0 +1,25 @@
+<div class="login-page">
+  <div class="login-card">
+    <img src="assets/images/logo.png" alt="BoardRoom" class="logo" />
+    <h1>Admin Console</h1>
+    <p class="sub">Sign in to manage BoardRoom content</p>
+
+    <form (ngSubmit)="submit()" autocomplete="off">
+      <label for="u">Email</label>
+      <input id="u" name="username" type="text" [(ngModel)]="username" placeholder="admin@boardroom.com" autocomplete="username" required autofocus />
+
+      <label for="p">Password</label>
+      <div class="pw">
+        <input id="p" name="password" [type]="showPassword() ? 'text' : 'password'" [(ngModel)]="password" placeholder="Enter password" required />
+        <button type="button" (click)="showPassword.set(!showPassword())">{{ showPassword() ? 'Hide' : 'Show' }}</button>
+      </div>
+
+      @if (error()) {
+        <div class="error" role="alert">{{ error() }}</div>
+      }
+
+      <button type="submit" class="submit" [disabled]="loading()">{{ loading() ? "Signing in…" : "Sign in" }}</button>
+    </form>
+    <a class="back" href="/">← Back to website</a>
+  </div>
+</div>

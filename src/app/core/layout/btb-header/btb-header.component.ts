@@ -44,8 +44,8 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
   @Input() navItems: NavItem[] = [
     { label: 'MARKETS', route: '/markets' },
     { label: 'INSIGHTS', route: '/insights' },
+    { label: 'ARTICLES', route: '/articles' },
     { label: 'LEADERSHIP & CEO PROFILES', route: '/leadership-profiles' },
-    { label: 'INNOVATION', route: '/innovation' },
     { label: 'THE NETWORK', route: '/network' },
     { label: 'EVENTS', route: '/events' },
     { label: 'THE E-MAGAZINE', route: '/e-magazine' }

@@ -1,0 +1,85 @@
+<div class="wrap">
+  @if (view() === 'form') {
+    <div class="card">
+      <h3>{{ editingId() ? 'Edit event' : 'Add new event' }}</h3>
+
+      <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+        <label for="title">Event title</label>
+        <input id="title" name="title" [(ngModel)]="model.title" required minlength="5" placeholder="e.g. Annual Leadership Summit 2027" #t="ngModel" />
+        @if (t.invalid && (t.touched || f.submitted)) { <span class="e">Title must be at least 5 characters.</span> }
+
+        <div class="two">
+          <div>
+            <label for="type">Event type</label>
+            <select id="type" name="type" [(ngModel)]="model.type" required #ty="ngModel">
+              <option value="" disabled>Select type</option>
+              @for (x of types; track x) { <option [value]="x">{{ x }}</option> }
+            </select>
+            @if (ty.invalid && (ty.touched || f.submitted)) { <span class="e">Choose a type.</span> }
+          </div>
+          <div>
+            <label for="seats">Availability</label>
+            <select id="seats" name="seats" [(ngModel)]="model.seats">
+              @for (s of seatOptions; track s) { <option [value]="s">{{ s }}</option> }
+            </select>
+          </div>
+        </div>
+
+        <div class="two">
+          <div>
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" [(ngModel)]="model.date" required #d="ngModel" />
+            @if (d.invalid && (d.touched || f.submitted)) { <span class="e">Pick the event date.</span> }
+          </div>
+          <div>
+            <label for="time">Time</label>
+            <input id="time" name="time" [(ngModel)]="model.time" required placeholder="e.g. 09:00 – 18:00" #tm="ngModel" />
+            @if (tm.invalid && (tm.touched || f.submitted)) { <span class="e">Enter the time.</span> }
+          </div>
+        </div>
+
+        <label for="city">Venue / city</label>
+        <input id="city" name="city" [(ngModel)]="model.city" required placeholder="e.g. Dubai, DIFC or Online" #c="ngModel" />
+        @if (c.invalid && (c.touched || f.submitted)) { <span class="e">Enter the venue or city.</span> }
+
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving()">{{ editingId() ? 'Save changes' : 'Add event' }}</button>
+          <button type="button" class="btn" (click)="cancel(f)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="head">
+        <h3>Upcoming events <span class="count">{{ upcomingCount() }}</span></h3>
+        <button type="button" class="btn primary" (click)="addNew()">+ Add new</button>
+      </div>
+
+      @if (message(); as m) {
+        <div class="msg" [class.ok]="m.type === 'ok'" [class.err]="m.type === 'err'" role="status">{{ m.text }}</div>
+      }
+
+      <div class="list">
+        @for (e of events(); track e.id) {
+          <article class="row" [class.past]="isPast(e)">
+            <div class="date"><strong>{{ day(e.date) }}</strong><span>{{ month(e.date) }}</span><small>{{ year(e.date) }}</small></div>
+            <div class="info">
+              <div class="top">
+                <span class="cat">{{ e.type }}</span>
+                @if (isPast(e)) { <span class="tag past-tag">Past</span> }
+              </div>
+              <h4>{{ e.title }}</h4>
+              <small>📍 {{ e.city }} · 🕘 {{ e.time }} · {{ e.seats }}</small>
+            </div>
+            <div class="row-actions">
+              <button class="btn sm" (click)="edit(e)">Edit</button>
+              <button class="btn sm danger" (click)="remove(e)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty">No events yet. Click “Add new” to create one.</p>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,38 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Articles</span>
+    <h1>Deep dives across every sector</h1>
+    <p>Expert reporting and analysis on leadership, strategy, technology, finance, healthcare, education, real estate and retail.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Sector Deep Dives &amp; Strategy</h2><span class="rule"></span></div>
+
+    <div class="filter-bar">
+      @for (t of tabs; track t) {
+        <button [class.on]="active() === t" (click)="active.set(t)">{{ t }}</button>
+      }
+    </div>
+
+    <p class="count">{{ filtered().length }} {{ filtered().length === 1 ? 'article' : 'articles' }}</p>
+
+    <div class="card-grid">
+      @for (a of filtered(); track a.id) {
+        <article class="blog-card">
+          <div class="cover" [style.background-image]="cover(a)">
+            <span class="cover-tag">{{ a.category }}</span>
+          </div>
+          <div class="body">
+            <h3>{{ a.title }}</h3>
+            @if (a.summary) { <p>{{ a.summary }}</p> }
+            <div class="meta"><span>{{ a.author }}</span><span>•</span><span>{{ a.readMins }} min read</span></div>
+          </div>
+        </article>
+      } @empty {
+        <p class="empty">No stories in this category yet.</p>
+      }
+    </div>
+  </div>
+</section>

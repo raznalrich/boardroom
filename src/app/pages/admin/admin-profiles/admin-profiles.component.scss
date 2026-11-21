@@ -1,0 +1,46 @@
+:host { display: block; font-family: 'Inter', sans-serif; }
+.wrap { display: flex; flex-direction: column; gap: 20px; }
+.card { background: #FBF8F3; border: 1px solid #DECBB1; border-radius: 8px; padding: 22px; min-width: 0;
+  h3 { margin: 0 0 16px; font-size: 14px; letter-spacing: .6px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; } }
+.head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; h3 { margin: 0; } }
+.count { background: #181818; color: #fff; border-radius: 10px; padding: 1px 9px; font-size: 12px; letter-spacing: 0; }
+.msg { padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 14px;
+  &.ok { background: #DCF5E5; color: #166534; } &.err { background: #FDECEC; color: #B91C1C; } }
+
+form { display: flex; flex-direction: column; gap: 4px; }
+.form-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; }
+.col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; > div { display: flex; flex-direction: column; gap: 4px; } }
+label { margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #5A5248; }
+input:not([type=file]), select, textarea { width: 100%; padding: 11px 12px; border: 1px solid #DECBB1; border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; outline: none;
+  &:focus { border-color: #B58A55; box-shadow: 0 0 0 3px rgba(181,138,85,.2); }
+  &.ng-invalid.ng-touched { border-color: #DC2626; } }
+textarea { resize: vertical; line-height: 1.5; }
+.e { font-size: 12px; color: #DC2626; }
+
+.drop { margin-top: 4px; flex: 1; min-height: 240px; border: 2px dashed #C8B79E; border-radius: 8px; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  text-transform: none; letter-spacing: 0; cursor: pointer; color: #121212; text-align: center; transition: border-color .2s, background .2s;
+  &:hover { border-color: #B58A55; background: #FBF3E6; } .ico { font-size: 34px; } strong { font-size: 14px; } small { color: #8C8379; font-size: 12px; font-weight: 400; } }
+.preview { margin-top: 4px; img { width: 100%; max-width: 280px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 8px; border: 1px solid #DECBB1; display: block; }
+  .rm { margin-top: 8px; background: none; border: 0; color: #B91C1C; font-weight: 600; font-size: 12px; cursor: pointer; padding: 0; } }
+
+.actions { display: flex; gap: 10px; margin-top: 16px; }
+.btn { padding: 10px 20px; border: 1px solid #181818; border-radius: 4px; background: transparent; font-family: inherit; font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; cursor: pointer;
+  &:hover { background: #181818; color: #fff; }
+  &.primary { background: #B58A55; border-color: #966E3D; color: #121212; &:hover { background: #966E3D; color: #fff; } }
+  &.sm { padding: 6px 14px; font-size: 11px; }
+  &.danger { border-color: #B91C1C; color: #B91C1C; &:hover { background: #B91C1C; color: #fff; } } }
+
+.empty { margin: 0; padding: 28px 0; text-align: center; color: #8C8379; font-size: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.pcard { display: flex; flex-direction: column; background: #fff; border: 1px solid #DECBB1; border-radius: 8px; overflow: hidden; }
+.photo { position: relative; height: 190px; background-size: cover; background-position: center top; background-color: #E6D9C5; }
+.region { position: absolute; top: 10px; left: 10px; background: #181818; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; }
+.pbody { padding: 14px 16px; flex: 1; h4 { margin: 0 0 3px; font-size: 16px; } .role { font-size: 13px; font-weight: 600; color: #966E3D; } .comp { font-size: 12px; color: #5A5248; margin-bottom: 8px; }
+  p { margin: 0 0 8px; font-size: 12.5px; font-style: italic; color: #5A5248; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  small { color: #8C8379; font-size: 11px; } }
+.pactions { display: flex; gap: 8px; padding: 0 16px 16px; }
+
+@media (max-width: 800px) { .form-grid { grid-template-columns: 1fr; } .two { grid-template-columns: 1fr; } }
+
+.hint { font-size: 12px; color: #8C8379; }

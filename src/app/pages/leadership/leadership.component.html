@@ -22,13 +22,13 @@
     <div class="leader-grid">
       @for (l of filtered(); track l.name) {
         <article class="pg-card leader">
-          <div class="pg-img portrait" [style.background-image]="'url(' + url(l.img) + ')'"></div>
+          <a class="portrait-link" [routerLink]="['/leadership-profiles', slug(l.name)]"><div class="pg-img portrait" [style.background-image]="'url(' + url(l.img) + ')'"></div></a>
           <div class="l-body">
             <span class="pg-badge">{{ l.region }}</span>
             <h3>{{ l.name }}</h3>
             <div class="l-role">{{ l.title }}, {{ l.company }}</div>
             <blockquote>“{{ l.quote }}”</blockquote>
-            <div class="l-foot"><span class="pg-meta">{{ l.since }}</span><a class="read">Read profile →</a></div>
+            <div class="l-foot"><span class="pg-meta">{{ l.since }}</span><a class="read" [routerLink]="['/leadership-profiles', slug(l.name)]">Read profile →</a></div>
           </div>
         </article>
       }

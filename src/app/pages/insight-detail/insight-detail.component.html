@@ -1,0 +1,69 @@
+@if (insight(); as i) {
+  <section class="hero" [style.background-image]="'linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.88) 100%), url(' + image(i.img, 1400) + ')'">
+    <div class="pg-container hero-inner">
+      <a routerLink="/insights" class="back">← All insights</a>
+      <span class="pg-badge magenta">{{ i.category }}</span>
+      <h1>{{ i.title }}</h1>
+      <div class="meta">By <strong>{{ i.author }}</strong> · {{ i.mins }} min read · {{ i.date | date: 'longDate' }}</div>
+    </div>
+  </section>
+
+  <section class="pg-section">
+    <div class="pg-container body">
+      <article class="article">
+        <p class="lead">{{ i.summary }}</p>
+
+        @if (paragraphs().length) {
+          <h2>The full picture</h2>
+          @for (p of paragraphs(); track $index) { <p>{{ p }}</p> }
+        } @else {
+          <p class="none">A detailed write-up for this insight is coming soon.</p>
+        }
+
+        <div class="actions">
+          <a routerLink="/insights" class="pg-btn ghost">← Back to insights</a>
+          <a routerLink="/network" class="pg-btn">Join the network</a>
+        </div>
+      </article>
+
+      <aside class="pg-card facts">
+        <h3>At a glance</h3>
+        <dl>
+          <div><dt>Category</dt><dd>{{ i.category }}</dd></div>
+          <div><dt>Author</dt><dd>{{ i.author }}</dd></div>
+          <div><dt>Published</dt><dd>{{ i.date | date: 'mediumDate' }}</dd></div>
+          <div><dt>Reading time</dt><dd>{{ i.mins }} minutes</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="pg-section more">
+      <div class="pg-container">
+        <div class="pg-title-row"><h2>More insights</h2><span class="rule"></span></div>
+        <div class="related">
+          @for (r of related(); track r.id) {
+            <a class="rcard pg-card" [routerLink]="['/insights', r.id]">
+              <div class="rimg" [style.background-image]="'url(' + image(r.img, 500) + ')'"></div>
+              <div class="rbody">
+                <span class="pg-badge">{{ r.category }}</span>
+                <strong>{{ r.title }}</strong>
+                <span class="pg-meta">{{ r.author }} · {{ r.mins }} min read</span>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else {
+  <section class="pg-hero">
+    <div class="pg-container">
+      <span class="eyebrow">Insight not found</span>
+      <h1>We couldn't find that insight</h1>
+      <p>It may have been removed or the link is incorrect.</p>
+      <a routerLink="/insights" class="pg-btn" style="margin-top:20px">Back to insights</a>
+    </div>
+  </section>
+}

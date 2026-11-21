@@ -1,0 +1,76 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Contribute</span>
+    <h1>Submit your blog</h1>
+    <p>Share your expertise with BoardRoom's global executive audience. Our editors review every submission before publishing.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container sb-grid">
+    <div class="pg-card sb-card">
+      @if (!submitted) {
+        <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+          <div class="two">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" [(ngModel)]="name" required minlength="2" placeholder="e.g. Priya Nair" #n="ngModel" />
+              @if (n.invalid && (n.touched || f.submitted)) { <span class="err">Please enter your name.</span> }
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" [(ngModel)]="email" required email placeholder="you@company.com" #e="ngModel" />
+              @if (e.invalid && (e.touched || f.submitted)) { <span class="err">Enter a valid email.</span> }
+            </div>
+          </div>
+
+          <label for="headline">Blog headline</label>
+          <input id="headline" name="headline" [(ngModel)]="headline" required minlength="8" maxlength="140" placeholder="A clear, compelling headline" #h="ngModel" />
+          @if (h.invalid && (h.touched || f.submitted)) { <span class="err">Headline must be at least 8 characters.</span> }
+
+          <label for="category">Category</label>
+          <select id="category" name="category" [(ngModel)]="category" required #c="ngModel">
+            <option value="" disabled>Select a category</option>
+            @for (cat of categories; track cat) { <option [value]="cat">{{ cat }}</option> }
+          </select>
+          @if (c.invalid && (c.touched || f.submitted)) { <span class="err">Please choose a category.</span> }
+
+          <label for="content">Your blog</label>
+          <textarea id="content" name="content" rows="9" [(ngModel)]="content" required minlength="100" placeholder="Write your article here (minimum 100 characters)…" #t="ngModel"></textarea>
+          <div class="hint">{{ content.length }} characters</div>
+          @if (t.invalid && (t.touched || f.submitted)) { <span class="err">Please write at least 100 characters.</span> }
+
+          @if (error) { <span class="err">{{ error }}</span> }
+          <button type="submit" class="pg-btn submit" [disabled]="sending">{{ sending ? 'Submitting…' : 'Submit for review' }}</button>
+        </form>
+      } @else {
+        <div class="success">
+          <div class="tick">✓</div>
+          <h2>Thank you, {{ name }}!</h2>
+          <p>Your blog “{{ headline }}” has been received. Our editorial team will review it and contact you at <strong>{{ email }}</strong>.</p>
+          <div class="actions">
+            <button class="pg-btn ghost" (click)="reset()">Submit another</button>
+            <a class="pg-btn" routerLink="/">Back to home</a>
+          </div>
+        </div>
+      }
+    </div>
+
+    <aside class="side">
+      <div class="pg-card tips">
+        <h3>Writing guidelines</h3>
+        <ul>
+          <li>Original work only, not published elsewhere</li>
+          <li>600–1,500 words work best</li>
+          <li>Lead with insight, not promotion</li>
+          <li>Reviews take 3–5 working days</li>
+        </ul>
+      </div>
+      <div class="pg-card tips">
+        <h3>Have a magazine instead?</h3>
+        <p>Publishing a magazine or report? Send it to our editors by email.</p>
+        <a class="pg-btn ghost" routerLink="/submit-magazine">Submit a magazine</a>
+      </div>
+    </aside>
+  </div>
+</section>

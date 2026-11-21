@@ -5,8 +5,8 @@
       <div class="hero-voices-grid">
         <!-- Left: Main Feature Story Card -->
         <article class="hero-feature-card hero-slider" (mouseenter)="pauseAutoSlide()" (mouseleave)="startAutoSlide()" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
-          <div class="hero-track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
-            @for (s of heroSlides; track s.title) {
+          <div class="hero-track" [style.transform]="'translateX(-' + (currentSlide < heroSlides.length ? currentSlide : 0) * 100 + '%)'">
+            @for (s of heroSlides; track s.id) {
               <div class="hero-slide">
                 <img [src]="s.image" [alt]="s.title" class="hero-bg-img" />
                 <div class="hero-slide-overlay">
@@ -16,7 +16,7 @@
                     <div class="hero-slide-meta">
                       <span class="by">By {{ s.author }}</span>
                       <span class="sep">|</span>
-                      <span class="time">⏳ {{ s.readTime }}</span>
+                      <span class="time">⏳ {{ s.readMins }} min read</span>
                     </div>
                     <ul class="hero-slide-bullets">
                       @for (b of s.bullets; track b) { <li>{{ b }}</li> }
@@ -27,55 +27,51 @@
             }
           </div>
 
+          @if (heroSlides.length === 0) {
+            <div class="hero-empty">Featured stories will appear here.</div>
+          }
+
           <button class="hero-arrow prev" (click)="prevSlide()" aria-label="Previous story">‹</button>
           <button class="hero-arrow next" (click)="nextSlide()" aria-label="Next story">›</button>
 
           <div class="hero-dots">
-            @for (s of heroSlides; track s.title; let i = $index) {
+            @for (s of heroSlides; track s.id; let i = $index) {
               <button class="dot" [class.active]="i === currentSlide" (click)="goToSlide(i)" [attr.aria-label]="'Go to story ' + (i + 1)"></button>
             }
           </div>
         </article>
 
-        <!-- Right: People & Voices Column -->
+        <!-- Right: People & Voices Column (the 3 latest insights from Supabase) -->
         <aside class="people-voices-col">
           <div class="voices-top-block">
             <!-- Vertical Section Title -->
             <h2 class="vertical-section-title">PEOPLE & VOICES</h2>
 
-            <!-- Featured Interview Card -->
-            <div class="voices-featured-card">
-              <img
-                src="https://i.pinimg.com/1200x/47/c0/59/47c059fdb3b56a3e0082c21bc7c6670b.jpg"
-                alt="Aditi Roy"
-                class="voices-featured-img"
-              />
-              <h3 class="voices-featured-title">
-                Shaping the Future of FinTech: Interview with Aditi Roy
-              </h3>
-            </div>
+            <!-- Featured insight: the newest one -->
+            @if (voicesFeatured; as f) {
+              <a class="voices-featured-card" [routerLink]="['/insights', f.id]">
+                <img [src]="insightImg(f.img)" [alt]="f.title" class="voices-featured-img" />
+                <h3 class="voices-featured-title">{{ f.title }}</h3>
+              </a>
+            } @else {
+              <p class="voices-empty">Insights will appear here.</p>
+            }
 
             <!-- Accent Bar -->
             <div class="magenta-accent-bar"></div>
           </div>
 
-          <!-- Compact Thumbnail Story Items -->
+          <!-- Compact Thumbnail Story Items: the next two insights -->
           <div class="voices-mini-list">
-            <article class="voices-mini-item">
-              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=200&auto=format&fit=crop" alt="Supply Chain" class="mini-thumb" />
-              <div>
-                <h4 class="mini-title">The Reimagined Supply Chain With Digital Resilience</h4>
-                <span class="mini-time">12 minutes ago</span>
-              </div>
-            </article>
-
-            <article class="voices-mini-item">
-              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=200&auto=format&fit=crop" alt="Saudi" class="mini-thumb" />
-              <div>
-                <h4 class="mini-title">Saudi Capital Flows: VC Alliances Take Center Stage</h4>
-                <span class="mini-time">1 minute ago</span>
-              </div>
-            </article>
+            @for (i of voicesMini; track i.id) {
+              <a class="voices-mini-item" [routerLink]="['/insights', i.id]">
+                <img [src]="insightImg(i.img)" [alt]="i.title" class="mini-thumb" />
+                <div>
+                  <h4 class="mini-title">{{ i.title }}</h4>
+                  <span class="mini-time">{{ i.date | date: 'MMM d' }} · {{ i.mins }} min read</span>
+                </div>
+              </a>
+            }
           </div>
         </aside>
       </div>
@@ -87,10 +83,10 @@
     <div class="container news-strip-inner">
       <div class="news-label">LATEST NEWS</div>
       <div class="news-items-wrapper">
-        <ng-container *ngFor="let news of latestNews; let last = last">
+        @for (news of latestNews; track $index; let last = $last) {
           <span class="news-text">{{ news }}</span>
-          <span class="news-bullet" *ngIf="!last">•</span>
-        </ng-container>
+          @if (!last) { <span class="news-bullet">•</span> }
+        }
       </div>
       <button class="news-next-btn" aria-label="Next news item">
         <span>❯</span>
@@ -101,7 +97,7 @@
   <!-- SECTION C: BOARDROOM ROUNDTABLE BANNER -->
   <section class="boardroom-roundtable-banner">
     <div class="roundtable-outer-frame">
-      <img src="assets/images/infinity-logo.png" alt="" class="infinity-bg-watermark" />
+      <img src="assets/images/infinite-pink.png" alt="" class="infinity-bg-watermark" />
       <div class="container roundtable-inner">
         <!-- Left Column -->
         <div class="roundtable-col-left">
@@ -116,13 +112,15 @@
         <div class="roundtable-col-center">
           <span class="roundtable-pill-badge">INTERVIEWS</span>
           <div class="avatars-row">
-            <div class="avatar-item" *ngFor="let av of roundtableAvatars">
+            @for (av of roundtableAvatars; track av.name) {
+            <div class="avatar-item">
               <img [src]="av.img" [alt]="av.name" class="avatar-img" />
               <div class="avatar-info">
                 <span class="avatar-role">{{ av.role }}</span><br>
                 <span class="avatar-org">{{ av.org }}</span>
               </div>
             </div>
+            }
           </div>
         </div>
 
@@ -136,8 +134,62 @@
               <img src="assets/images/infinite-pink.png" alt="Boardroom" class="social-pill infinity-pill" />
             </div>
           </div>
-          <button class="btn-gold-cta">Apply for Membership</button>
+          <a class="btn-gold-cta" routerLink="/network" [queryParams]="{ apply: 1 }">Apply for Membership</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION C2: LEADERS IN FOCUS (SPOTLIGHT) -->
+  <section class="leaders-focus-section">
+    <div class="container">
+      <div class="lf-header">
+        <div>
+          <span class="lf-eyebrow">SPOTLIGHT</span>
+          <h2 class="lf-title">Leaders in Focus</h2>
+        </div>
+        <span class="lf-rule"></span>
+      </div>
+
+      <div class="lf-stage" (mouseenter)="pauseFocusAuto()" (mouseleave)="startFocusAuto()">
+        <button class="lf-arrow prev" (click)="focusPrev()" aria-label="Previous leader">‹</button>
+
+        <div class="lf-stack">
+          @for (l of focusLeaders; track l.name; let i = $index) {
+            <article
+              class="lf-card"
+              [class.active]="focusOffset(i) === 0"
+              [class.hidden]="focusAbs(i) > 3"
+              [style.--o]="focusOffset(i)"
+              [style.--abs]="focusAbs(i)"
+              [style.z-index]="10 - focusAbs(i)"
+              (click)="focusGo(i)"
+            >
+              <div class="lf-photo" [style.background-image]="'url(' + leaderImg(l.img) + ')'">
+                <span class="lf-region">{{ l.region }}</span>
+              </div>
+              <div class="lf-body">
+                <h3>{{ l.name }}</h3>
+                <div class="lf-role">{{ l.title }}</div>
+                <div class="lf-company">{{ l.company }}</div>
+                <p class="lf-quote">“{{ l.quote }}”</p>
+                <a class="lf-link" [routerLink]="['/leadership-profiles', slugOf(l.name)]">Read profile →</a>
+              </div>
+            </article>
+          }
+        </div>
+
+        <button class="lf-arrow next" (click)="focusNext()" aria-label="Next leader">›</button>
+      </div>
+
+      <div class="lf-dots">
+        @for (l of focusLeaders; track l.name; let i = $index) {
+          <button class="lf-dot" [class.active]="i === focusIndex" (click)="focusGo(i)" [attr.aria-label]="'Show ' + l.name"></button>
+        }
+      </div>
+
+      <div class="lf-more">
+        <a routerLink="/leadership-profiles" class="lf-more-btn">Show more</a>
       </div>
     </div>
   </section>
@@ -146,7 +198,8 @@
   <section class="profiles-grid-section">
     <div class="container">
       <div class="profiles-3col-grid">
-        <div class="profile-card" *ngFor="let card of profileCards">
+        @for (card of profileCards; track card.headline) {
+        <div class="profile-card">
           <div class="profile-card-left">
             <span class="profile-cat-badge">{{ card.category }}</span>
             <h3 class="profile-headline">{{ card.headline }}</h3>
@@ -156,6 +209,34 @@
             <img [src]="card.image" [alt]="card.headline" class="profile-portrait" />
           </div>
         </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: LATEST INSIGHTS -->
+  <section class="home-insights-section">
+    <div class="container">
+      <div class="hi-header">
+        <h2 class="hi-title">LATEST INSIGHTS</h2>
+        <span class="hi-rule"></span>
+        <a routerLink="/insights" class="hi-all">View all →</a>
+      </div>
+
+      <div class="hi-grid">
+        @for (i of homeInsights; track i.id) {
+          <a class="hi-card" [routerLink]="['/insights', i.id]">
+            <div class="hi-img" [style.background-image]="'url(' + insightImg(i.img) + ')'">
+              <span class="hi-cat">{{ i.category }}</span>
+            </div>
+            <div class="hi-body">
+              <h3>{{ i.title }}</h3>
+              <p>{{ i.summary }}</p>
+              <span class="hi-meta">{{ i.author }} · {{ i.mins }} min read</span>
+              <span class="hi-read">Read insight →</span>
+            </div>
+          </a>
+        }
       </div>
     </div>
   </section>
@@ -165,44 +246,48 @@
     <div class="container">
       <h2 class="sector-main-title">SECTOR DEEP DIVES & STRATEGY</h2>
 
-      <!-- 4-Column Category Header Bar -->
-      <div class="sector-tabs-grid">
-        <button
-          *ngFor="let tab of sectorTabs"
-          class="sector-tab-btn"
-          [class.active]="activeSectorTab === tab"
-          (click)="selectTab(tab)"
-        >
-          {{ tab }}
-        </button>
+      <!-- Category filter bar -->
+      <div class="sector-filter-bar">
+        @for (tab of sectorTabs; track tab) {
+          <button
+            class="sector-tab-btn"
+            [class.active]="activeSectorTab === tab"
+            (click)="selectTab(tab)"
+          >
+            {{ tab }}
+          </button>
+        }
       </div>
 
-      <!-- 4-Column Grid Displaying Stacked Articles -->
-      <div class="sector-4col-grid">
-        <div class="sector-col" *ngFor="let tab of sectorTabs">
-          <article
-            class="sector-article-card"
-            *ngFor="let art of sectorArticlesMap[tab]"
-          >
-            <span
-              class="badge-category"
-              [class.badge-gold]="art.badgeType === 'gold'"
-              [class.badge-magenta]="art.badgeType === 'magenta'"
-            >
-              {{ art.category }}
-            </span>
-            <h3 class="sector-article-title">{{ art.headline }}</h3>
-            <p class="sector-article-summary" *ngIf="art.summary">
-              {{ art.summary }}
-            </p>
-            <div class="sector-article-meta">
-              <span>{{ art.author }}</span>
-              <span class="meta-dot">•</span>
-              <span>{{ art.readTime }}</span>
+      <!-- Filtered blog cards -->
+      <div class="sector-card-grid">
+        @for (art of visibleSectorArticles; track art.id) {
+          <article class="sector-blog-card">
+            <div class="sector-cover" [style.background-image]="sectorCover(art)">
+              <span class="sector-cover-tag">{{ art.category }}</span>
+            </div>
+            <div class="sector-blog-body">
+              <h3 class="sector-article-title">{{ art.title }}</h3>
+              @if (art.summary) {
+                <p class="sector-article-summary">{{ art.summary }}</p>
+              }
+              <div class="sector-article-meta">
+                <span>{{ art.author }}</span>
+                <span class="meta-dot">•</span>
+                <span>{{ art.readMins }} min read</span>
+              </div>
             </div>
           </article>
-        </div>
+        } @empty {
+          <p class="sector-empty">No stories in this category yet.</p>
+        }
       </div>
+
+      @if (sectorHasMore) {
+        <div class="sector-more">
+          <a routerLink="/articles" class="sector-more-btn">Read more</a>
+        </div>
+      }
     </div>
   </section>
 
@@ -226,18 +311,22 @@
 
       <!-- Right Column: 3 Visionary Pair Groups -->
       <div class="power-list-right">
-        <div class="visionary-group" *ngFor="let group of powerListGroups">
+        @for (group of powerListGroups; track group.title) {
+        <div class="visionary-group">
           <div class="visionary-avatars-row">
-            <div class="avatar-wrapper" *ngFor="let member of group.members" [class.has-rank]="member.rank">
-              <span class="rank-num" *ngIf="member.rank">{{ member.rank }}</span>
+            @for (member of group.members; track member.name) {
+            <div class="avatar-wrapper" [class.has-rank]="member.rank">
+              @if (member.rank) { <span class="rank-num">{{ member.rank }}</span> }
               <img [src]="member.image" [alt]="member.name" class="visionary-avatar" />
             </div>
+            }
           </div>
           <div class="visionary-info">
             <h4 class="visionary-role">{{ group.title }}</h4>
             <p class="visionary-blurb">{{ group.blurb }}</p>
           </div>
         </div>
+        }
       </div>
     </div>
   </section>
@@ -246,7 +335,37 @@
   
 
   <!-- SECTION H: EVENTS & ROUNDTABLES CALENDAR -->
-  
+  <section class="home-events-section">
+    <div class="container">
+      <div class="he-header">
+        <h2 class="he-title">EVENTS & ROUNDTABLES</h2>
+        <span class="he-rule"></span>
+        <a routerLink="/events" class="he-all">View all →</a>
+      </div>
+
+      <div class="he-grid">
+        @for (e of homeEvents; track e.id) {
+          <a class="he-card" routerLink="/events">
+            <div class="he-date">
+              <strong>{{ evDay(e.date) }}</strong>
+              <span>{{ evMonth(e.date) }}</span>
+              <small>{{ evYear(e.date) }}</small>
+            </div>
+            <div class="he-info">
+              <span class="he-type" [class.summit]="e.type === 'Summit'">{{ e.type }}</span>
+              <h3>{{ e.title }}</h3>
+              <div class="he-meta">📍 {{ e.city }}</div>
+              <div class="he-meta">🕘 {{ e.time }}</div>
+              <span class="he-seats">{{ e.seats }}</span>
+            </div>
+          </a>
+        } @empty {
+          <p class="he-empty">No upcoming events right now. Check back soon.</p>
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION J: PRINT ARCHIVE & SPECIAL REPORTS -->
   <section class="print-archive-section">
     <div class="container">
@@ -260,7 +379,8 @@
         <div class="issue-showcase-col">
           <h3 class="showcase-subtitle">Issue Showcase</h3>
           <div class="magazine-covers-grid">
-            <div class="magazine-item" *ngFor="let issue of printArchiveIssues">
+            @for (issue of printArchiveIssues; track issue.title) {
+            <div class="magazine-item">
               <div class="magazine-cover-card">
                 <img [src]="issue.image" [alt]="issue.title" class="cover-bg-img" />
                 <div class="cover-overlay">
@@ -276,6 +396,7 @@
               </div>
               <p class="magazine-caption">{{ issue.subtitle }}</p>
             </div>
+            }
           </div>
         </div>
 
@@ -297,5 +418,87 @@
 
   <!-- SECTION K: MARKETS, WEALTH & UNICORN TRACKER -->
   
+  <!-- SECTION M: JOIN WITH US (CONTRIBUTE) -->
+  <section class="join-section">
+    <div class="container">
+      <div class="join-head">
+        <span class="join-eyebrow">JOIN WITH US</span>
+        <h2 class="join-title">Your voice belongs in the <em>boardroom</em></h2>
+        <p class="join-text">
+          Publish your ideas with BoardRoom. Share a blog with our global executive audience, or send us your
+          magazine to be featured on our platform.
+        </p>
+      </div>
+
+      <div class="join-cards">
+        <div class="join-card">
+          <div class="join-icon">✍️</div>
+          <h3>Write a blog</h3>
+          <p>Add your name and headline, write your article, and submit it directly through our website for editorial review.</p>
+          <a routerLink="/submit-blog" class="join-btn">Submit a blog →</a>
+        </div>
+
+        <div class="join-card alt">
+          <div class="join-icon">📖</div>
+          <h3>Publish your magazine</h3>
+          <p>Request to upload your magazine. We'll open an email for you — just attach your PDF and send it to our editors.</p>
+          <a routerLink="/submit-magazine" class="join-btn gold">Send your magazine →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION L: GET IN TOUCH -->
+  <section class="git-section" id="get-in-touch">
+    <div class="container git-inner">
+      <div class="git-copy">
+        <span class="git-eyebrow">GET IN TOUCH</span>
+        <h2 class="git-title">Let’s start a <em>conversation</em></h2>
+        <p class="git-text">
+          Share your details and our editorial team will reach out with executive briefs, exclusive invitations and
+          opportunities to feature in BoardRoom.
+        </p>
+        <ul class="git-points">
+          <li><span>✓</span> Weekly executive intelligence</li>
+          <li><span>✓</span> Invitations to private roundtables</li>
+          <li><span>✓</span> Priority access to the E-Magazine</li>
+        </ul>
+      </div>
+
+      <div class="git-card">
+        @if (!gitSubmitted) {
+          <form class="git-form" #gitForm="ngForm" (ngSubmit)="submitGetInTouch(gitForm)" novalidate>
+            <h3>Tell us about yourself</h3>
+
+            <label for="git-name">Full name</label>
+            <input id="git-name" name="name" type="text" placeholder="e.g. Tariq Al-Mansoor"
+                   [(ngModel)]="gitName" required minlength="2" #nameCtl="ngModel" />
+            @if (nameCtl.invalid && (nameCtl.touched || gitForm.submitted)) {
+              <span class="git-error">Please enter your name.</span>
+            }
+
+            <label for="git-email">Email address</label>
+            <input id="git-email" name="email" type="email" placeholder="you@company.com"
+                   [(ngModel)]="gitEmail" required email #emailCtl="ngModel" />
+            @if (emailCtl.invalid && (emailCtl.touched || gitForm.submitted)) {
+              <span class="git-error">Please enter a valid email address.</span>
+            }
+
+            @if (gitError) { <span class="git-error">{{ gitError }}</span> }
+            <button type="submit" class="git-submit" [disabled]="gitSending">{{ gitSending ? 'Sending…' : 'Get in touch →' }}</button>
+            <span class="git-note">We respect your privacy. No spam, unsubscribe anytime.</span>
+          </form>
+        } @else {
+          <div class="git-success">
+            <div class="git-tick">✓</div>
+            <h3>Thank you, {{ gitName }}!</h3>
+            <p>We’ll be in touch at <strong>{{ gitEmail }}</strong> shortly.</p>
+            <button type="button" class="git-again" (click)="resetGetInTouch()">Send another</button>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
 </main>
 

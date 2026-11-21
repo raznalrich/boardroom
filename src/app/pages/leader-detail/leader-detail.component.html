@@ -1,0 +1,72 @@
+@if (leader(); as l) {
+  <section class="ld-top">
+    <div class="pg-container">
+      <a routerLink="/leadership-profiles" class="back">← All leadership profiles</a>
+
+      <div class="ld-grid">
+        <div class="portrait-wrap">
+          <div class="portrait" [style.background-image]="'url(' + img(l.img) + ')'"></div>
+          <span class="region">{{ l.region }}</span>
+        </div>
+
+        <div class="intro">
+          <span class="eyebrow">Leadership &amp; CEO Profile</span>
+          <h1>{{ l.name }}</h1>
+          <div class="role">{{ l.title }}, {{ l.company }}</div>
+          <blockquote>“{{ l.quote }}”</blockquote>
+
+          <dl class="facts">
+            <div><dt>Company</dt><dd>{{ l.company }}</dd></div>
+            <div><dt>Role</dt><dd>{{ l.title }}</dd></div>
+            <div><dt>Region</dt><dd>{{ l.region }}</dd></div>
+            @if (l.since) { <div><dt>Tenure</dt><dd>{{ l.since }}</dd></div> }
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pg-section">
+    <div class="pg-container body-grid">
+      <article class="bio">
+        <h2>About {{ l.name }}</h2>
+        @for (p of bio(); track $index) { <p>{{ p }}</p> }
+      </article>
+
+      <aside class="pg-card contact">
+        <h3>Connect with BoardRoom</h3>
+        <p>Want to feature {{ l.name.split(' ')[0] }} at an upcoming roundtable or interview?</p>
+        <a routerLink="/events" class="pg-btn">View events</a>
+        <a routerLink="/network" class="pg-btn ghost">Join the network</a>
+      </aside>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="pg-section more">
+      <div class="pg-container">
+        <div class="pg-title-row"><h2>More leaders</h2><span class="rule"></span></div>
+        <div class="related">
+          @for (r of related(); track r.name) {
+            <a class="rcard pg-card" [routerLink]="['/leadership-profiles', slug(r.name)]">
+              <div class="rphoto" [style.background-image]="'url(' + img(r.img, 500) + ')'"></div>
+              <div class="rbody">
+                <strong>{{ r.name }}</strong>
+                <span>{{ r.title }}, {{ r.company }}</span>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else {
+  <section class="pg-hero">
+    <div class="pg-container">
+      <span class="eyebrow">Profile not found</span>
+      <h1>We couldn't find that leader</h1>
+      <p>The profile may have been removed or the link is incorrect.</p>
+      <a routerLink="/leadership-profiles" class="pg-btn" style="margin-top:20px">Back to all profiles</a>
+    </div>
+  </section>
+}
