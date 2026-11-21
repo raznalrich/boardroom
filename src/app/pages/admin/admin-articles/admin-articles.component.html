@@ -85,7 +85,7 @@
     } @else {
       <div class="list">
         @for (a of articles(); track a.id) {
-          <article class="row">
+          <article class="row" [class.review]="a.source === 'visitor' && a.status === 'Draft'">
             <div class="thumb" [style.background-image]="a.image ? 'url(' + a.image + ')' : 'none'">
               @if (!a.image) { <span>No image</span> }
             </div>
@@ -93,13 +93,15 @@
               <div class="top">
                 <span class="cat">{{ a.category }}</span>
                 <span class="status" [class.pub]="a.status === 'Published'">{{ a.status }}</span>
+                @if (a.source === 'visitor') { <span class="from">Visitor submission</span> }
               </div>
               <h4>{{ a.title }}</h4>
               @if (a.summary) { <p>{{ a.summary }}</p> }
-              <small>By {{ a.author }} · {{ a.createdAt | date: 'mediumDate' }}</small>
+              <small>By {{ a.author }} · {{ a.createdAt | date: 'mediumDate' }}@if (a.submittedEmail) { · <a [href]="'mailto:' + a.submittedEmail">{{ a.submittedEmail }}</a> }</small>
             </div>
             <div class="row-actions">
-              <button class="btn sm" (click)="edit(a)">Edit</button>
+              @if (a.status === 'Draft') { <button class="btn sm primary" (click)="publish(a)">Publish</button> }
+              <button class="btn sm" (click)="edit(a)">{{ a.status === 'Draft' ? 'Review / edit' : 'Edit' }}</button>
               <button class="btn sm danger" (click)="remove(a)">Delete</button>
             </div>
           </article>

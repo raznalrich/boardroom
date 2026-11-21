@@ -112,12 +112,12 @@
         <div class="roundtable-col-center">
           <span class="roundtable-pill-badge">INTERVIEWS</span>
           <div class="avatars-row">
-            @for (av of roundtableAvatars; track av.name) {
+            @for (av of roundtableGuests; track av.id) {
             <div class="avatar-item">
-              <img [src]="av.img" [alt]="av.name" class="avatar-img" />
+              <img [src]="av.image" [alt]="av.name" class="avatar-img" />
               <div class="avatar-info">
                 <span class="avatar-role">{{ av.role }}</span><br>
-                <span class="avatar-org">{{ av.org }}</span>
+                <span class="avatar-org">{{ av.organisation }}</span>
               </div>
             </div>
             }
@@ -273,7 +273,7 @@
     </div>
   </section>
 
-  <!-- SECTION F: POWER LIST TOP 50 VISIONARIES -->
+  <!-- SECTION F: POWER LIST TOP 6 VISIONARIES -->
   <section class="power-list-banner">
     <div class="power-list-chevron-top"></div>
     <div class="power-list-inner">
@@ -281,7 +281,7 @@
       <div class="power-list-left">
         <div class="power-title-group">
           <span class="power-eyebrow">THE POWER LIST:</span>
-          <span class="power-main-num">TOP 50</span>
+          <span class="power-main-num">TOP 6</span>
           <span class="power-sub-word">VISIONARIES</span>
         </div>
         <svg class="power-b-monogram" width="58" height="74" viewBox="0 0 58 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -291,21 +291,19 @@
         </svg>
       </div>
 
-      <!-- Right Column: 3 Visionary Pair Groups -->
+      <!-- Right Column: the six visionaries (editable in Admin -> Settings) -->
       <div class="power-list-right">
-        @for (group of powerListGroups; track group.title) {
+        @for (p of powerPeople; track p.id) {
         <div class="visionary-group">
           <div class="visionary-avatars-row">
-            @for (member of group.members; track member.name) {
-            <div class="avatar-wrapper" [class.has-rank]="member.rank">
-              @if (member.rank) { <span class="rank-num">{{ member.rank }}</span> }
-              <img [src]="member.image" [alt]="member.name" class="visionary-avatar" />
+            <div class="avatar-wrapper has-rank">
+              <span class="rank-num">{{ p.rank < 10 ? '0' + p.rank : p.rank }}</span>
+              <img [src]="p.image" [alt]="p.name" class="visionary-avatar" />
             </div>
-            }
           </div>
           <div class="visionary-info">
-            <h4 class="visionary-role">{{ group.title }}</h4>
-            <p class="visionary-blurb">{{ group.blurb }}</p>
+            <h4 class="visionary-role">{{ p.name }}</h4>
+            @if (p.headline) { <p class="visionary-blurb">{{ p.headline }}</p> }
           </div>
         </div>
         }
@@ -386,16 +384,16 @@
           </div>
         </div>
 
-        <!-- Right: Executive Intelligence -->
+        <!-- Right: Executive Intelligence (editable in Admin -> Settings) -->
         <div class="intelligence-report-card">
           <p class="intelligence-tag">Executive intelligence report</p>
-          <h3 class="intelligence-title">The 2027 C-Suite Agenda Reports</h3>
-          <p class="intelligence-text">
-            Comprehensive deep-dives into regional market shifts, M&A activity, and strategic foresight for 2027.
-          </p>
+          <h3 class="intelligence-title">{{ intelligence.title }}</h3>
+          <p class="intelligence-text">{{ intelligence.description }}</p>
           <div>
-            <button class="intelligence-download">Download →</button>
-            <button class="intelligence-cta">Access Archive Library →</button>
+            @if (intelligence.pdfUrl) {
+              <a class="intelligence-download" [href]="intelligence.pdfUrl" target="_blank" rel="noopener">Download →</a>
+            }
+            <a class="intelligence-cta" routerLink="/e-magazine">Access Archive Library →</a>
           </div>
         </div>
       </div>

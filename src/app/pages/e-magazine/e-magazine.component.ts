@@ -23,8 +23,4 @@ export class EMagazineComponent {
   /** Colours for covers that have no uploaded picture. */
   readonly fallback = ['#2a2220', '#5a1a3a', '#1d3b34', '#3a3020', '#1f2a44', '#3a1f1f'];
 
-  plans = [
-    { name: 'Digital', price: '$49', per: '/ year', perks: ['12 monthly issues', 'Searchable archive', 'Mobile & tablet apps'] },
-    { name: 'Print + Digital', price: '$129', per: '/ year', perks: ['12 printed issues', 'Full digital access', 'Annual Power List edition'], featured: true }
-  ];
 }

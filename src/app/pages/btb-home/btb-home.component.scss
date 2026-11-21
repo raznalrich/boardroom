@@ -758,7 +758,7 @@
 }
 
 /* ========================================== */
-/* SECTION F: POWER LIST TOP 50 VISIONARIES */
+/* SECTION F: POWER LIST TOP 6 VISIONARIES */
 /* ========================================== */
 .power-list-banner {
   position: relative;
@@ -2841,3 +2841,10 @@ a.magazine-item:hover .magazine-cover-card { transform: translateY(-4px); }
 .magazine-cover-card { transition: transform .2s; background-color: #1d1a18; }
 .showcase-all { margin-left: 12px; font-size: 12px; font-weight: 700; color: var(--btb-magenta); text-decoration: none; }
 .magazine-empty { grid-column: 1 / -1; margin: 0; color: var(--btb-text-muted); font-size: 14px; padding: 20px 0; }
+
+/* Power list: one person per card, six in a 3 x 2 grid (2 per row on phones) */
+a.intelligence-download, a.intelligence-cta { display: inline-block; text-decoration: none; text-align: center; }
+.power-list-right .visionary-group { align-items: flex-start; }
+@media (max-width: 600px) {
+  .power-list-right { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+}

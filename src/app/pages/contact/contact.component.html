@@ -1,0 +1,69 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">Contact us</span>
+    <h1>We'd love to hear from you</h1>
+    <p>Questions about membership, events, advertising, press or contributing? Send us a message and the right person will reply.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container contact-grid">
+    <div class="info">
+      <div class="pg-card item">
+        <span class="ico">✉️</span>
+        <div><h3>Email</h3><a [href]="'mailto:' + site.email">{{ site.email }}</a></div>
+      </div>
+      <div class="pg-card item">
+        <span class="ico">📞</span>
+        <div><h3>Phone</h3><a [href]="'tel:' + site.phone.replace(' ', '')">{{ site.phone }}</a></div>
+      </div>
+      <div class="pg-card item">
+        <span class="ico">📍</span>
+        <div><h3>Office</h3><p>{{ site.address }}</p></div>
+      </div>
+      <div class="pg-card item">
+        <span class="ico">🕘</span>
+        <div><h3>Hours</h3><p>{{ site.hours }}</p></div>
+      </div>
+    </div>
+
+    <div class="pg-card form-card">
+      @if (!sent) {
+        <h2>Send us a message</h2>
+        <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+          <div class="two">
+            <div>
+              <label for="c-name">Your name</label>
+              <input id="c-name" name="name" [(ngModel)]="name" required minlength="2" placeholder="e.g. Priya Nair" #n="ngModel" />
+              @if (n.invalid && (n.touched || f.submitted)) { <span class="err">Please enter your name.</span> }
+            </div>
+            <div>
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" [(ngModel)]="email" required email placeholder="you@company.com" #e="ngModel" />
+              @if (e.invalid && (e.touched || f.submitted)) { <span class="err">Enter a valid email.</span> }
+            </div>
+          </div>
+
+          <label for="c-subject">Subject</label>
+          <input id="c-subject" name="subject" [(ngModel)]="subject" required minlength="3" maxlength="150" placeholder="How can we help?" #s="ngModel" />
+          @if (s.invalid && (s.touched || f.submitted)) { <span class="err">Please add a subject (at least 3 characters).</span> }
+
+          <label for="c-message">Message</label>
+          <textarea id="c-message" name="message" rows="6" [(ngModel)]="message" required minlength="10" maxlength="3000" placeholder="Tell us a little more…" #m="ngModel"></textarea>
+          @if (m.invalid && (m.touched || f.submitted)) { <span class="err">Please write at least 10 characters.</span> }
+
+          @if (error) { <span class="err">{{ error }}</span> }
+          <button type="submit" class="pg-btn submit" [disabled]="sending">{{ sending ? 'Sending…' : 'Send message' }}</button>
+          <span class="note">By sending this you agree to our <a routerLink="/privacy-policy">Privacy Policy</a>.</span>
+        </form>
+      } @else {
+        <div class="done">
+          <div class="tick">✓</div>
+          <h2>Message sent</h2>
+          <p>Thank you, {{ name }}. We've received your message and will reply to <strong>{{ email }}</strong> within 2 working days.</p>
+          <button type="button" class="pg-btn ghost" (click)="again()">Send another</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

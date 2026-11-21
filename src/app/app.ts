@@ -28,10 +28,6 @@ export class App {
     { initialValue: typeof location !== 'undefined' && location.pathname.startsWith('/b-admin') }
   );
 
-  openSubscriptionModal(): void {
-    console.log('Open subscription modal');
-  }
-
   handleGlobalSearch(query: string): void {
     console.log('Global search query:', query);
   }

@@ -19,6 +19,8 @@
     <main class="content">
       @if (activeNav() === 'Articles') {
         <app-admin-articles />
+      } @else if (activeNav() === 'Settings') {
+        <app-admin-settings />
       } @else if (activeNav() === 'E-Magazine') {
         <app-admin-magazines />
       } @else if (activeNav() === 'Banners') {

@@ -6,6 +6,7 @@ import { SECTOR_TABS, sectorCover } from '../../core/data/sector.data';
 import { Article, ArticlesService } from '../../core/data/articles.service';
 import { Banner, BannersService } from '../../core/data/banners.service';
 import { MagazinesService } from '../../core/data/magazines.service';
+import { SettingsService } from '../../core/data/settings.service';
 import { Leader, leaderImageUrl, leaderSlug } from '../../core/data/leaders.data';
 import { LeadersService } from '../../core/data/leaders.service';
 import { SubscribersService } from '../../core/data/subscribers.service';
@@ -209,26 +210,6 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   ];
 
   // Section C: Boardroom Roundtable Avatars
-  roundtableAvatars = [
-    {
-      name: 'Tariq Al-Mansoor',
-      role: 'Regional CEO',
-      org: 'Gulf Investments',
-      img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop'
-    },
-    {
-      name: 'Sunita Sharma',
-      role: 'Managing Director',
-      org: 'Apex Logistics India',
-      img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop'
-    },
-    {
-      name: 'Zaid Al-Hassan',
-      role: 'Chief Str Officer',
-      org: 'Middle East Tech Ventures',
-      img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop'
-    }
-  ];
 
   // Section D: Profiles in Leadership Cards
   profileCards: ProfileCard[] = [
@@ -286,56 +267,6 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   }
 
   // Section F: Power List Visionaries
-  powerListGroups: PowerListGroup[] = [
-    {
-      title: 'Regional Leader',
-      blurb: 'Business Leaders, Title: Brief Business Leaders, Summary...',
-      members: [
-        {
-          rank: '01',
-          name: 'Vikramaditya Singh',
-          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80'
-        },
-        {
-          rank: null,
-          name: 'Siddharth Mehta',
-          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=250&q=80'
-        }
-      ]
-    },
-    {
-      title: 'Astute CEO',
-      blurb: 'Regional CO, Operational Business Leaders, leading...',
-      members: [
-        {
-          rank: '02',
-          name: 'Nasser Al-Kharafi',
-          image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=250&q=80'
-        },
-        {
-          rank: null,
-          name: 'Ramesh Iyer',
-          image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=250&q=80'
-        }
-      ]
-    },
-    {
-      title: 'Actional Business',
-      blurb: 'Business Leaders, industry leader, and enterprise transformation...',
-      members: [
-        {
-          rank: '03',
-          name: 'Omar Al-Futtaim',
-          image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=250&q=80'
-        },
-        {
-          rank: '04',
-          name: 'Karan Adani',
-          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80'
-        }
-      ]
-    }
-  ];
 
   // Section G: Interactive Podcast State
   isPlayingPodcast = false;
@@ -349,6 +280,24 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   ];
 
   // Section J: Print Archive & Special Reports
+  private settingsSvc = inject(SettingsService);
+  /** Roundtable interview guests (Admin -> Settings). */
+  get roundtableGuests() {
+    return this.settingsSvc.roundtableShown();
+  }
+  /** Power List people (Admin -> Settings). */
+  get powerPeople() {
+    return this.settingsSvc.powerListShown();
+  }
+  /** Executive intelligence report card (Admin -> Settings); sensible defaults until it loads. */
+  get intelligence() {
+    return this.settingsSvc.report() ?? {
+      title: 'The 2027 C-Suite Agenda Report',
+      description: 'Comprehensive deep-dives into regional market shifts, M&A activity, and strategic foresight for 2027.',
+      pdfUrl: '', pdfName: ''
+    };
+  }
+
   private magazinesSvc = inject(MagazinesService);
   /** The three newest enabled magazines (uploaded in the admin console, stored on Cloudflare R2). */
   get homeMagazines() {
@@ -357,11 +306,6 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
 
  
 
-intelligenceReport = {
-  badge: 'EXECUTIVE INTELLIGENCE REPORTS',
-  title: 'The 2027 C-Suite Agenda Report',
-  description: 'Analysis on emerging markets, board structures, and digital transformation.'
-};
 
   // Section K: Markets, Wealth & Unicorn Tracker
   dealFlowData = [

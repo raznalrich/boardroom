@@ -1,0 +1,26 @@
+.contact-grid { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.info { display: flex; flex-direction: column; gap: 14px; }
+.item { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px;
+  .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--btb-charcoal); display: grid; place-items: center; font-size: 20px; flex: 0 0 44px; }
+  h3 { margin: 0 0 4px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--btb-text-muted); }
+  p, a { margin: 0; font-size: 15px; line-height: 1.5; color: var(--btb-text-dark); text-decoration: none; word-break: break-word; }
+  a:hover { color: var(--btb-magenta); } }
+
+.form-card { padding: 32px; border-top: 4px solid var(--btb-gold); h2 { margin: 0 0 8px; font-size: 24px; } }
+form { display: flex; flex-direction: column; gap: 4px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; > div { display: flex; flex-direction: column; gap: 4px; } }
+label { margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--btb-text-muted); }
+input, textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-border); border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; outline: none;
+  &:focus { border-color: var(--btb-gold); box-shadow: 0 0 0 3px rgba(181,138,85,.22); } &.ng-invalid.ng-touched { border-color: #DC2626; } }
+textarea { resize: vertical; line-height: 1.5; }
+.err { font-size: 12px; color: #DC2626; }
+.submit { margin-top: 18px; padding: 14px; }
+.submit:disabled { opacity: .6; cursor: not-allowed; }
+.note { margin-top: 8px; font-size: 12px; color: var(--btb-text-muted); text-align: center; a { color: var(--btb-gold-dark); font-weight: 600; } }
+
+.done { text-align: center; padding: 20px 0; h2 { margin: 16px 0 8px; } p { max-width: 420px; margin: 0 auto 22px; color: var(--btb-text-muted); line-height: 1.6; } }
+.tick { width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: #DCF5E5; color: #15803D; display: grid; place-items: center; font-size: 30px; font-weight: 700; }
+a.pg-btn, button.pg-btn { text-align: center; }
+
+@media (max-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } .form-card { padding: 24px 20px; } }
+@media (max-width: 560px) { .two { grid-template-columns: minmax(0, 1fr); } }

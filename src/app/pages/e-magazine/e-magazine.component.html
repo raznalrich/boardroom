@@ -49,19 +49,3 @@
     </div>
   </section>
 }
-
-<section class="pg-section alt">
-  <div class="pg-container">
-    <div class="pg-title-row"><h2>Subscribe</h2><span class="rule"></span></div>
-    <div class="plans">
-      @for (p of plans; track p.name) {
-        <div class="pg-card plan" [class.featured]="p.featured">
-          <h3>{{ p.name }}</h3>
-          <div class="price">{{ p.price }}<small>{{ p.per }}</small></div>
-          <ul>@for (x of p.perks; track x) { <li>{{ x }}</li> }</ul>
-          <button class="pg-btn" style="width:100%">Subscribe</button>
-        </div>
-      }
-    </div>
-  </div>
-</section>

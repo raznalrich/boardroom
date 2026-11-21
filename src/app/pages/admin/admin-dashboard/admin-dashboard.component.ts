@@ -8,6 +8,7 @@ import { AdminSubscribersComponent } from '../admin-subscribers/admin-subscriber
 import { AdminInsightsComponent } from '../admin-insights/admin-insights.component';
 import { AdminBannersComponent } from '../admin-banners/admin-banners.component';
 import { AdminMagazinesComponent } from '../admin-magazines/admin-magazines.component';
+import { AdminSettingsComponent } from '../admin-settings/admin-settings.component';
 import { AdminAuthService } from '../../../core/auth/admin-auth.service';
 import { ArticlesService } from '../../../core/data/articles.service';
 import { DashboardService } from '../../../core/data/dashboard.service';
@@ -18,13 +19,13 @@ interface ActivityItem { text: string; when: Date; }
 
 const SECTION_NAMES: Record<string, string> = {
   'home': 'Home', 'markets': 'Markets', 'insights': 'Insights', 'articles': 'Articles', 'leadership-profiles': 'Leadership',
-  'network': 'The Network', 'events': 'Events', 'e-magazine': 'E-Magazine', 'submit-blog': 'Submit a blog', 'submit-magazine': 'Submit a magazine'
+  'network': 'The Network', 'events': 'Events', 'e-magazine': 'E-Magazine', 'submit-blog': 'Submit a blog', 'about-us': 'About Us', 'contact-us': 'Contact Us', 'privacy-policy': 'Privacy Policy', 'refund-and-cancellation': 'Refunds', 'submit-magazine': 'Submit a magazine'
 };
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, DatePipe, DecimalPipe],
+  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, AdminSettingsComponent, DatePipe, DecimalPipe],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss']
 })

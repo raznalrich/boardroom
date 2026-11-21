@@ -11,12 +11,6 @@
   &:hover .thumb { transform: translateY(-4px); } }
 .thumb { aspect-ratio: 3/4; border-radius: 3px; display: flex; align-items: flex-end; padding: 14px; color: #fff; transition: transform .2s; box-shadow: 0 8px 18px rgba(0,0,0,.2);
   span { font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.1; } }
-.alt { background: var(--btb-ivory-light); border-top: 1px solid var(--btb-ivory-border); }
-.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 360px)); gap: 24px; }
-.plan { padding: 28px; display: flex; flex-direction: column; gap: 12px; &.featured { border: 2px solid var(--btb-gold); }
-  h3 { margin: 0; font-family: 'Inter', sans-serif; font-size: 24px; }
-  .price { font-size: 34px; font-weight: 700; small { font-size: 13px; color: var(--btb-text-muted); font-weight: 400; margin-left: 4px; } }
-  ul { padding-left: 18px; margin: 0 0 8px; } li { padding: 4px 0; font-size: 14px; } }
 @media (max-width: 860px) { .mag-hero { grid-template-columns: 1fr; } .cover { max-width: 280px; } }
 
 /* Uploaded covers and PDF links */

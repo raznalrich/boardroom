@@ -15,6 +15,10 @@ export interface Article {
   imageKey?: string | null;
   status: 'Published' | 'Draft';
   createdAt: string; // ISO
+  /** 'visitor' = arrived through the public "Submit a blog" page and needs review */
+  source: 'admin' | 'visitor';
+  /** Submitter's email for visitor submissions (never shown on the website) */
+  submittedEmail?: string | null;
 }
 
 /**
@@ -41,7 +45,7 @@ export class ArticlesService {
     this.loaded.set(true);
   }
 
-  async save(a: Omit<Article, 'id' | 'createdAt' | 'readMins'> & { id?: string; readMins?: number }): Promise<SaveResult> {
+  async save(a: Omit<Article, 'id' | 'createdAt' | 'readMins' | 'source' | 'submittedEmail'> & { id?: string; readMins?: number }): Promise<SaveResult> {
     const row = {
       title: a.title.trim(), category: a.category, author: a.author.trim(), summary: a.summary.trim(), content: a.content.trim(),
       read_mins: a.readMins ?? 5, image_url: a.image || null, image_key: a.imageKey ?? null,
@@ -50,6 +54,14 @@ export class ArticlesService {
     const { error } = a.id
       ? await supabase.from('articles').update(row).eq('id', a.id)
       : await supabase.from('articles').insert(row);
+    if (error) return { error: error.message };
+    await this.refresh();
+    return { error: null };
+  }
+
+  /** Review step: turn a draft into a published article. */
+  async publish(id: string): Promise<SaveResult> {
+    const { error } = await supabase.from('articles').update({ status: 'published' }).eq('id', id);
     if (error) return { error: error.message };
     await this.refresh();
     return { error: null };
@@ -67,6 +79,7 @@ function toArticle(r: any): Article {
   return {
     id: r.id, title: r.title, category: r.category, author: r.author, summary: r.summary ?? '', content: r.content ?? '',
     readMins: r.read_mins, image: r.image_url ?? '', imageKey: r.image_key,
-    status: r.status === 'published' ? 'Published' : 'Draft', createdAt: r.created_at
+    status: r.status === 'published' ? 'Published' : 'Draft', createdAt: r.created_at,
+    source: r.source === 'visitor' ? 'visitor' : 'admin', submittedEmail: r.submitted_email ?? null
   };
 }

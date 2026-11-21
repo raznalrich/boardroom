@@ -1,0 +1,179 @@
+<div class="wrap">
+  @if (!loaded()) { <p class="loading">Loading settings…</p> }
+
+  <!-- ======================= 1. THE BOARDROOM ROUNDTABLE ======================= -->
+  <section class="card">
+    <header class="sec-head">
+      <div>
+        <h3>The Boardroom Roundtable</h3>
+        <p>The three interview guests shown in the dark roundtable banner on the home page.</p>
+      </div>
+    </header>
+
+    @if (guestNotice(); as n) { <div class="msg" [class.ok]="n.type === 'ok'" [class.err]="n.type === 'err'">{{ n.text }}</div> }
+
+    <div class="people three">
+      @for (g of guests(); track g.id) {
+        <div class="person" [class.active]="editingGuest() === g.id">
+          <img [src]="g.image" [alt]="g.name" class="avatar" />
+          <strong>{{ g.name }}</strong>
+          <span>{{ g.role }}</span>
+          <small>{{ g.organisation }}</small>
+          <button class="btn sm" (click)="editGuest(g)">Edit</button>
+        </div>
+      } @empty {
+        <p class="empty">No guests yet. Run <code>supabase/settings.sql</code> in the Supabase SQL Editor to create them.</p>
+      }
+    </div>
+
+    @if (editingGuest()) {
+      <form class="editor" #gf="ngForm" (ngSubmit)="saveGuest(gf)" novalidate>
+        <h4>Edit guest</h4>
+        <div class="editor-grid">
+          <div class="fields">
+            <label for="g-name">Name</label>
+            <input id="g-name" name="name" [(ngModel)]="guestModel.name" required minlength="2" #gn="ngModel" />
+            @if (gn.invalid && (gn.touched || gf.submitted)) { <span class="e">Enter the guest's name.</span> }
+
+            <label for="g-role">Role</label>
+            <input id="g-role" name="role" [(ngModel)]="guestModel.role" required minlength="2" placeholder="e.g. Regional CEO" #gr="ngModel" />
+            @if (gr.invalid && (gr.touched || gf.submitted)) { <span class="e">Enter the role.</span> }
+
+            <label for="g-org">Organisation</label>
+            <input id="g-org" name="org" [(ngModel)]="guestModel.organisation" placeholder="e.g. Gulf Investments" />
+          </div>
+          <div class="photo">
+            <label>Photo</label>
+            <div class="photo-box">
+              @if (guestModel.image) { <img [src]="guestModel.image" alt="Preview" /> } @else { <span>No photo</span> }
+            </div>
+            <label class="btn sm" for="g-file">{{ guestModel.image ? 'Replace photo' : 'Upload photo' }}</label>
+            <input id="g-file" type="file" accept="image/*" hidden (change)="onGuestPhoto($event)" />
+          </div>
+        </div>
+        @if (uploading()) { <span class="hint">Uploading photo…</span> }
+        @if (uploadError()) { <span class="e">{{ uploadError() }}</span> }
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploading()">Save guest</button>
+          <button type="button" class="btn" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    }
+  </section>
+
+  <!-- ======================= 2. THE POWER LIST ======================= -->
+  <section class="card">
+    <header class="sec-head">
+      <div>
+        <h3>The Power List <span class="badge">Top 6</span></h3>
+        <p>The six visionaries shown in the gold Power List banner on the home page.</p>
+      </div>
+    </header>
+
+    @if (personNotice(); as n) { <div class="msg" [class.ok]="n.type === 'ok'" [class.err]="n.type === 'err'">{{ n.text }}</div> }
+
+    <div class="people six">
+      @for (p of people(); track p.id) {
+        <div class="person" [class.active]="editingPerson() === p.id">
+          <span class="rank">{{ p.rank }}</span>
+          <img [src]="p.image" [alt]="p.name" class="avatar" />
+          <strong>{{ p.name }}</strong>
+          <span>{{ p.headline }}</span>
+          <button class="btn sm" (click)="editPerson(p)">Edit</button>
+        </div>
+      } @empty {
+        <p class="empty">No people yet. Run <code>supabase/settings.sql</code> in the Supabase SQL Editor to create them.</p>
+      }
+    </div>
+
+    @if (editingPerson()) {
+      <form class="editor" #pf="ngForm" (ngSubmit)="savePerson(pf)" novalidate>
+        <h4>Edit person</h4>
+        <div class="editor-grid">
+          <div class="fields">
+            <div class="two">
+              <div>
+                <label for="p-rank">Rank</label>
+                <input id="p-rank" name="rank" type="number" min="1" max="99" [(ngModel)]="personModel.rank" required #pr="ngModel" />
+                @if (pr.invalid && (pr.touched || pf.submitted)) { <span class="e">Enter a rank (1–99).</span> }
+              </div>
+              <div>
+                <label for="p-name">Name</label>
+                <input id="p-name" name="name" [(ngModel)]="personModel.name" required minlength="2" #pn="ngModel" />
+                @if (pn.invalid && (pn.touched || pf.submitted)) { <span class="e">Enter the name.</span> }
+              </div>
+            </div>
+            <label for="p-head">Line under the name</label>
+            <input id="p-head" name="headline" [(ngModel)]="personModel.headline" maxlength="160" placeholder="e.g. Group CEO, Menon Industries" />
+          </div>
+          <div class="photo">
+            <label>Photo</label>
+            <div class="photo-box">
+              @if (personModel.image) { <img [src]="personModel.image" alt="Preview" /> } @else { <span>No photo</span> }
+            </div>
+            <label class="btn sm" for="p-file">{{ personModel.image ? 'Replace photo' : 'Upload photo' }}</label>
+            <input id="p-file" type="file" accept="image/*" hidden (change)="onPersonPhoto($event)" />
+          </div>
+        </div>
+        @if (uploading()) { <span class="hint">Uploading photo…</span> }
+        @if (uploadError()) { <span class="e">{{ uploadError() }}</span> }
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploading()">Save person</button>
+          <button type="button" class="btn" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    }
+  </section>
+
+  <!-- ======================= 3. EXECUTIVE INTELLIGENCE REPORT ======================= -->
+  <section class="card">
+    <header class="sec-head">
+      <div>
+        <h3>Executive Intelligence Report</h3>
+        <p>The report card in the Print Archive section on the home page. Visitors get a Download button when a PDF is attached.</p>
+      </div>
+    </header>
+
+    @if (reportNotice(); as n) { <div class="msg" [class.ok]="n.type === 'ok'" [class.err]="n.type === 'err'">{{ n.text }}</div> }
+
+    @if (report()) {
+      <form class="editor flat" #rf="ngForm" (ngSubmit)="saveReport(rf)" novalidate>
+        <label for="r-title">Heading</label>
+        <input id="r-title" name="title" [(ngModel)]="reportModel.title" required minlength="3" maxlength="160" #rt="ngModel" />
+        @if (rt.invalid && (rt.touched || rf.submitted)) { <span class="e">Enter a heading (at least 3 characters).</span> }
+
+        <label for="r-desc">Description</label>
+        <textarea id="r-desc" name="description" rows="3" maxlength="500" [(ngModel)]="reportModel.description"></textarea>
+
+        <label>PDF</label>
+        <div class="pdfbox" [class.ok]="reportModel.pdfUrl">
+          @if (reportModel.pdfUrl) {
+            <span class="pdf-ico">📄</span>
+            <div class="pdf-info">
+              <strong>{{ reportModel.pdfName || 'report.pdf' }}</strong>
+              <a [href]="reportModel.pdfUrl" target="_blank" rel="noopener">Open PDF ↗</a>
+            </div>
+            <label class="btn sm" for="r-file">Re-upload</label>
+            <button type="button" class="btn sm danger" (click)="removeReportPdf()">Delete</button>
+          } @else {
+            <label class="pdf-pick" for="r-file">
+              <span class="pdf-ico">📄</span>
+              <strong>Click to upload the PDF</strong>
+              <small>PDF only · max 50 MB</small>
+            </label>
+          }
+        </div>
+        <input id="r-file" type="file" accept="application/pdf" hidden (change)="onReportPdf($event)" />
+        @if (uploading()) { <span class="hint">Uploading PDF… large files can take a minute.</span> }
+        @if (uploadError()) { <span class="e">{{ uploadError() }}</span> }
+        <span class="hint">Re-upload or delete only changes the page once you press “Save report”.</span>
+
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploading()">Save report</button>
+        </div>
+      </form>
+    } @else if (loaded()) {
+      <p class="empty">No report row yet. Run <code>supabase/settings.sql</code> in the Supabase SQL Editor to create it.</p>
+    }
+  </section>
+</div>

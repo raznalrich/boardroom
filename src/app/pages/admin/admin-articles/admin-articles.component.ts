@@ -95,6 +95,13 @@ export class AdminArticlesComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  async publish(a: Article): Promise<void> {
+    const { error } = await this.svc.publish(a.id);
+    this.message.set(error
+      ? { type: 'err', text: `Could not publish: ${error}` }
+      : { type: 'ok', text: `“${a.title}” is now published.` });
+  }
+
   async remove(a: Article): Promise<void> {
     if (!confirm(`Delete “${a.title}”?`)) return;
     const { error } = await this.svc.remove(a.id);

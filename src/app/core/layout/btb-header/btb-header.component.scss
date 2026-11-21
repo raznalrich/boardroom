@@ -56,33 +56,6 @@
     color: #FFFFFF;
   }
 
-  .trending-strip {
-    .trending-label {
-      color: var(--btb-gold);
-      font-weight: 600;
-      margin-right: 6px;
-    }
-    .trending-link {
-      color: #D6D6D6;
-      text-decoration: none;
-      transition: color 0.2s;
-      &:hover {
-        color: #FFFFFF;
-      }
-    }
-    .comma {
-      color: #888;
-    }
-  }
-
-  .lang-switcher a {
-    color: #EAEAEA;
-    text-decoration: none;
-    font-weight: 500;
-    &:hover {
-      color: var(--btb-gold);
-    }
-  }
 }
 
 // Tier 2: Main Brand Masthead
@@ -273,9 +246,6 @@
 
 // Responsive Viewports
 @media (max-width: 960px) {
-  .top-utility-bar .trending-strip {
-    display: none;
-  }
 
   .masthead-bar {
     .mobile-menu-btn {
@@ -374,4 +344,63 @@
   .masthead-bar .header-logo-img { height: 30px; max-width: 150px; }
   .masthead-actions { gap: 4px; }
   .btn-gold { padding: 7px 10px; font-size: 10.5px; letter-spacing: .4px; }
+}
+
+/* Subscribe is now a link to the Network page */
+a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
+
+
+// ---- Search suggestions ----
+.search-drawer .search-drawer-inner { position: relative; }
+
+.search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 30px;
+  right: 54px;
+  z-index: 1200;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #FFFFFF;
+  border: 1px solid var(--btb-ivory-border);
+  border-radius: 6px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  max-height: 380px;
+  overflow-y: auto;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 9px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    &.active { background: #FBF3E6; }
+    &.none { cursor: default; color: var(--btb-text-muted); font-size: 13px; &.active { background: none; } }
+  }
+  .r-title { font-size: 14px; line-height: 1.35; color: var(--btb-text-dark); b { font-weight: 800; background: rgba(181, 138, 85, 0.28); border-radius: 2px; } }
+  .r-meta { font-size: 11.5px; color: var(--btb-text-muted); em { font-style: normal; font-weight: 700; color: var(--btb-magenta); text-transform: uppercase; letter-spacing: .5px; } }
+}
+
+.search-label { display: none; }
+
+@media (max-width: 960px) {
+  // search lives inside the opened mobile menu
+  .primary-nav-bar.mobile-open .nav-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 14px 24px;
+    border-top: 1px solid var(--btb-ivory-border);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    .search-label { display: inline; }
+  }
+  .search-drawer .search-drawer-inner { flex-wrap: wrap; }
+  .search-results { position: static; flex: 0 0 100%; margin-top: 6px; max-height: 50vh; }
 }

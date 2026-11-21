@@ -1,0 +1,61 @@
+<section class="pg-hero about-hero">
+  <div class="pg-container">
+    <span class="eyebrow">About us</span>
+    <h1>Executive intelligence for people who lead</h1>
+    <p>{{ site.name }} is a media and community platform for business leaders in the Gulf, India and beyond. We bring together news, analysis, profiles, events and a private network, so decision-makers can see further and connect faster.</p>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container story">
+    <div>
+      <div class="pg-title-row"><h2>Our story</h2><span class="rule"></span></div>
+      <p>The most important conversations in business rarely happen in public. They happen in boardrooms, over private dinners and between leaders who trust one another. We started {{ site.name }} to open a window onto those conversations, and to give leaders a place of their own to meet, learn and be heard.</p>
+      <p>Today we publish independent reporting and expert opinion, profile the people behind the decisions, host events across the region and run a private community built on introductions that matter.</p>
+    </div>
+    <aside class="pg-card mission">
+      <h3>Our mission</h3>
+      <p>To give leaders the intelligence, perspective and relationships they need to make better decisions.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="pg-section alt">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>What we do</h2><span class="rule"></span></div>
+    <div class="pillars">
+      @for (p of pillars; track p.title) {
+        <a class="pg-card pillar" [routerLink]="p.link">
+          <span class="ico">{{ p.icon }}</span>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.text }}</p>
+          <span class="go">Explore →</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>What we stand for</h2><span class="rule"></span></div>
+    <div class="values">
+      @for (v of values; track v.title) {
+        <div class="value"><h3>{{ v.title }}</h3><p>{{ v.text }}</p></div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pg-section cta-band">
+  <div class="pg-container cta">
+    <div>
+      <h2>Have a story, an idea or a question?</h2>
+      <p>We'd love to hear from you.</p>
+    </div>
+    <div class="cta-btns">
+      <a routerLink="/contact-us" class="pg-btn">Contact us</a>
+      <a routerLink="/submit-blog" class="pg-btn ghost">Write for us</a>
+    </div>
+  </div>
+</section>

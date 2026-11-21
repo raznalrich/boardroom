@@ -21,6 +21,10 @@ import { InsightDetailComponent } from './pages/insight-detail/insight-detail.co
 
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { LegalComponent } from './pages/legal/legal.component';
+
 export const routes: Routes = [
   { path: '', component: BtbHomeComponent, data: { hideHeader: false, hideTicker: false } },
   { path: 'markets', component: MarketsComponent, title: 'Markets | BoardRoom' },
@@ -35,6 +39,10 @@ export const routes: Routes = [
   { path: 'e-magazine', component: EMagazineComponent, title: 'The E-Magazine | BoardRoom', data: { hideTicker: true } },
   { path: 'submit-blog', component: SubmitBlogComponent, title: 'Submit a Blog | BoardRoom', data: { hideTicker: true } },
   { path: 'submit-magazine', component: SubmitMagazineComponent, title: 'Send Your Magazine | BoardRoom', data: { hideTicker: true } },
+  { path: 'about-us', component: AboutComponent, title: 'About Us | BoardRoom', data: { hideTicker: true } },
+  { path: 'contact-us', component: ContactComponent, title: 'Contact Us | BoardRoom', data: { hideTicker: true } },
+  { path: 'privacy-policy', component: LegalComponent, title: 'Privacy Policy | BoardRoom', data: { hideTicker: true, doc: 'privacy' } },
+  { path: 'refund-and-cancellation', component: LegalComponent, title: 'Refund & Cancellation | BoardRoom', data: { hideTicker: true, doc: 'refund' } },
   { path: 'b-admin', component: AdminLoginComponent, canActivate: [adminLoginGuard], title: 'Admin Login | BoardRoom', data: { hideHeader: true } },
   { path: 'b-admin/dashboard', component: AdminDashboardComponent, canActivate: [adminGuard], title: 'Admin Dashboard | BoardRoom', data: { hideHeader: true } },
   { path: 'admin/editor', component: BtbHomeComponent, data: { hideHeader: true } },

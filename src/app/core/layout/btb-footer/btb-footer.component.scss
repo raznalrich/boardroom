@@ -244,3 +244,11 @@
 @media (max-width: 640px) {
   .footer-logo { height: 72px; }
 }
+
+.footer-legal { display: inline-flex; gap: 16px; margin-right: 20px; flex-wrap: wrap;
+  a { font-size: 12px; color: var(--btb-text-muted); text-decoration: none; &:hover { color: var(--btb-gold); } } }
+
+@media (max-width: 640px) {
+  .footer-copyright { display: flex; flex-direction: column; gap: 8px; }
+  .footer-legal { margin-right: 0; }
+}

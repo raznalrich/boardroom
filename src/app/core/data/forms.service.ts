@@ -21,4 +21,13 @@ export class FormsService {
     if (error) console.error('Blog submission failed:', error.message);
     return error ? 'Something went wrong. Please try again.' : null;
   }
+
+  /** "Contact us" page. Returns an error message or null. */
+  async submitContact(v: { name: string; email: string; subject: string; message: string }): Promise<string | null> {
+    const { error } = await supabase.from('contact_messages').insert({
+      name: v.name.trim(), email: v.email.trim(), subject: v.subject.trim(), message: v.message.trim()
+    });
+    if (error) console.error('Contact message failed:', error.message);
+    return error ? 'Something went wrong. Please try again, or email us directly.' : null;
+  }
 }

@@ -1,0 +1,40 @@
+<section class="pg-hero">
+  <div class="pg-container">
+    <span class="eyebrow">{{ doc().eyebrow }}</span>
+    <h1>{{ doc().title }}</h1>
+    <p>{{ doc().intro }}</p>
+    <span class="updated">Last updated: {{ updated }}</span>
+  </div>
+</section>
+
+<section class="pg-section">
+  <div class="pg-container legal-grid">
+    <nav class="toc pg-card" aria-label="On this page">
+      <h3>On this page</h3>
+      <ol>
+        @for (s of doc().sections; track s.id) {
+          <li><a [href]="'#' + s.id" (click)="$event.preventDefault(); jump(s.id)">{{ s.heading }}</a></li>
+        }
+      </ol>
+    </nav>
+
+    <article class="legal-body">
+      @for (s of doc().sections; track s.id) {
+        <section [id]="s.id">
+          <h2>{{ s.heading }}</h2>
+          @for (p of s.paragraphs ?? []; track $index) { <p>{{ p }}</p> }
+          @if (s.bullets?.length) {
+            <ul>@for (b of s.bullets; track $index) { <li>{{ b }}</li> }</ul>
+          }
+          @for (p of s.after ?? []; track $index) { <p>{{ p }}</p> }
+        </section>
+      }
+
+      <div class="help pg-card">
+        <strong>Still have a question?</strong>
+        <span>Our team is happy to help.</span>
+        <a routerLink="/contact-us" class="pg-btn">Contact us</a>
+      </div>
+    </article>
+  </div>
+</section>
