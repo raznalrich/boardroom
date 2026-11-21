@@ -18,3 +18,4 @@ input { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-borde
   ul { margin: 0; padding-left: 18px; } li { padding: 5px 0; font-size: 14px; } p { margin: 0 0 14px; font-size: 14px; color: var(--btb-text-muted); } }
 a.pg-btn { text-decoration: none; }
 @media (max-width: 900px) { .mag-grid { grid-template-columns: 1fr; } .form-card { padding: 22px; } }
+@media (max-width: 900px) { .mag-grid { grid-template-columns: minmax(0, 1fr); } .form-card, .side { min-width: 0; } }

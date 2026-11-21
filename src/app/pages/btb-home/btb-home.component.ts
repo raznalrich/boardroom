@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { SECTOR_TABS, sectorCover } from '../../core/data/sector.data';
 import { Article, ArticlesService } from '../../core/data/articles.service';
 import { Banner, BannersService } from '../../core/data/banners.service';
+import { MagazinesService } from '../../core/data/magazines.service';
 import { Leader, leaderImageUrl, leaderSlug } from '../../core/data/leaders.data';
 import { LeadersService } from '../../core/data/leaders.service';
 import { SubscribersService } from '../../core/data/subscribers.service';
@@ -348,18 +349,11 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
   ];
 
   // Section J: Print Archive & Special Reports
-  printArchiveIssues = [
-    { title: 'The Resilience Playbook', subtitle: 'The Resilience Playbook - Fall 2026', 
-          image: 'https://i0.wp.com/www.themediaant.com/blog/wp-content/uploads/2024/09/business-today.jpg?resize=369%2C500&ssl=1 '
-
-    },
-    { title: 'The AI Mandate', subtitle: 'The AI Mandate - Q3 2026', 
-    image: 'https://mysubs.in/wp-content/uploads/prod_img/15253/22223/forbes-india-magazine-subscription-03-Jul-2026.jpg'
-    },
-    { title: 'Global Expansion', subtitle: 'Global Expansion - Summer 2026', 
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRpsnCU6wLlu8pvUuCxIE0rW66N_A-T8LNagh50cDQd9lLz_PKVZJggVY&s=10'
-    }
-  ];
+  private magazinesSvc = inject(MagazinesService);
+  /** The three newest enabled magazines (uploaded in the admin console, stored on Cloudflare R2). */
+  get homeMagazines() {
+    return this.magazinesSvc.active().slice(0, 3);
+  }
 
  
 

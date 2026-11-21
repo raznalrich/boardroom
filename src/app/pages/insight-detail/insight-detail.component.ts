@@ -16,6 +16,7 @@ import { Insight, InsightsService, insightImage } from '../../core/data/insights
 export class InsightDetailComponent {
   private svc = inject(InsightsService);
   readonly image = insightImage;
+  readonly loaded = this.svc.loaded;
 
   private idParam = toSignal(inject(ActivatedRoute).paramMap.pipe(map(p => p.get('id') ?? '')), { initialValue: '' });
 

@@ -57,3 +57,26 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560p
 }
 
 .placeholder { text-align: center; padding: 60px 20px; p { margin: 0; color: #5A5248; } }
+
+/* ---- live dashboard ---- */
+.live-bar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #5A5248; margin-bottom: -4px; }
+.live-pill { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px; border-radius: 14px; background: #E6E1D8; font-weight: 700; font-size: 12px;
+  i { width: 8px; height: 8px; border-radius: 50%; background: #8C8379; }
+  &.on { background: #DCF5E5; color: #15803D; i { background: #16A34A; animation: pulse 1.6s infinite; } } }
+.online strong { color: #121212; font-size: 15px; }
+.upd { margin-left: auto; color: #8C8379; font-size: 12px; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(22,163,74,.55); } 70% { box-shadow: 0 0 0 7px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
+
+.notice { border-left: 4px solid #C21867; h3 { margin-bottom: 8px; } p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; } code { background: #EFE6D6; padding: 1px 6px; border-radius: 3px; } small { color: #8C8379; } }
+
+.kpi .chg.muted { color: #8C8379; }
+.chart-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; h3 { margin-bottom: 12px; } }
+.range { display: flex; gap: 6px;
+  button { padding: 4px 11px; border: 1px solid #DECBB1; border-radius: 14px; background: #fff; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; color: #121212;
+    &.on { background: #181818; border-color: #181818; color: #fff; } } }
+.bars.dense { gap: 4px; .bar-val { font-size: 9px; } .bar-lbl { font-size: 9.5px; } }
+.bar-col { cursor: default; }
+.note { margin: 12px 0 0; font-size: 12px; color: #8C8379; }
+.empty-chart { margin: 0; padding: 24px 0; width: 100%; text-align: center; color: #8C8379; font-size: 13px; }
+.sec-top span:last-child { color: #5A5248; font-size: 12px; }
+.activity li { word-break: break-word; }

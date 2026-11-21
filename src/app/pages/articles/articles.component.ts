@@ -1,10 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { SECTOR_TABS, sectorCover } from '../../core/data/sector.data';
 import { ArticlesService } from '../../core/data/articles.service';
 
 @Component({
   selector: 'app-articles',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
   host: { class: 'pg' }

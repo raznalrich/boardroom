@@ -57,8 +57,8 @@
         </div>
       </div>
 
-      <label for="content">Article content</label>
-      <textarea id="content" name="content" rows="8" [(ngModel)]="model.content" required minlength="30" placeholder="Write the full article…" #b="ngModel"></textarea>
+      <label for="content">Elaborate summary (full article)</label>
+      <textarea id="content" name="content" rows="8" [(ngModel)]="model.content" required minlength="30" placeholder="The full write-up shown when a reader opens this article. Separate paragraphs with a blank line." #b="ngModel"></textarea>
       @if (b.invalid && (b.touched || f.submitted)) { <span class="e">Content must be at least 30 characters.</span> }
 
       <div class="actions">

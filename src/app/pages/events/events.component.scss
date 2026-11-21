@@ -14,3 +14,7 @@
 .spk { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 24px; background: var(--btb-ivory); border: 1px solid var(--btb-ivory-border); border-radius: 6px; }
 .avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--btb-gold); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
 @media (max-width: 760px) { .ev-row { grid-template-columns: 1fr; } .date { border: 0; flex-direction: row; gap: 8px; align-items: baseline; } .ev-cta { align-items: flex-start; } }
+@media (max-width: 480px) {
+  .count { flex-wrap: wrap; gap: 10px; }
+  .count div { padding: 10px 16px; }
+}

@@ -2775,3 +2775,69 @@ a.voices-featured-card, a.voices-mini-item { text-decoration: none; color: inher
 a.voices-mini-item:hover .mini-title { color: var(--btb-magenta); }
 
 .hero-slider .hero-empty { position: absolute; inset: 0; display: grid; place-items: center; background: var(--btb-charcoal); color: #cfc7bb; font-size: 14px; }
+
+/* ---- Phone refinements (home) ---- */
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  .he-header, .hi-header { flex-wrap: wrap; gap: 8px 14px; }
+  .he-title, .hi-title, .lf-title, .archive-main-title, .sector-main-title { white-space: normal; font-size: 18px; }
+  .he-rule, .hi-rule { display: none; }
+  .he-all, .hi-all { margin-left: auto; }
+  .archive-header-row { flex-wrap: wrap; gap: 8px; }
+  .header-rule { display: none; }
+}
+
+/* ---- Phone / small-tablet layout fixes (home) ---- */
+@media (max-width: 900px) {
+  .profiles-3col-grid { grid-template-columns: repeat(2, 1fr); }
+  .power-list-inner { grid-template-columns: 1fr; gap: 24px; }
+  .power-list-right { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .issue-showcase-col { border-right: 0; padding-right: 0; }
+}
+
+@media (max-width: 600px) {
+  /* sections that carry their own side padding would double up with .container */
+  .sector-deep-dives, .profiles-grid-section, .print-archive-section { padding-left: 0; padding-right: 0; }
+
+  .profiles-3col-grid { grid-template-columns: 1fr; }
+
+  /* Latest news: a readable list instead of four squeezed columns */
+  .news-strip-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .news-items-wrapper { flex-direction: column; align-items: flex-start; gap: 8px; margin-left: 0; }
+  .news-bullet, .news-next-btn { display: none; }
+
+  /* Power list: one group per row */
+  .power-list-inner { padding: 0 16px; }
+  .power-list-right { grid-template-columns: 1fr; gap: 22px; }
+
+  /* Magazine covers: swipeable row so the cover text stays readable */
+  .magazine-covers-grid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .magazine-item { flex: 0 0 150px; scroll-snap-align: start; }
+  .magazine-cover-card { height: 230px; }
+}
+
+@media (max-width: 900px) {
+  .archive-content-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .issue-showcase-col, .intelligence-report-card { min-width: 0; }
+}
+
+/* very small phones: clip the decorative watermark inside the banner */
+.boardroom-roundtable-banner { overflow-x: clip; }
+
+a.sector-blog-card { text-decoration: none; color: inherit; cursor: pointer; }
+.sector-read { font-size: 12px; font-weight: 700; color: var(--btb-magenta); }
+a.sector-blog-card:hover .sector-read { color: var(--btb-gold-dark); }
+
+/* Magazines from the database */
+a.magazine-item { text-decoration: none; color: inherit; display: block; cursor: pointer; }
+a.magazine-item:hover .magazine-cover-card { transform: translateY(-4px); }
+.magazine-cover-card { transition: transform .2s; background-color: #1d1a18; }
+.showcase-all { margin-left: 12px; font-size: 12px; font-weight: 700; color: var(--btb-magenta); text-decoration: none; }
+.magazine-empty { grid-column: 1 / -1; margin: 0; color: var(--btb-text-muted); font-size: 14px; padding: 20px 0; }

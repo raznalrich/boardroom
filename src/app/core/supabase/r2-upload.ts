@@ -20,7 +20,16 @@ export async function uploadToR2(file: Blob, folder: 'articles' | 'insights' | '
   if (error || !data?.uploadUrl) {
     throw new Error(error?.message ?? 'Could not get an upload link. Is the r2-presign function deployed?');
   }
-  const put = await fetch(data.uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
+  let put: Response;
+  try {
+    put = await fetch(data.uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
+  } catch {
+    // The browser gives no detail for a blocked request. These are the usual causes.
+    throw new Error(
+      'Could not reach Cloudflare R2. Check that this site\'s address is in the bucket\'s CORS rule, ' +
+      'and that your network or firewall allows Cloudflare R2 (*.r2.cloudflarestorage.com).'
+    );
+  }
   if (!put.ok) {
     throw new Error(`Upload to storage failed (${put.status}). Check the R2 bucket CORS settings.`);
   }

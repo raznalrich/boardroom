@@ -16,6 +16,7 @@ import { LeadersService } from '../../core/data/leaders.service';
 export class LeaderDetailComponent {
   private svc = inject(LeadersService);
   readonly slug = leaderSlug;
+  readonly loaded = this.svc.loaded;
 
   private slugParam = toSignal(inject(ActivatedRoute).paramMap.pipe(map(p => p.get('slug') ?? '')), { initialValue: '' });
 

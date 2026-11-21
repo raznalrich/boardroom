@@ -4,6 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 import { BtbHeaderComponent } from './core/layout/btb-header/btb-header.component';
 import { BtbFooterComponent } from './core/layout/btb-footer/btb-footer.component';
+import { VisitTrackerService } from './core/data/visit-tracker.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,10 @@ import { BtbFooterComponent } from './core/layout/btb-footer/btb-footer.componen
 })
 export class App {
   private router = inject(Router);
+
+  constructor() {
+    inject(VisitTrackerService).start();
+  }
 
   /** True on /b-admin routes: the public header and footer are hidden. */
   isAdmin = toSignal(

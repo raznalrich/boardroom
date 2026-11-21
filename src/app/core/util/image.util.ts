@@ -37,3 +37,14 @@ export async function uploadImage(
   const blob = await downscaleToBlob(file, maxW);
   return uploadToR2(blob, folder, 'jpg');
 }
+
+/** Validates a PDF and uploads it to Cloudflare R2. Throws an Error with a user-friendly message. */
+export async function uploadPdf(file: File): Promise<UploadedFile> {
+  if (file.type !== 'application/pdf') {
+    throw new Error('Please choose a PDF file.');
+  }
+  if (file.size > 50 * 1024 * 1024) {
+    throw new Error('PDF is too large (max 50 MB).');
+  }
+  return uploadToR2(file, 'magazines', 'pdf');
+}

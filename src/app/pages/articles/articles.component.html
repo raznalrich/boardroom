@@ -20,7 +20,7 @@
 
     <div class="card-grid">
       @for (a of filtered(); track a.id) {
-        <article class="blog-card">
+        <a class="blog-card" [routerLink]="['/articles', a.id]">
           <div class="cover" [style.background-image]="cover(a)">
             <span class="cover-tag">{{ a.category }}</span>
           </div>
@@ -28,8 +28,9 @@
             <h3>{{ a.title }}</h3>
             @if (a.summary) { <p>{{ a.summary }}</p> }
             <div class="meta"><span>{{ a.author }}</span><span>•</span><span>{{ a.readMins }} min read</span></div>
+            <span class="read">Read article →</span>
           </div>
-        </article>
+        </a>
       } @empty {
         <p class="empty">No stories in this category yet.</p>
       }

@@ -1,0 +1,89 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 705 >>
+stream
+0.094 0.094 0.094 rg 0 742 595 100 re f
+0.710 0.541 0.333 rg 40 736 515 3 re f
+BT /F2 11 Tf 0.71 0.54 0.33 rg 40 800 Td (BEYOND THE BOARDROOM) Tj ET
+BT /F1 9 Tf 1 1 1 rg 40 782 Td (Executive Intelligence & Global Leadership) Tj ET
+BT /F2 40 Tf 0.07 0.07 0.07 rg 40 600 Td (Sample Issue) Tj ET
+BT /F1 16 Tf 0.35 0.32 0.28 rg 40 565 Td (A test PDF for the BoardRoom E-Magazine upload.) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 520 Td (If you can read this page in your browser, uploading to Cloudflare R2,) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 502 Td (saving the link in Supabase and opening the file from the website all work.) Tj ET
+BT /F2 10 Tf 0.71 0.54 0.33 rg 40 60 Td (beyondtheboardroom.com) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 961 >>
+stream
+0.094 0.094 0.094 rg 0 742 595 100 re f
+0.710 0.541 0.333 rg 40 736 515 3 re f
+BT /F2 11 Tf 0.71 0.54 0.33 rg 40 800 Td (BEYOND THE BOARDROOM) Tj ET
+BT /F1 9 Tf 1 1 1 rg 40 782 Td (Sample Issue  |  Page 2) Tj ET
+BT /F2 24 Tf 0.07 0.07 0.07 rg 40 690 Td (Letter from the editor) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 650 Td (This sample issue exists only to prove the pipeline end to end.) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 632 Td (Replace it with your real magazine whenever you are ready:) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 60 604 Td (1.  Open the admin console and choose E-Magazine.) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 60 586 Td (2.  Click Add new, then pick a title, date, cover picture and PDF.) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 60 568 Td (3.  Save. The issue appears on the E-Magazine page and the home page.) Tj ET
+BT /F1 12 Tf 0.35 0.32 0.28 rg 40 530 Td (Use the Hide button to take an issue off the website without deleting it.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 750 >>
+stream
+0.094 0.094 0.094 rg 0 742 595 100 re f
+0.710 0.541 0.333 rg 40 736 515 3 re f
+BT /F2 11 Tf 0.71 0.54 0.33 rg 40 800 Td (BEYOND THE BOARDROOM) Tj ET
+BT /F1 9 Tf 1 1 1 rg 40 782 Td (Sample Issue  |  Page 3) Tj ET
+BT /F2 24 Tf 0.07 0.07 0.07 rg 40 690 Td (Inside this issue) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 650 Td (Markets        Gulf capital goes global) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 628 Td (Insights       Why the best boards are shrinking their agendas) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 606 Td (Leadership     The people behind the decisions) Tj ET
+BT /F1 12 Tf 0.07 0.07 0.07 rg 40 584 Td (Events         Annual Leadership Summit 2026) Tj ET
+BT /F1 10 Tf 0.35 0.32 0.28 rg 40 60 Td (Sample content for testing only.) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Title (BoardRoom Sample Issue) /Producer (BoardRoom) >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000128 00000 n 
+0000000225 00000 n 
+0000000327 00000 n 
+0000001083 00000 n 
+0000001219 00000 n 
+0000002231 00000 n 
+0000002367 00000 n 
+0000003168 00000 n 
+0000003305 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R /Info 11 0 R >>
+startxref
+3381
+%%EOF

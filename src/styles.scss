@@ -40,3 +40,17 @@ body { margin: 0; background: var(--btb-ivory); font-family: 'Inter', sans-serif
 .pg-card { background: var(--btb-ivory-light); border: 1px solid var(--btb-ivory-border); border-radius: 6px; }
 .pg-img { background-size: cover; background-position: center; background-color: #d9c8ab; }
 @media (max-width: 760px) { .pg-hero h1 { font-size: 34px; } }
+
+/* ---------- Phone refinements for shared page primitives ---------- */
+@media (max-width: 600px) {
+  .pg-container { padding: 0 16px; }
+  .pg-hero { padding: 36px 0 30px; }
+  .pg-hero h1 { font-size: 30px; }
+  .pg-hero p { font-size: 15px; }
+  .pg-section { padding: 32px 0; }
+  .pg-title-row { gap: 12px; }
+  .pg-title-row h2 { white-space: normal; font-size: 17px; }
+}
+
+/* Grids that use minmax(260px+) need a floor of 100% on very narrow screens */
+.pg-container { min-width: 0; }

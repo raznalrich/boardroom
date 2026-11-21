@@ -57,6 +57,8 @@
       </div>
     </section>
   }
+} @else if (!loaded()) {
+  <section class="pg-hero"><div class="pg-container"><p style="color:var(--btb-text-muted);margin:0">Loading insight…</p></div></section>
 } @else {
   <section class="pg-hero">
     <div class="pg-container">

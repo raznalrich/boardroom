@@ -194,26 +194,7 @@
     </div>
   </section>
 
-  <!-- SECTION D: PROFILES IN LEADERSHIP ROW -->
-  <section class="profiles-grid-section">
-    <div class="container">
-      <div class="profiles-3col-grid">
-        @for (card of profileCards; track card.headline) {
-        <div class="profile-card">
-          <div class="profile-card-left">
-            <span class="profile-cat-badge">{{ card.category }}</span>
-            <h3 class="profile-headline">{{ card.headline }}</h3>
-            <span class="profile-author">{{ card.author }}</span>
-          </div>
-          <div class="profile-card-right">
-            <img [src]="card.image" [alt]="card.headline" class="profile-portrait" />
-          </div>
-        </div>
-        }
-      </div>
-    </div>
-  </section>
-
+  
   <!-- SECTION: LATEST INSIGHTS -->
   <section class="home-insights-section">
     <div class="container">
@@ -262,7 +243,7 @@
       <!-- Filtered blog cards -->
       <div class="sector-card-grid">
         @for (art of visibleSectorArticles; track art.id) {
-          <article class="sector-blog-card">
+          <a class="sector-blog-card" [routerLink]="['/articles', art.id]">
             <div class="sector-cover" [style.background-image]="sectorCover(art)">
               <span class="sector-cover-tag">{{ art.category }}</span>
             </div>
@@ -276,8 +257,9 @@
                 <span class="meta-dot">•</span>
                 <span>{{ art.readMins }} min read</span>
               </div>
+              <span class="sector-read">Read article →</span>
             </div>
-          </article>
+          </a>
         } @empty {
           <p class="sector-empty">No stories in this category yet.</p>
         }
@@ -377,12 +359,14 @@
       <div class="archive-content-grid">
         <!-- Left: Issue Showcase -->
         <div class="issue-showcase-col">
-          <h3 class="showcase-subtitle">Issue Showcase</h3>
+          <h3 class="showcase-subtitle">Issue Showcase <a routerLink="/e-magazine" class="showcase-all">View all →</a></h3>
           <div class="magazine-covers-grid">
-            @for (issue of printArchiveIssues; track issue.title) {
-            <div class="magazine-item">
+            @for (issue of homeMagazines; track issue.id) {
+            <a class="magazine-item" [href]="issue.pdfUrl" target="_blank" rel="noopener" [attr.aria-label]="'Read ' + issue.title">
               <div class="magazine-cover-card">
-                <img [src]="issue.image" [alt]="issue.title" class="cover-bg-img" />
+                @if (issue.cover) {
+                  <img [src]="issue.cover" [alt]="issue.title" class="cover-bg-img" />
+                }
                 <div class="cover-overlay">
                   <div class="cover-masthead">
                     <div class="monogram-box">B</div>
@@ -394,8 +378,10 @@
                   <h3 class="cover-story-title">{{ issue.title }}</h3>
                 </div>
               </div>
-              <p class="magazine-caption">{{ issue.subtitle }}</p>
-            </div>
+              <p class="magazine-caption">{{ issue.title }} · {{ issue.publishedOn | date: 'MMM y' }}</p>
+            </a>
+            } @empty {
+              <p class="magazine-empty">New issues will appear here soon.</p>
             }
           </div>
         </div>

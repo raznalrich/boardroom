@@ -1,0 +1,109 @@
+<div class="wrap">
+  @if (view() === 'form') {
+    <div class="card">
+      <h3>{{ editingId() ? 'Edit magazine' : 'Upload a magazine' }}</h3>
+
+      <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+        <div class="form-grid">
+          <div class="col">
+            <label for="title">Title</label>
+            <input id="title" name="title" [(ngModel)]="model.title" required minlength="3" maxlength="140" placeholder="e.g. The Power Issue" #t="ngModel" />
+            @if (t.invalid && (t.touched || f.submitted)) { <span class="e">Enter the magazine title.</span> }
+
+            <label for="date">Published date</label>
+            <input id="date" name="date" type="date" [(ngModel)]="model.publishedOn" required #d="ngModel" />
+            @if (d.invalid && (d.touched || f.submitted)) { <span class="e">Pick the published date.</span> }
+
+            <label for="desc">Short description (optional)</label>
+            <textarea id="desc" name="desc" rows="3" maxlength="400" [(ngModel)]="model.description" placeholder="What's inside this issue?"></textarea>
+
+            <label class="check"><input type="checkbox" name="active" [(ngModel)]="model.active" /> Show this magazine on the website</label>
+
+            <label>Magazine PDF</label>
+            <div class="pdfbox" [class.ok]="model.pdfUrl">
+              @if (model.pdfUrl) {
+                <span class="pdf-ico">📄</span>
+                <div class="pdf-info">
+                  <strong>{{ pdfName() || 'PDF uploaded' }}</strong>
+                  <a [href]="model.pdfUrl" target="_blank" rel="noopener">Open PDF ↗</a>
+                </div>
+                <label class="btn sm" for="pdf">Replace</label>
+              } @else {
+                <label class="pdf-pick" for="pdf">
+                  <span class="pdf-ico">📄</span>
+                  <strong>Click to upload the PDF</strong>
+                  <small>PDF only · max 50 MB</small>
+                </label>
+              }
+            </div>
+            <input id="pdf" type="file" accept="application/pdf" hidden (change)="onPdf($event)" />
+            @if (uploadingPdf()) { <span class="hint">Uploading PDF… large files can take a minute.</span> }
+            @if (pdfError()) { <span class="e">{{ pdfError() }}</span> }
+          </div>
+
+          <div class="col">
+            <label>Cover picture</label>
+            @if (model.cover) {
+              <div class="preview">
+                <img [src]="model.cover" alt="Cover preview" />
+                <button type="button" class="rm" (click)="removeCover()">Remove cover</button>
+              </div>
+            } @else {
+              <label class="drop" for="cover">
+                <span class="ico">🖼️</span>
+                <strong>Click to upload a cover</strong>
+                <small>JPG, PNG or WebP · max 8 MB · portrait (3:4) works best</small>
+              </label>
+            }
+            <input id="cover" type="file" accept="image/*" hidden (change)="onCover($event)" />
+            @if (uploadingCover()) { <span class="hint">Uploading cover…</span> }
+            @if (coverError()) { <span class="e">{{ coverError() }}</span> }
+            <span class="hint">No cover? The website shows a styled cover with the title instead.</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploadingPdf() || uploadingCover()">{{ editingId() ? 'Save changes' : 'Add magazine' }}</button>
+          <button type="button" class="btn" (click)="cancel(f)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="head">
+        <h3>Magazines <span class="count">{{ magazines().length }}</span></h3>
+        <button type="button" class="btn primary" (click)="addNew()">+ Add new</button>
+      </div>
+
+      @if (message(); as m) {
+        <div class="msg" [class.ok]="m.type === 'ok'" [class.err]="m.type === 'err'" role="status">{{ m.text }}</div>
+      }
+
+      <div class="list">
+        @for (m of magazines(); track m.id) {
+          <article class="row" [class.off]="!m.active">
+            <div class="thumb" [style.background-image]="m.cover ? 'url(' + m.cover + ')' : 'none'">
+              @if (!m.cover) { <span>No cover</span> }
+            </div>
+            <div class="info">
+              <div class="top">
+                <span class="tag" [class.off]="!m.active">{{ m.active ? 'Shown' : 'Hidden' }}</span>
+              </div>
+              <h4>{{ m.title }}</h4>
+              <small>Published {{ m.publishedOn | date: 'mediumDate' }}</small>
+              @if (m.description) { <p>{{ m.description }}</p> }
+              <a class="pdf-link" [href]="m.pdfUrl" target="_blank" rel="noopener">📄 View PDF ↗</a>
+            </div>
+            <div class="row-actions">
+              <button class="btn sm" (click)="edit(m)">Edit</button>
+              <button class="btn sm" (click)="toggleActive(m)">{{ m.active ? 'Hide' : 'Show' }}</button>
+              <button class="btn sm danger" (click)="remove(m)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty">No magazines yet. Click “Add new” to upload your first issue.</p>
+        }
+      </div>
+    </div>
+  }
+</div>

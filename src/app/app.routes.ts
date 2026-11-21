@@ -19,6 +19,8 @@ import { LeaderDetailComponent } from './pages/leader-detail/leader-detail.compo
 
 import { InsightDetailComponent } from './pages/insight-detail/insight-detail.component';
 
+import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
+
 export const routes: Routes = [
   { path: '', component: BtbHomeComponent, data: { hideHeader: false, hideTicker: false } },
   { path: 'markets', component: MarketsComponent, title: 'Markets | BoardRoom' },
@@ -26,6 +28,7 @@ export const routes: Routes = [
   { path: 'insights/:id', component: InsightDetailComponent, title: 'Insight | BoardRoom' },
   { path: 'leadership-profiles', component: LeadershipComponent, title: 'Leadership & CEO Profiles | BoardRoom', data: { hideTicker: true } },
   { path: 'leadership-profiles/:slug', component: LeaderDetailComponent, title: 'Leader Profile | BoardRoom', data: { hideTicker: true } },
+  { path: 'articles/:id', component: ArticleDetailComponent, title: 'Article | BoardRoom', data: { hideTicker: true } },
   { path: 'articles', component: ArticlesComponent, title: 'Articles | BoardRoom', data: { hideTicker: true } },
   { path: 'network', component: NetworkComponent, title: 'The Network | BoardRoom', data: { hideTicker: true } },
   { path: 'events', component: EventsComponent, title: 'Events | BoardRoom', data: { hideTicker: true } },

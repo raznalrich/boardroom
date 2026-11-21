@@ -309,3 +309,69 @@
     }
   }
 }
+
+// ---- Phone / tablet refinements ----
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--btb-text-dark);
+  cursor: pointer;
+  padding: 6px;
+  margin-right: 4px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .mobile-menu-btn { display: flex; }
+
+  .masthead-bar .masthead-inner { gap: 10px; }
+  .masthead-bar .brand-logo { margin-right: auto; }
+
+  .primary-nav-bar.mobile-open {
+    border-bottom: 2px solid var(--btb-ivory-border);
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+
+    .nav-list { gap: 0; align-items: stretch; text-align: left; padding: 0 24px; }
+    .nav-list li { border-bottom: 1px solid var(--btb-ivory-border); }
+    .nav-list li:last-child { border-bottom: 0; }
+    .nav-list a { display: block; padding: 14px 0; font-size: 13.5px; }
+    .nav-list a.active::after { display: none; }
+  }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  .top-utility-bar { height: 30px; font-size: 11px; }
+  .masthead-bar { padding: 8px 0; }
+  .masthead-bar .header-logo-img { height: 34px; }
+  .masthead-actions { gap: 8px; }
+  .btn-gold { padding: 8px 12px; font-size: 11px; }
+
+  // Ticker becomes a single swipeable line instead of wrapping into several rows
+  .market-ticker-bar {
+    height: auto;
+    padding: 7px 0;
+    .ticker-inner {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      gap: 12px;
+      font-size: 12px;
+      white-space: nowrap;
+      scrollbar-width: none;
+      &::-webkit-scrollbar { display: none; }
+    }
+    .ticker-item, .ticker-sep { flex: 0 0 auto; }
+  }
+}
+
+@media (max-width: 420px) {
+  .mobile-menu-btn { margin-right: 0; padding: 4px; }
+  .masthead-bar .masthead-inner { gap: 6px; }
+  .masthead-bar .brand-logo { min-width: 0; }
+  .masthead-bar .header-logo-img { height: 30px; max-width: 150px; }
+  .masthead-actions { gap: 4px; }
+  .btn-gold { padding: 7px 10px; font-size: 10.5px; letter-spacing: .4px; }
+}

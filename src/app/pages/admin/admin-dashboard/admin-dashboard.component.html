@@ -13,12 +13,14 @@
     <header class="topbar">
       <button class="menu" (click)="sidebarOpen.set(!sidebarOpen())" aria-label="Toggle menu">☰</button>
       <h1>{{ activeNav() }}</h1>
-      <div class="user"><span class="avatar">A</span><span class="uname">admin&#64;boardroom</span></div>
+      <div class="user"><span class="avatar">A</span><span class="uname">admin&#64;boardroom.com</span></div>
     </header>
 
     <main class="content">
       @if (activeNav() === 'Articles') {
         <app-admin-articles />
+      } @else if (activeNav() === 'E-Magazine') {
+        <app-admin-magazines />
       } @else if (activeNav() === 'Banners') {
         <app-admin-banners />
       } @else if (activeNav() === 'Insights') {
@@ -32,56 +34,103 @@
       } @else if (activeNav() !== 'Dashboard') {
         <div class="card placeholder"><h3>{{ activeNav() }}</h3><p>This section is coming soon.</p></div>
       } @else {
-      <section class="kpis">
-        @for (k of kpis; track k.label) {
-          <div class="card kpi">
-            <span class="lbl">{{ k.label }}</span>
-            <strong>{{ k.value }}</strong>
-            <span class="chg" [class.up]="k.up" [class.down]="!k.up">{{ k.up ? '▲' : '▼' }} {{ k.change }} vs last week</span>
-          </div>
+      <div class="live-bar">
+        <span class="live-pill" [class.on]="dash.connection() === 'live'">
+          <i></i>{{ dash.connection() === 'live' ? 'Live' : 'Updating every 15s' }}
+        </span>
+        @if (stats(); as s) {
+          <span class="online"><strong>{{ s.online_now }}</strong> online now</span>
         }
+        @if (dash.updatedAt(); as t) {
+          <span class="upd">Updated {{ t | date: 'mediumTime' }}</span>
+        }
+      </div>
+
+      @if (dash.error()) {
+        <div class="card notice">
+          <h3>Visitor statistics are not set up yet</h3>
+          <p>Run <code>supabase/dashboard.sql</code> in the Supabase SQL Editor to create the visitor table and the dashboard function, then refresh this page.</p>
+          <small>{{ dash.error() }}</small>
+        </div>
+      }
+
+      <section class="kpis">
+        <div class="card kpi">
+          <span class="lbl">Visitors</span>
+          <strong>{{ (stats()?.total_visitors ?? 0) | number }}</strong>
+          <span class="chg up">{{ stats()?.visitors_today ?? 0 }} today</span>
+        </div>
+        <div class="card kpi">
+          <span class="lbl">Page views</span>
+          <strong>{{ (stats()?.total_views ?? 0) | number }}</strong>
+          <span class="chg up">{{ stats()?.views_today ?? 0 }} today</span>
+        </div>
+        <div class="card kpi">
+          <span class="lbl">Subscribers</span>
+          <strong>{{ (stats()?.subscribers ?? 0) | number }}</strong>
+          <span class="chg muted">from “Get in touch”</span>
+        </div>
+        <div class="card kpi">
+          <span class="lbl">Published articles</span>
+          <strong>{{ publishedCount() | number }}</strong>
+          <span class="chg muted">{{ draftCount() }} draft{{ draftCount() === 1 ? '' : 's' }}</span>
+        </div>
       </section>
 
       <section class="row">
         <div class="card chart">
-          <h3>Visitors this week <small>(thousands)</small></h3>
-          <div class="bars">
-            @for (w of weekly; track w.d) {
-              <div class="bar-col">
-                <span class="bar-val">{{ w.v }}</span>
-                <div class="bar" [style.height.%]="w.v"></div>
-                <span class="bar-lbl">{{ w.d }}</span>
+          <div class="chart-head">
+            <h3>Visitors <small>({{ chartTotal() }} in the last {{ dash.days() }} days)</small></h3>
+            <div class="range">
+              @for (r of ranges; track r) {
+                <button [class.on]="dash.days() === r" (click)="dash.setDays(r)">{{ r }}d</button>
+              }
+            </div>
+          </div>
+          <div class="bars" [class.dense]="bars().length > 14">
+            @for (b of bars(); track $index) {
+              <div class="bar-col" [attr.title]="b.title">
+                <span class="bar-val">{{ b.visitors }}</span>
+                <div class="bar" [style.height.%]="b.height"></div>
+                <span class="bar-lbl">{{ b.label }}</span>
               </div>
+            } @empty {
+              <p class="empty-chart">No visits recorded yet.</p>
             }
           </div>
+          <p class="note">Unique visitors per day. Hover a bar to see the page views too.</p>
         </div>
 
         <div class="card">
-          <h3>Traffic by section</h3>
-          @for (s of sections; track s.name) {
+          <h3>Traffic by section <small>(last {{ dash.days() }} days)</small></h3>
+          @for (s of sections(); track s.name) {
             <div class="sec">
-              <div class="sec-top"><span>{{ s.name }}</span><span>{{ s.pct }}%</span></div>
-              <div class="track"><div [style.width.%]="s.pct * 3"></div></div>
+              <div class="sec-top"><span>{{ s.name }}</span><span>{{ s.views | number }} · {{ s.pct }}%</span></div>
+              <div class="track"><div [style.width.%]="s.pct"></div></div>
             </div>
+          } @empty {
+            <p class="empty-chart">No visits recorded yet.</p>
           }
         </div>
       </section>
 
       <section class="row">
         <div class="card table-card">
-          <h3>Recent articles</h3>
+          <h3>Recently uploaded articles</h3>
           <div class="scroll">
             <table>
-              <thead><tr><th>Title</th><th>Section</th><th>Author</th><th>Status</th><th>Views</th></tr></thead>
+              <thead><tr><th>Title</th><th>Section</th><th>Author</th><th>Status</th><th>Uploaded</th></tr></thead>
               <tbody>
-                @for (a of articles; track a.title) {
+                @for (a of recentArticles(); track a.id) {
                   <tr>
                     <td class="t">{{ a.title }}</td>
-                    <td>{{ a.section }}</td>
+                    <td>{{ a.category }}</td>
                     <td>{{ a.author }}</td>
-                    <td><span class="status" [class.pub]="a.status === 'Published'" [class.rev]="a.status === 'In review'">{{ a.status }}</span></td>
-                    <td>{{ a.views }}</td>
+                    <td><span class="status" [class.pub]="a.status === 'Published'">{{ a.status }}</span></td>
+                    <td>{{ ago(toDate(a.createdAt)) }}</td>
                   </tr>
+                } @empty {
+                  <tr><td colspan="5" class="empty-chart">No articles yet.</td></tr>
                 }
               </tbody>
             </table>
@@ -91,8 +140,10 @@
         <div class="card">
           <h3>Recent activity</h3>
           <ul class="activity">
-            @for (a of activity; track a.what) {
-              <li><strong>{{ a.who }}</strong> {{ a.what }}<span>{{ a.when }}</span></li>
+            @for (a of activity(); track $index) {
+              <li>{{ a.text }}<span>{{ ago(a.when) }}</span></li>
+            } @empty {
+              <li>Nothing yet.</li>
             }
           </ul>
         </div>

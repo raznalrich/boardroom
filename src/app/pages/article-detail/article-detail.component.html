@@ -1,0 +1,72 @@
+@if (article(); as a) {
+  <section class="hero" [style.background-image]="'linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.85) 100%), ' + cover(a)">
+    <div class="pg-container hero-inner">
+      <a routerLink="/articles" class="back">← All articles</a>
+      <span class="pg-badge magenta">{{ a.category }}</span>
+      <h1>{{ a.title }}</h1>
+      <div class="meta">By <strong>{{ a.author }}</strong> · {{ a.readMins }} min read · {{ a.createdAt | date: 'longDate' }}</div>
+    </div>
+  </section>
+
+  <section class="pg-section">
+    <div class="pg-container body">
+      <article class="article">
+        @if (a.summary) { <p class="lead">{{ a.summary }}</p> }
+
+        @if (paragraphs().length) {
+          <h2>The full story</h2>
+          @for (p of paragraphs(); track $index) { <p>{{ p }}</p> }
+        } @else {
+          <p class="none">A detailed write-up for this article is coming soon.</p>
+        }
+
+        <div class="actions">
+          <a routerLink="/articles" class="pg-btn ghost">← Back to articles</a>
+          <a routerLink="/submit-blog" class="pg-btn">Write for BoardRoom</a>
+        </div>
+      </article>
+
+      <aside class="pg-card facts">
+        <h3>At a glance</h3>
+        <dl>
+          <div><dt>Category</dt><dd>{{ a.category }}</dd></div>
+          <div><dt>Author</dt><dd>{{ a.author }}</dd></div>
+          <div><dt>Published</dt><dd>{{ a.createdAt | date: 'mediumDate' }}</dd></div>
+          <div><dt>Reading time</dt><dd>{{ a.readMins }} minutes</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="pg-section more">
+      <div class="pg-container">
+        <div class="pg-title-row"><h2>More articles</h2><span class="rule"></span></div>
+        <div class="related">
+          @for (r of related(); track r.id) {
+            <a class="rcard pg-card" [routerLink]="['/articles', r.id]">
+              <div class="rimg" [style.background-image]="cover(r)"><span class="rtag">{{ r.category }}</span></div>
+              <div class="rbody">
+                <strong>{{ r.title }}</strong>
+                <span class="pg-meta">{{ r.author }} · {{ r.readMins }} min read</span>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else if (!loaded()) {
+  <section class="pg-hero">
+    <div class="pg-container"><p class="loading">Loading article…</p></div>
+  </section>
+} @else {
+  <section class="pg-hero">
+    <div class="pg-container">
+      <span class="eyebrow">Article not found</span>
+      <h1>We couldn't find that article</h1>
+      <p>It may have been removed or the link is incorrect.</p>
+      <a routerLink="/articles" class="pg-btn" style="margin-top:20px">Back to articles</a>
+    </div>
+  </section>
+}
