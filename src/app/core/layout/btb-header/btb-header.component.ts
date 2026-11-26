@@ -148,7 +148,7 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
       const pick = this.results()[this.activeIdx() >= 0 ? this.activeIdx() : 0];
       if (pick) this.open(pick);
     } else if (event.key === 'Escape') {
-      this.toggleSearch();
+      if (this.isSearchOpen) { this.toggleSearch(); } else { this.query.set(''); this.activeIdx.set(-1); }
     }
   }
 

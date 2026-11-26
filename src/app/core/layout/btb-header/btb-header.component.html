@@ -37,6 +37,26 @@
 
   <!-- Tier 3: Primary Navigation Bar -->
   <nav class="primary-nav-bar" [class.mobile-open]="isMobileMenuOpen">
+    <!-- Phone / tablet: search box at the top of the opened menu -->
+    <div class="mobile-search">
+      <div class="ms-field">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input id="mobile-site-search" type="search" autocomplete="off" placeholder="Search articles and insights…"
+               [value]="query()" (input)="onQuery($event)" (keydown)="onSearchKeydown($event)" aria-label="Search articles and insights" />
+      </div>
+      <ul class="ms-results" *ngIf="query().trim()">
+        <li *ngFor="let r of results(); let i = index" [class.active]="i === activeIdx()"
+            (mousedown)="$event.preventDefault(); open(r)" (click)="open(r)" (mouseenter)="activeIdx.set(i)">
+          <span class="r-title"><ng-container *ngFor="let p of parts(r.title)"><b *ngIf="p.hit; else plain">{{ p.text }}</b><ng-template #plain>{{ p.text }}</ng-template></ng-container></span>
+          <span class="r-meta"><em>{{ r.type }}</em> · {{ r.category }}</span>
+        </li>
+        <li class="none" *ngIf="results().length === 0">No headings match “{{ query().trim() }}”.</li>
+      </ul>
+    </div>
+
     <div class="container nav-inner">
       <ul class="nav-list">
         <li *ngFor="let item of navItems">

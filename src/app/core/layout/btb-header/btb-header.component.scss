@@ -321,21 +321,7 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
 .search-label { display: none; }
 
 @media (max-width: 960px) {
-  // search lives inside the opened mobile menu
-  .primary-nav-bar.mobile-open .nav-search-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    margin: 0;
-    padding: 14px 24px;
-    border-top: 1px solid var(--btb-ivory-border);
-    font-size: 13.5px;
-    font-weight: 700;
-    letter-spacing: .6px;
-    text-transform: uppercase;
-    .search-label { display: inline; }
-  }
+  .nav-search-btn { display: none !important; }
   .search-drawer .search-drawer-inner { flex-wrap: wrap; }
   .search-results { position: static; flex: 0 0 100%; margin-top: 6px; max-height: 50vh; }
 }
@@ -348,3 +334,16 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
     app-region-icon { color: var(--btb-gold); }
     &:hover { color: var(--btb-gold); border-bottom-color: var(--btb-gold); } } }
 @media (max-width: 1100px) { .region-links { display: none; } }
+
+/* ---- mobile search box (top of the opened menu) ---- */
+.mobile-search { display: none; }
+@media (max-width: 960px) {
+  .primary-nav-bar.mobile-open .mobile-search { display: block; padding: 14px 16px 6px; position: relative; z-index: 5; }
+  .ms-field { display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #1F1A15; border: 1px solid var(--btb-ivory-border); border-radius: 6px; color: var(--btb-gold);
+    &:focus-within { border-color: var(--btb-gold); box-shadow: 0 0 0 3px rgba(201, 162, 94, .22); }
+    input { flex: 1; min-width: 0; padding: 12px 0; background: transparent; border: 0; outline: 0; color: #fff; font-family: inherit; font-size: 14px; &::placeholder { color: #8C8379; } } }
+  .ms-results { margin: 8px 0 0; padding: 6px; list-style: none; background: #1F1A15; border: 1px solid var(--btb-ivory-border); border-radius: 6px; max-height: 45vh; overflow-y: auto;
+    li { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 4px; cursor: pointer; &.active { background: #221A11; } &.none { cursor: default; color: var(--btb-text-muted); font-size: 13px; } }
+    .r-title { font-size: 14px; line-height: 1.35; color: var(--btb-text-dark); b { font-weight: 800; background: rgba(201, 162, 94, .28); border-radius: 2px; } }
+    .r-meta { font-size: 11.5px; color: var(--btb-text-muted); em { font-style: normal; font-weight: 700; color: var(--btb-gold); text-transform: uppercase; letter-spacing: .5px; } } }
+}
