@@ -1,8 +1,8 @@
 <div class="region-bar">
   <div class="pg-container region-tabs" role="tablist" aria-label="Magazine regions">
-    <a role="tab" routerLink="/e-magazine" [class.on]="!region()" [attr.aria-selected]="!region()">All</a>
+    <a role="tab" routerLink="/e-magazine" [class.on]="!region()" [attr.aria-selected]="!region()"><span class="globe">🌐</span>All</a>
     @for (r of regions; track r) {
-      <a role="tab" routerLink="/e-magazine" [queryParams]="{ region: r }" [class.on]="region() === r" [attr.aria-selected]="region() === r">{{ r }}</a>
+      <a role="tab" routerLink="/e-magazine" [queryParams]="{ region: r }" [class.on]="region() === r" [attr.aria-selected]="region() === r"><app-region-icon [region]="r" [size]="22" />{{ r }}</a>
     }
   </div>
 </div>
@@ -46,13 +46,19 @@
       <div class="pg-title-row"><h2>Past Issues</h2><span class="rule"></span></div>
       <div class="arch-grid">
         @for (m of past(); track m.id; let i = $index) {
-          <a class="issue" href="#" (click)="read($event, m)">
-            <div class="thumb" [style.background-color]="fallback[i % fallback.length]" [style.background-image]="m.cover ? 'url(' + m.cover + ')' : null">
-              @if (!m.cover) { <span>{{ m.title }}</span> }
-            </div>
+          <div class="issue">
+            <a class="thumb-link" href="#" (click)="read($event, m)" [attr.aria-label]="'Read ' + m.title">
+              <div class="thumb" [style.background-color]="fallback[i % fallback.length]" [style.background-image]="m.cover ? 'url(' + m.cover + ')' : null">
+                @if (!m.cover) { <span>{{ m.title }}</span> }
+              </div>
+            </a>
             <strong>{{ m.title }}</strong>
             <span class="pg-meta">{{ m.publishedOn | date: 'MMM y' }}</span>
-          </a>
+            <div class="issue-actions">
+              <button type="button" class="pg-btn sm" (click)="read($event, m)">Read</button>
+              <button type="button" class="pg-btn ghost sm" (click)="askDownload(m)">Download</button>
+            </div>
+          </div>
         }
       </div>
     </div>

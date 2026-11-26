@@ -60,6 +60,7 @@ textarea { resize: vertical; line-height: 1.5; }
 select { width: 100%; padding: 10px 12px; border: 1px solid #DECBB1; border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; outline: none; &:focus { border-color: #B58A55; box-shadow: 0 0 0 3px rgba(181,138,85,.2); } }
 .region-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px;
   button { display: inline-flex; gap: 8px; align-items: center; padding: 7px 14px; border: 1px solid #DECBB1; border-radius: 18px; background: #fff; font-family: inherit; font-size: 12.5px; font-weight: 700; color: #121212; cursor: pointer;
+    app-region-icon { color: #B58A55; }
     b { background: #E6E1D8; border-radius: 10px; padding: 0 8px; font-size: 11px; }
     &.on { background: #181818; border-color: #181818; color: #fff; b { background: #B58A55; color: #121212; } } } }
 .tag.region { background: #181818; color: #fff; margin-right: 6px; }

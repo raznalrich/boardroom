@@ -38,6 +38,12 @@ button.pg-btn { cursor: pointer; font-family: inherit; }
 
 .region-bar { background: #0B0A09; border-bottom: 1px solid rgba(201, 162, 94, .28); }
 .region-tabs { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding-top: 14px; padding-bottom: 14px; scrollbar-width: none;
-  a { flex: 0 0 auto; padding: 9px 20px; border: 1px solid rgba(201, 162, 94, .4); border-radius: 22px; font-size: 12.5px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; text-decoration: none; color: #E5DCCB; transition: all .2s; white-space: nowrap;
+  a { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px 8px 12px; border: 1px solid rgba(201, 162, 94, .4); border-radius: 22px; font-size: 12.5px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; text-decoration: none; color: #E5DCCB; transition: all .2s; white-space: nowrap;
+    app-region-icon, .globe { color: #C9A25E; font-size: 18px; line-height: 1; }
+    .globe { filter: sepia(1) saturate(2.2) hue-rotate(-12deg) brightness(1.1); }
     &:hover { border-color: #C9A25E; color: #E6C98A; }
-    &.on { background: #C9A25E; border-color: #C9A25E; color: #121212; } } }
+    &.on { background: #C9A25E; border-color: #C9A25E; color: #121212; app-region-icon { color: #121212; } .globe { filter: grayscale(1) brightness(.2); } } } }
+
+.issue { cursor: default; &:hover .thumb { transform: translateY(-4px); } }
+.thumb-link { display: block; text-decoration: none; color: inherit; }
+.issue-actions { display: flex; gap: 8px; margin-top: 8px; .pg-btn { flex: 1; padding: 8px 6px; font-size: 11px; text-align: center; } }

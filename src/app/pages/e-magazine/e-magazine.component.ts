@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { RegionIconComponent } from '../../shared/region-icon/region-icon.component';
 import { PdfReaderComponent } from '../../shared/pdf-reader/pdf-reader.component';
 import { MembershipService } from '../../core/data/membership.service';
 import { MAGAZINE_REGIONS, Magazine, MagazinesService } from '../../core/data/magazines.service';
@@ -11,7 +12,7 @@ import { MAGAZINE_REGIONS, Magazine, MagazinesService } from '../../core/data/ma
 @Component({
   selector: 'app-e-magazine',
   standalone: true,
-  imports: [DatePipe, FormsModule, RouterLink, PdfReaderComponent],
+  imports: [DatePipe, FormsModule, RouterLink, PdfReaderComponent, RegionIconComponent],
   templateUrl: './e-magazine.component.html',
   styleUrls: ['./e-magazine.component.scss'],
   host: { class: 'pg' }

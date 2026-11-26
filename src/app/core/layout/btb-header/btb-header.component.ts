@@ -1,3 +1,4 @@
+import { RegionIconComponent } from '../../../shared/region-icon/region-icon.component';
 import { MAGAZINE_REGIONS } from '../../data/magazines.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -26,7 +27,7 @@ export interface TitlePart {
 @Component({
   selector: 'app-btb-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RegionIconComponent],
   templateUrl: './btb-header.component.html',
   styleUrls: ['./btb-header.component.scss']
 })

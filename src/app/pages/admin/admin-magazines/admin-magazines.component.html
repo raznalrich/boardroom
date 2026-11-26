@@ -87,7 +87,7 @@
       <div class="region-filter">
         <button type="button" [class.on]="!regionFilter()" (click)="regionFilter.set('')">All</button>
         @for (r of regions; track r) {
-          <button type="button" [class.on]="regionFilter() === r" (click)="regionFilter.set(r)">{{ r }} <b>{{ countFor(r) }}</b></button>
+          <button type="button" [class.on]="regionFilter() === r" (click)="regionFilter.set(r)"><app-region-icon [region]="r" [size]="16" />{{ r }} <b>{{ countFor(r) }}</b></button>
         }
       </div>
 

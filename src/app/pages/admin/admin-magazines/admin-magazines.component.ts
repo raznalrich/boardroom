@@ -1,13 +1,14 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { RegionIconComponent } from '../../../shared/region-icon/region-icon.component';
 import { MAGAZINE_REGIONS, Magazine, MagazineRegion, MagazinesService } from '../../../core/data/magazines.service';
 import { uploadImage, uploadPdf } from '../../../core/util/image.util';
 
 @Component({
   selector: 'app-admin-magazines',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, RegionIconComponent],
   templateUrl: './admin-magazines.component.html',
   styleUrls: ['./admin-magazines.component.scss']
 })
