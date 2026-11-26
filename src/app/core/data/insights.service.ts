@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { supabase } from '../supabase/supabase';
+import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 export const INSIGHT_CATEGORIES = ['Economy', 'Strategy', 'Technology', 'Sustainability', 'Finance'] as const;
@@ -59,14 +59,14 @@ export class InsightsService {
     const { error } = i.id
       ? await supabase.from('insights').update(row).eq('id', i.id)
       : await supabase.from('insights').insert(row);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
 
   async remove(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('insights').delete().eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

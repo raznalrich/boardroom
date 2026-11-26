@@ -1,16 +1,6 @@
 :host {
-  --btb-ivory: #F6EFE4;
-  --btb-ivory-light: #FBF8F3;
-  --btb-ivory-border: #DECBB1;
-  --btb-ticker-bg: #E3D1B4;
-  --btb-gold: #B58A55;
-  --btb-gold-dark: #966E3D;
-  --btb-magenta: #C21867;
-  --btb-charcoal: #181818;
-  --btb-text-dark: #121212;
-  --btb-text-muted: #5A5248;
-  --btb-up-green: #16A34A;
-  --btb-down-red: #DC2626;
+  --btb-up-green: #4ADE80;
+  --btb-down-red: #F87171;
 
   --font-logo: 'Inter', sans-serif;
   --font-sans: 'Inter', sans-serif;
@@ -37,7 +27,7 @@
 // Tier 1: Top Utility Bar
 .top-utility-bar {
   background-color: var(--btb-charcoal);
-  color: #EAEAEA;
+  color: #E8E2D8;
   font-size: 12px;
   height: 36px;
   display: flex;
@@ -162,7 +152,7 @@
 
       input {
         flex: 1;
-        background: #FFFFFF;
+        background: #1F1A15;
         border: 1px solid var(--btb-ivory-border);
         padding: 8px 14px;
         font-size: 13px;
@@ -173,45 +163,6 @@
         }
       }
     }
-  }
-}
-
-// Tier 4: Live Market Ticker Strip
-.market-ticker-bar {
-  background-color: var(--btb-ticker-bg);
-  height: 34px;
-  display: flex;
-  align-items: center;
-
-  .ticker-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-size: 12.5px;
-    font-weight: 600;
-  }
-
-  .ticker-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .ticker-indicator {
-    font-weight: 700;
-    &.up {
-      color: var(--btb-up-green);
-    }
-    &.down {
-      color: var(--btb-down-red);
-    }
-  }
-
-  .ticker-sep {
-    color: var(--btb-text-muted);
-    margin-left: 10px;
   }
 }
 
@@ -319,22 +270,6 @@
   .masthead-actions { gap: 8px; }
   .btn-gold { padding: 8px 12px; font-size: 11px; }
 
-  // Ticker becomes a single swipeable line instead of wrapping into several rows
-  .market-ticker-bar {
-    height: auto;
-    padding: 7px 0;
-    .ticker-inner {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      overflow-x: auto;
-      gap: 12px;
-      font-size: 12px;
-      white-space: nowrap;
-      scrollbar-width: none;
-      &::-webkit-scrollbar { display: none; }
-    }
-    .ticker-item, .ticker-sep { flex: 0 0 auto; }
-  }
 }
 
 @media (max-width: 420px) {
@@ -362,7 +297,7 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
   margin: 0;
   padding: 6px;
   list-style: none;
-  background: #FFFFFF;
+  background: #1F1A15;
   border: 1px solid var(--btb-ivory-border);
   border-radius: 6px;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
@@ -376,7 +311,7 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
     padding: 9px 12px;
     border-radius: 4px;
     cursor: pointer;
-    &.active { background: #FBF3E6; }
+    &.active { background: #221A11; }
     &.none { cursor: default; color: var(--btb-text-muted); font-size: 13px; &.active { background: none; } }
   }
   .r-title { font-size: 14px; line-height: 1.35; color: var(--btb-text-dark); b { font-weight: 800; background: rgba(181, 138, 85, 0.28); border-radius: 2px; } }
@@ -404,3 +339,6 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
   .search-drawer .search-drawer-inner { flex-wrap: wrap; }
   .search-results { position: static; flex: 0 0 100%; margin-top: 6px; max-height: 50vh; }
 }
+
+/* the logo artwork has a pink accent: tint the whole mark gold-on-black */
+.header-logo-img { filter: sepia(.9) saturate(1.7) brightness(1.08) contrast(1.05); }

@@ -1,0 +1,28 @@
+<section class="showcase" (mouseenter)="pause()" (mouseleave)="start()" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)">
+  <div class="glow"></div>
+  <div class="inner">
+    @for (p of people; track p.name; let i = $index) {
+      <article class="slide" [class.active]="i === current" [attr.aria-hidden]="i !== current">
+        <div class="side left">
+          <span class="kicker">Leader in the spotlight</span>
+          <h2 class="name">{{ p.name }}</h2>
+          <span class="role">{{ p.role }}</span>
+        </div>
+        <div class="stage">
+          <img [src]="p.img" [alt]="p.name" class="photo" />
+          <div class="floor"></div>
+        </div>
+        <div class="side right">
+          <p class="summary">{{ p.summary }}</p>
+        </div>
+      </article>
+    }
+  </div>
+  <button class="arrow prev" (click)="prev(); start()" aria-label="Previous">‹</button>
+  <button class="arrow next" (click)="next(); start()" aria-label="Next">›</button>
+  <div class="dots">
+    @for (p of people; track p.name; let i = $index) {
+      <button [class.on]="i === current" (click)="go(i)" [attr.aria-label]="'Show ' + p.name"></button>
+    }
+  </div>
+</section>

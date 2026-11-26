@@ -16,11 +16,11 @@
 .x { position: absolute; top: 10px; right: 14px; width: 34px; height: 34px; border: 0; background: none; font-size: 28px; line-height: 1; color: var(--btb-text-muted); cursor: pointer; &:hover { color: var(--btb-magenta); } }
 form { display: flex; flex-direction: column; gap: 4px; }
 label { margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--btb-text-muted); }
-input { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-border); border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; outline: none;
-  &:focus { border-color: var(--btb-gold); box-shadow: 0 0 0 3px rgba(181, 138, 85, .22); } &.ng-invalid.ng-touched { border-color: #DC2626; } }
-.err { font-size: 12px; color: #DC2626; }
+input { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-border); border-radius: 6px; background: #1F1A15; font-family: inherit; font-size: 14px; outline: none;
+  &:focus { border-color: var(--btb-gold); box-shadow: 0 0 0 3px rgba(181, 138, 85, .22); } &.ng-invalid.ng-touched { border-color: #F87171; } }
+.err { font-size: 12px; color: #F87171; }
 .submit { margin-top: 20px; padding: 13px; }
 .done { text-align: center; padding: 10px 0; p { margin: 0 0 20px; color: var(--btb-text-muted); line-height: 1.6; font-size: 14px; } }
-.tick { width: 62px; height: 62px; margin: 0 auto 14px; border-radius: 50%; background: #DCF5E5; color: #15803D; display: grid; place-items: center; font-size: 28px; font-weight: 700; }
+.tick { width: 62px; height: 62px; margin: 0 auto 14px; border-radius: 50%; background: rgba(22, 163, 74, .16); color: #4ADE80; display: grid; place-items: center; font-size: 28px; font-weight: 700; }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.97); } to { opacity: 1; transform: none; } }

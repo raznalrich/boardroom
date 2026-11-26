@@ -1,0 +1,101 @@
+<div class="wrap">
+  @if (view() === 'form') {
+    <div class="card">
+      <h3>{{ editingId() ? 'Edit profile' : 'Add a woman to the section' }}</h3>
+
+      <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+        <div class="form-grid">
+          <div class="col">
+            <label for="name">Full name</label>
+            <input id="name" name="name" [(ngModel)]="model.name" required minlength="2" placeholder="e.g. Aisha Al-Falasi" #n="ngModel" />
+            @if (n.invalid && (n.touched || f.submitted)) { <span class="e">Enter her name.</span> }
+
+            <div class="two">
+              <div>
+                <label for="role">Role / title</label>
+                <input id="role" name="role" [(ngModel)]="model.role" required minlength="2" placeholder="e.g. Group CEO" #r="ngModel" />
+                @if (r.invalid && (r.touched || f.submitted)) { <span class="e">Enter her role.</span> }
+              </div>
+              <div>
+                <label for="org">Organisation</label>
+                <input id="org" name="org" [(ngModel)]="model.organisation" placeholder="e.g. Gulf Renewables" />
+              </div>
+            </div>
+
+            <label for="quote">Quote (optional)</label>
+            <textarea id="quote" name="quote" rows="3" maxlength="240" [(ngModel)]="model.quote" placeholder="A short, inspiring line shown on her card"></textarea>
+
+            <div class="two">
+              <div>
+                <label for="order">Display order</label>
+                <input id="order" name="order" type="number" min="0" [(ngModel)]="model.sortOrder" required />
+                <span class="hint">Lowest number is shown first.</span>
+              </div>
+              <div class="chk">
+                <label class="check"><input type="checkbox" name="active" [(ngModel)]="model.active" /> Show in the section</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <label>Photo</label>
+            @if (model.image) {
+              <div class="preview">
+                <img [src]="model.image" alt="Photo preview" />
+                <button type="button" class="rm" (click)="removeImage()">Remove photo</button>
+              </div>
+            } @else {
+              <label class="drop" for="file">
+                <span class="ico">👩</span>
+                <strong>Click to upload a photo</strong>
+                <small>JPG, PNG or WebP · max 8 MB · portrait photos look best</small>
+              </label>
+            }
+            <input id="file" type="file" accept="image/*" hidden (change)="onFile($event)" />
+            @if (uploading()) { <span class="hint">Uploading photo…</span> }
+            @if (imageError()) { <span class="e">{{ imageError() }}</span> }
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary" [disabled]="saving() || uploading()">{{ editingId() ? 'Save changes' : 'Add profile' }}</button>
+          <button type="button" class="btn" (click)="cancel(f)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="head">
+        <h3>Women Empowerment <span class="count">{{ women().length }}</span></h3>
+        <button type="button" class="btn primary" (click)="addNew()">+ Add new</button>
+      </div>
+      <p class="intro">These profiles rotate in the Women Empowerment section on the home page, five at a time. Add at least six so the section keeps changing.</p>
+
+      @if (message(); as m) {
+        <div class="msg" [class.ok]="m.type === 'ok'" [class.err]="m.type === 'err'" role="status">{{ m.text }}</div>
+      }
+
+      <div class="grid">
+        @for (w of women(); track w.id) {
+          <article class="person" [class.off]="!w.active">
+            <img [src]="w.image" [alt]="w.name" class="photo" />
+            <div class="meta">
+              <span class="order">#{{ w.sortOrder }}</span>
+              <span class="tag" [class.off]="!w.active">{{ w.active ? 'Shown' : 'Hidden' }}</span>
+            </div>
+            <strong>{{ w.name }}</strong>
+            <span class="role">{{ w.role }}</span>
+            @if (w.organisation) { <small>{{ w.organisation }}</small> }
+            <div class="row-actions">
+              <button class="btn sm" (click)="edit(w)">Edit</button>
+              <button class="btn sm" (click)="toggleActive(w)">{{ w.active ? 'Hide' : 'Show' }}</button>
+              <button class="btn sm danger" (click)="remove(w)">Delete</button>
+            </div>
+          </article>
+        } @empty {
+          <p class="empty">No profiles yet. Run <code>supabase/women.sql</code> in the Supabase SQL Editor to add the starter profiles, or click “Add new”.</p>
+        }
+      </div>
+    </div>
+  }
+</div>

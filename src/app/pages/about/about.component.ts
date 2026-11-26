@@ -14,7 +14,6 @@ export class AboutComponent {
   readonly site = SITE;
 
   pillars = [
-    { icon: '📈', title: 'Markets', text: 'Daily coverage of equities, commodities and currencies across the Gulf, India and global exchanges.', link: '/markets' },
     { icon: '💡', title: 'Insights & Articles', text: 'Long-form analysis and sector deep dives on strategy, technology, finance, healthcare, real estate and more.', link: '/insights' },
     { icon: '🧭', title: 'Leadership Profiles', text: 'In-depth conversations with the CEOs, chairs and founders steering the region’s most influential organisations.', link: '/leadership-profiles' },
     { icon: '🤝', title: 'The Network', text: 'A private community of executives, with regional chapters and curated roundtables and dinners.', link: '/network' },

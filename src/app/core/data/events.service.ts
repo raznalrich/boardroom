@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { supabase } from '../supabase/supabase';
+import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 export const EVENT_TYPES = ['Summit', 'Dinner', 'Webinar', 'Keynote'] as const;
@@ -93,14 +93,14 @@ export class EventsService {
     const { error } = e.id
       ? await supabase.from('events').update(row).eq('id', e.id)
       : await supabase.from('events').insert(row);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
 
   async remove(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('events').delete().eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

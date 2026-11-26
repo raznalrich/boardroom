@@ -12,6 +12,8 @@ import { LeadersService } from '../../core/data/leaders.service';
 import { SubscribersService } from '../../core/data/subscribers.service';
 import { InsightsService, insightImage } from '../../core/data/insights.service';
 import { AppEvent, EventsService, eventDay, eventMonth, eventYear, eventStart } from '../../core/data/events.service';
+import { ExecShowcaseComponent } from '../../shared/exec-showcase/exec-showcase.component';
+import { WomenEmpowermentComponent } from '../../shared/women-empowerment/women-empowerment.component';
 import { EventCountdownComponent } from '../../shared/event-countdown/event-countdown.component';
 import { EventDetailModalComponent } from '../../shared/event-detail-modal/event-detail-modal.component';
 
@@ -37,7 +39,7 @@ export interface PowerListGroup {
 @Component({
   selector: 'app-btb-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, EventCountdownComponent, EventDetailModalComponent],
+  imports: [CommonModule, RouterLink, FormsModule, EventCountdownComponent, EventDetailModalComponent, WomenEmpowermentComponent, ExecShowcaseComponent],
   templateUrl: './btb-home.component.html',
   styleUrls: ['./btb-home.component.scss']
 })
@@ -320,49 +322,6 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
 
  
 
-
-  // Section K: Markets, Wealth & Unicorn Tracker
-  dealFlowData = [
-    {
-      company: 'LogisticsTech',
-      headline: 'Series B Funding Secured',
-      transaction: 'Transaction: ₹1,250 Cr',
-      date: '3 May 2026'
-    },
-    {
-      company: 'FinTech Hub',
-      headline: 'Cross-Border Merger',
-      transaction: 'Transaction: $45M',
-      date: '2 May 2026'
-    },
-    {
-      company: 'GreenEnergy',
-      headline: 'Strategic Joint Venture',
-      transaction: 'Transaction: $30M',
-      date: '3 May 2026'
-    }
-  ];
-
-  appointmentData = [
-    {
-      name: 'Aditya Birla',
-      role: 'Appointed Managing Director',
-      company: 'Birla Capital',
-      date: '4 May 2026'
-    },
-    {
-      name: 'Sunita Reddy',
-      role: 'Appointed Independent Director',
-      company: 'Apex Health',
-      date: '3 May 2026'
-    },
-    {
-      name: 'Tariq Al-Mansoor',
-      role: 'Promoted to Group CEO',
-      company: 'Gulf Tech Ventures',
-      date: '2 May 2026'
-    }
-  ];
 
   // Section I: Newsletter state
   newsletterEmail = '';

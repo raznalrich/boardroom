@@ -75,20 +75,4 @@
       </div>
     </div>
   </nav>
-
-  <!-- Tier 4: Live Market Ticker Strip -->
-  <div class="market-ticker-bar" *ngIf="showTicker">
-    <div class="container ticker-inner">
-      <ng-container *ngFor="let t of marketTickers; let last = last">
-        <div class="ticker-item">
-          <span>{{ t.name }}</span>
-          <span *ngIf="t.value">{{ t.value }}</span>
-          <span class="ticker-indicator" [class.up]="t.isPositive" [class.down]="!t.isPositive">
-            {{ t.isPositive ? '▲' : '▼' }} {{ t.change }}
-          </span>
-        </div>
-        <span class="ticker-sep" *ngIf="!last">/</span>
-      </ng-container>
-    </div>
-  </div>
 </header>

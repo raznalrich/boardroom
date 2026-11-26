@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { supabase } from '../supabase/supabase';
+import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 export interface Magazine {
@@ -57,14 +57,14 @@ export class MagazinesService {
     const { error } = m.id
       ? await supabase.from('magazines').update(row).eq('id', m.id)
       : await supabase.from('magazines').insert(row);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
 
   async remove(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('magazines').delete().eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

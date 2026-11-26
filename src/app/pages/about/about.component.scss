@@ -3,7 +3,7 @@ a.pg-btn { text-decoration: none; text-align: center; }
 .about-hero p { max-width: 760px; }
 
 .story { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 48px; align-items: start;
-  p { margin: 0 0 16px; font-size: 17px; line-height: 1.8; color: #2b2620; } }
+  p { margin: 0 0 16px; font-size: 17px; line-height: 1.8; color: #E5DCCB; } }
 .mission { padding: 28px; background: var(--btb-charcoal); border-color: var(--btb-charcoal); color: #fff; border-top: 4px solid var(--btb-gold);
   h3 { margin: 0 0 12px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--btb-gold); }
   p { margin: 0; font-size: 20px; line-height: 1.5; font-weight: 600; color: #fff; } }
@@ -21,7 +21,9 @@ a.pg-btn { text-decoration: none; text-align: center; }
 .cta-band { background: var(--btb-charcoal); color: #fff; }
 .cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
   h2 { margin: 0 0 6px; font-size: 28px; } p { margin: 0; color: #cfc7bb; } }
-.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; .ghost { color: #fff; border-color: #fff; &:hover { background: #fff; color: #121212; } } }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; .ghost { color: #fff; border-color: #fff; &:hover { background: #1F1A15; color: #121212; } } }
 
 @media (max-width: 900px) { .story { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 @media (max-width: 600px) { .story p { font-size: 16px; } .cta h2 { font-size: 22px; } }
+
+.pillar .ico { filter: sepia(1) saturate(2.2) hue-rotate(-12deg) brightness(1.15); }

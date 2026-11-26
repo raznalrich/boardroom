@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { supabase } from '../supabase/supabase';
+import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 export interface RoundtableGuest {
@@ -90,7 +90,7 @@ export class SettingsService {
     const { error } = await supabase.from('roundtable_guests').update({
       name: g.name.trim(), role: g.role.trim(), organisation: g.organisation.trim(), image_url: g.image || null, image_key: g.imageKey ?? null
     }).eq('id', g.id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
@@ -99,7 +99,7 @@ export class SettingsService {
     const { error } = await supabase.from('power_list_people').update({
       rank: p.rank, name: p.name.trim(), headline: p.headline.trim(), image_url: p.image || null, image_key: p.imageKey ?? null
     }).eq('id', p.id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
@@ -110,7 +110,7 @@ export class SettingsService {
       id: 1, title: r.title.trim(), description: r.description.trim(),
       pdf_url: r.pdfUrl || null, pdf_key: r.pdfUrl ? r.pdfKey ?? null : null, pdf_name: r.pdfUrl ? r.pdfName || null : null
     });
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

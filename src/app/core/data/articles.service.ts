@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { supabase } from '../supabase/supabase';
+import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 export interface Article {
@@ -54,7 +54,7 @@ export class ArticlesService {
     const { error } = a.id
       ? await supabase.from('articles').update(row).eq('id', a.id)
       : await supabase.from('articles').insert(row);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
@@ -62,14 +62,14 @@ export class ArticlesService {
   /** Review step: turn a draft into a published article. */
   async publish(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('articles').update({ status: 'published' }).eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }
 
   async remove(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('articles').delete().eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

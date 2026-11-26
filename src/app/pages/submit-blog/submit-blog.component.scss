@@ -3,17 +3,17 @@
 form { display: flex; flex-direction: column; gap: 4px; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; > div { display: flex; flex-direction: column; gap: 4px; } }
 label { margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--btb-text-muted); }
-input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-border); border-radius: 6px; background: #fff; font-family: inherit; font-size: 14px; outline: none;
+input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--btb-ivory-border); border-radius: 6px; background: #1F1A15; font-family: inherit; font-size: 14px; outline: none;
   &:focus { border-color: var(--btb-gold); box-shadow: 0 0 0 3px rgba(181,138,85,.22); }
-  &.ng-invalid.ng-touched { border-color: #DC2626; } }
+  &.ng-invalid.ng-touched { border-color: #F87171; } }
 textarea { resize: vertical; line-height: 1.5; }
 .hint { font-size: 11.5px; color: var(--btb-text-muted); text-align: right; }
-.err { font-size: 12px; color: #DC2626; }
+.err { font-size: 12px; color: #F87171; }
 .submit { margin-top: 18px; padding: 14px; }
 .success { text-align: center; padding: 24px 0;
   h2 { margin: 16px 0 8px; font-size: 26px; } p { color: var(--btb-text-muted); max-width: 440px; margin: 0 auto 22px; line-height: 1.6; }
   .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; } }
-.tick { width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: #DCF5E5; color: #15803D; display: grid; place-items: center; font-size: 30px; font-weight: 700; }
+.tick { width: 64px; height: 64px; margin: 0 auto; border-radius: 50%; background: rgba(22, 163, 74, .16); color: #4ADE80; display: grid; place-items: center; font-size: 30px; font-weight: 700; }
 .side { display: flex; flex-direction: column; gap: 20px; }
 .tips { padding: 22px; h3 { margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: .6px; }
   ul { margin: 0; padding-left: 18px; } li { padding: 5px 0; font-size: 14px; } p { margin: 0 0 14px; font-size: 14px; color: var(--btb-text-muted); } }

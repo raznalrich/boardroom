@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { supabase, UNIQUE_VIOLATION } from '../supabase/supabase';
+import { supabase, UNIQUE_VIOLATION, dbError } from '../supabase/supabase';
 import { Leader, leaderSlug } from './leaders.data';
 
 /** Result of a write: `error` is a message to show the user, null on success. */
@@ -47,7 +47,7 @@ export class LeadersService {
       ? await supabase.from('leader_profiles').update(row).eq('id', l.id)
       : await supabase.from('leader_profiles').insert(row);
     if (error) {
-      return { error: error.code === UNIQUE_VIOLATION ? 'A profile with this name already exists.' : error.message };
+      return { error: error.code === UNIQUE_VIOLATION ? 'A profile with this name already exists.' : dbError(error) };
     }
     await this.refresh();
     return { error: null };
@@ -55,7 +55,7 @@ export class LeadersService {
 
   async remove(id: string): Promise<SaveResult> {
     const { error } = await supabase.from('leader_profiles').delete().eq('id', id);
-    if (error) return { error: error.message };
+    if (error) return { error: dbError(error) };
     await this.refresh();
     return { error: null };
   }

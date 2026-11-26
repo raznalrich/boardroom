@@ -1,0 +1,122 @@
+:host {
+  display: block;
+  font-family: 'Inter', sans-serif;
+
+  /* luxury palette: near-black with warm gold */
+  --we-bg: #0E0C0A;
+  --we-bg-2: #17130F;
+  --we-card: #1A1613;
+  --we-gold: #C9A25E;
+  --we-gold-bright: #E6C98A;
+  --we-gold-deep: #8F6B2F;
+  --we-line: rgba(201, 162, 94, .38);
+  --we-text: #F4EEE2;
+  --we-muted: #B9AE9B;
+}
+
+.we-section {
+  position: relative;
+  padding: 64px 0 72px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(201, 162, 94, .16), transparent 40%),
+    radial-gradient(circle at 92% 100%, rgba(201, 162, 94, .12), transparent 44%),
+    linear-gradient(180deg, var(--we-bg) 0%, var(--we-bg-2) 100%);
+  border-top: 1px solid var(--we-gold-deep);
+  border-bottom: 1px solid var(--we-gold-deep);
+  overflow: hidden;
+}
+/* fine gold hairline across the top edge */
+.we-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--we-gold-bright), transparent);
+}
+.we-container { position: relative; max-width: 1380px; margin: 0 auto; padding: 0 24px; }
+
+.we-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
+.we-eyebrow { display: inline-flex; align-items: center; gap: 12px; color: var(--we-gold); font-size: 12px; font-weight: 800; letter-spacing: 3px;
+  &::before { content: ''; width: 36px; height: 1px; background: var(--we-gold); } }
+.we-title { margin: 10px 0 8px; font-size: 36px; line-height: 1.15; font-weight: 800; letter-spacing: -.3px; color: var(--we-text);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--we-gold-bright) 130%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.we-sub { margin: 0; max-width: 560px; font-size: 15px; line-height: 1.65; color: var(--we-muted); }
+.we-all { padding: 10px 20px; border: 1px solid var(--we-gold); border-radius: 3px; color: var(--we-gold-bright); font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: all .25s;
+  &:hover { background: var(--we-gold); color: #0E0C0A; } }
+
+/* ---------- the three parts ---------- */
+.we-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 24px; height: 560px; }
+.we-part { min-width: 0; height: 100%; }
+.we-stack { display: grid; grid-template-rows: 1fr 1fr; gap: 24px; }
+.we-slot { position: relative; height: 100%; min-height: 0; }
+
+/* each card sits on its own layer so the old and new cards can cross-fade in the same place */
+.we-layer { position: absolute; inset: 0; animation: weIn .9s cubic-bezier(.22, .8, .25, 1) both;
+  &.out { animation: weOut .9s cubic-bezier(.4, 0, .6, 1) both; pointer-events: none; } }
+
+@keyframes weIn  { from { opacity: 0; transform: translateX(44px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes weOut { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(-44px) scale(.97); } }
+
+/* ---------- profile cards ---------- */
+.we-card { position: relative; height: 100%; overflow: hidden; border-radius: 14px; background: var(--we-card);
+  border: 1px solid var(--we-line);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(230, 201, 138, .12);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  &:hover { transform: translateY(-5px); border-color: var(--we-gold); box-shadow: 0 30px 56px rgba(0, 0, 0, .65), 0 0 28px rgba(201, 162, 94, .22), inset 0 1px 0 rgba(230, 201, 138, .2); } }
+
+/* photo: gold initials on a dark gradient sit underneath, so a missing picture still looks designed */
+.we-photo { position: relative; overflow: hidden; background: linear-gradient(150deg, #3A2D1A 0%, #15110D 100%); display: grid; place-items: center; }
+.we-initials { font-size: 54px; font-weight: 800; color: var(--we-gold); letter-spacing: 3px; opacity: .9; }
+.we-img { position: absolute; inset: 0; background-size: cover; background-position: center top; transition: transform .8s ease; }
+.we-card:hover .we-img { transform: scale(1.05); }
+
+.we-role { font-size: 13px; font-weight: 600; color: var(--we-gold); }
+.we-quote { margin: 0; font-style: italic; line-height: 1.55; color: var(--we-muted); }
+
+/* large card */
+.we-big {
+  .we-photo { position: absolute; inset: 0; }
+  .we-initials { font-size: 120px; }
+  .we-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,12,10,0) 34%, rgba(14,12,10,.7) 64%, rgba(14,12,10,.96) 100%); }
+  .we-body { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 32px 32px; color: var(--we-text); border-top: 0; }
+  .we-tag { display: inline-block; margin-bottom: 14px; padding: 5px 12px; border: 1px solid var(--we-gold); border-radius: 2px; background: rgba(14, 12, 10, .55); color: var(--we-gold-bright); font-size: 10.5px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; backdrop-filter: blur(4px); }
+  h3 { margin: 0 0 8px; font-size: 32px; line-height: 1.12; font-weight: 800; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+  .we-role { color: var(--we-gold-bright); font-size: 15px; }
+  .we-quote { position: relative; margin-top: 14px; padding-top: 14px; color: #E5DCCB; font-size: 15px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+    &::before { content: ''; position: absolute; top: 0; left: 0; width: 44px; height: 2px; background: var(--we-gold); } }
+}
+
+/* compact cards */
+.we-small { display: flex;
+  .we-photo { flex: 0 0 40%; }
+  .we-initials { font-size: 40px; }
+  .we-body { flex: 1; min-width: 0; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; gap: 4px; border-left: 2px solid var(--we-gold); background: linear-gradient(135deg, #1D1814 0%, #14110E 100%); }
+  h3 { margin: 0; font-size: 18px; line-height: 1.2; font-weight: 700; color: var(--we-text); }
+  .we-org { font-size: 12.5px; color: var(--we-muted); }
+  .we-quote { margin-top: 8px; font-size: 13px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; } }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1100px) {
+  .we-grid { grid-template-columns: 1fr 1fr; height: auto; grid-template-rows: 460px auto; }
+  .we-one { grid-column: 1 / -1; }
+  .we-stack { grid-template-rows: repeat(2, 250px); }
+}
+
+@media (max-width: 700px) {
+  .we-section { padding: 44px 0 50px; }
+  .we-container { padding: 0 16px; }
+  .we-title { font-size: 27px; }
+  .we-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; gap: 18px; }
+  .we-one { height: 400px; }
+  .we-stack { grid-template-rows: repeat(2, 230px); gap: 18px; }
+  .we-big .we-body { padding: 20px 20px 22px; }
+  .we-big h3 { font-size: 25px; }
+  .we-small .we-photo { flex-basis: 38%; }
+  .we-small .we-body { padding: 14px; }
+  .we-small h3 { font-size: 16px; }
+}
+
+/* people who prefer less motion get the swap without the sliding */
+@media (prefers-reduced-motion: reduce) {
+  .we-layer, .we-layer.out { animation: none; }
+  .we-layer.out { display: none; }
+  .we-card, .we-img { transition: none; }
+}

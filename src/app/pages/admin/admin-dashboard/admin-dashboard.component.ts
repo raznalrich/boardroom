@@ -9,6 +9,7 @@ import { AdminInsightsComponent } from '../admin-insights/admin-insights.compone
 import { AdminBannersComponent } from '../admin-banners/admin-banners.component';
 import { AdminMagazinesComponent } from '../admin-magazines/admin-magazines.component';
 import { AdminSettingsComponent } from '../admin-settings/admin-settings.component';
+import { AdminWomenComponent } from '../admin-women/admin-women.component';
 import { AdminAuthService } from '../../../core/auth/admin-auth.service';
 import { ArticlesService } from '../../../core/data/articles.service';
 import { DashboardService } from '../../../core/data/dashboard.service';
@@ -18,14 +19,14 @@ import { LeadersService } from '../../../core/data/leaders.service';
 interface ActivityItem { text: string; when: Date; }
 
 const SECTION_NAMES: Record<string, string> = {
-  'home': 'Home', 'markets': 'Markets', 'insights': 'Insights', 'articles': 'Articles', 'leadership-profiles': 'Leadership',
+  'home': 'Home', 'insights': 'Insights', 'articles': 'Articles', 'leadership-profiles': 'Leadership',
   'network': 'The Network', 'events': 'Events', 'e-magazine': 'E-Magazine', 'submit-blog': 'Submit a blog', 'about-us': 'About Us', 'contact-us': 'Contact Us', 'privacy-policy': 'Privacy Policy', 'refund-and-cancellation': 'Refunds', 'submit-magazine': 'Submit a magazine'
 };
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, AdminSettingsComponent, DatePipe, DecimalPipe],
+  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, AdminSettingsComponent, AdminWomenComponent, DatePipe, DecimalPipe],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss']
 })
@@ -37,7 +38,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   private insightsSvc = inject(InsightsService);
   private leadersSvc = inject(LeadersService);
 
-  nav = ['Dashboard', 'Banners', 'Articles', 'Insights', 'Profiles', 'Events', 'Subscribers', 'E-Magazine', 'Settings'];
+  nav = ['Dashboard', 'Banners', 'Articles', 'Insights', 'Profiles', 'Women', 'Events', 'Subscribers', 'E-Magazine', 'Settings'];
   activeNav = signal('Dashboard');
   sidebarOpen = signal(false);
 

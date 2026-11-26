@@ -1,0 +1,84 @@
+<section class="we-section" (mouseenter)="paused = true" (mouseleave)="paused = false">
+  <div class="we-container">
+    <div class="we-head">
+      <div>
+        <span class="we-eyebrow">WOMEN EMPOWERMENT</span>
+        <h2 class="we-title">Celebrating women who lead</h2>
+        <p class="we-sub">The executives, founders and changemakers shaping boardrooms across the region.</p>
+      </div>
+      <a routerLink="/leadership-profiles" class="we-all">Meet more leaders →</a>
+    </div>
+
+    <div class="we-grid">
+      <!-- Part 1: one large profile -->
+      <div class="we-part we-one">
+        <div class="we-slot">
+          @for (l of one(); track l.key) {
+            <div class="we-layer" [class.out]="l.out">
+              <ng-container *ngTemplateOutlet="big; context: { $implicit: l.w }" />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Part 2: two profiles -->
+      <div class="we-part we-stack">
+        @for (s of two(); track $index) {
+          <div class="we-slot">
+            @for (l of s.layers; track l.key) {
+              <div class="we-layer" [class.out]="l.out">
+                <ng-container *ngTemplateOutlet="small; context: { $implicit: l.w }" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Part 3: two profiles -->
+      <div class="we-part we-stack">
+        @for (s of three(); track $index) {
+          <div class="we-slot">
+            @for (l of s.layers; track l.key) {
+              <div class="we-layer" [class.out]="l.out">
+                <ng-container *ngTemplateOutlet="small; context: { $implicit: l.w }" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Large card: the photo fills the whole card -->
+<ng-template #big let-w>
+  <article class="we-card we-big">
+    <div class="we-photo">
+      <span class="we-initials">{{ initials(w.name) }}</span>
+      @if (w.image) { <div class="we-img" [style.background-image]="'url(' + w.image + ')'"></div> }
+    </div>
+    <div class="we-shade"></div>
+    <div class="we-body">
+      <span class="we-tag">Women in leadership</span>
+      <h3>{{ w.name }}</h3>
+      <div class="we-role">{{ w.role }}@if (w.organisation) { <span> · {{ w.organisation }}</span> }</div>
+      @if (w.quote) { <p class="we-quote">“{{ w.quote }}”</p> }
+    </div>
+  </article>
+</ng-template>
+
+<!-- Compact card: photo on the left, details on the right -->
+<ng-template #small let-w>
+  <article class="we-card we-small">
+    <div class="we-photo">
+      <span class="we-initials">{{ initials(w.name) }}</span>
+      @if (w.image) { <div class="we-img" [style.background-image]="'url(' + w.image + ')'"></div> }
+    </div>
+    <div class="we-body">
+      <h3>{{ w.name }}</h3>
+      <div class="we-role">{{ w.role }}</div>
+      @if (w.organisation) { <div class="we-org">{{ w.organisation }}</div> }
+      @if (w.quote) { <p class="we-quote">“{{ w.quote }}”</p> }
+    </div>
+  </article>
+</ng-template>

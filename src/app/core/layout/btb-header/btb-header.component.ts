@@ -22,13 +22,6 @@ export interface TitlePart {
   hit: boolean;
 }
 
-export interface MarketTicker {
-  name: string;
-  value?: string;
-  change: string;
-  isPositive: boolean;
-}
-
 @Component({
   selector: 'app-btb-header',
   standalone: true,
@@ -72,7 +65,6 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
 
   // Route-driven visibility states
   isVisible = true;
-  showTicker = true;
   isMobileMenuOpen = false;
   isSearchOpen = false;
 
@@ -88,7 +80,6 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
   });
 
   @Input() navItems: NavItem[] = [
-    { label: 'MARKETS', route: '/markets' },
     { label: 'INSIGHTS', route: '/insights' },
     { label: 'ARTICLES', route: '/articles' },
     { label: 'LEADERSHIP & CEO PROFILES', route: '/leadership-profiles' },
@@ -97,19 +88,11 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
     { label: 'THE E-MAGAZINE', route: '/e-magazine' }
   ];
 
-  @Input() marketTickers: MarketTicker[] = [
-    { name: 'Nifty 50', change: '0.009%', isPositive: true },
-    { name: 'DFM', value: '1973.50', change: '0.23%', isPositive: true },
-    { name: 'Sensex', value: '2.5M', change: '0.36%', isPositive: false },
-    { name: 'DFM', value: '2.25', change: '0.033%', isPositive: false },
-    { name: 'Brent Crude', change: '0.763%', isPositive: true }
-  ];
-
   @Output() searchSubmit = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.scheduleMidnightRefresh();
-    // Listen to route data changes to toggle header or market ticker strip automatically
+    // Listen to route data changes to show or hide the header automatically
     this.routerSub = this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -124,7 +107,6 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe((data) => {
         this.isVisible = !data['hideHeader'];
-        this.showTicker = !data['hideTicker'];
         this.isMobileMenuOpen = false;
       });
   }

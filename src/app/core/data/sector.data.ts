@@ -1,17 +1,17 @@
 /** Category filter tabs for Sector Deep Dives (home + Articles page). 'ALL' is a filter only, not a category. */
 export const SECTOR_TABS = ['ALL', 'LEADERSHIP', 'STRATEGY', 'AI & TECH', 'GCC MARKETS', 'FINANCE', 'HEALTHCARE', 'EDUCATION', 'REAL ESTATE', 'RETAIL'];
 
-/** Gradient overlay colours per sector (from → to). */
+/** Gradient overlay colours per sector (from → to): a gold and bronze family. */
 export const SECTOR_GRADIENTS: Record<string, [string, string]> = {
-  'LEADERSHIP': ['#B58A55', '#3a2a14'],
-  'STRATEGY': ['#C21867', '#3a0f26'],
-  'AI & TECH': ['#6D28D9', '#1e1245'],
-  'GCC MARKETS': ['#0E7490', '#0b2f3a'],
-  'FINANCE': ['#15803D', '#0d2e1a'],
-  'HEALTHCARE': ['#0891B2', '#0a2e38'],
-  'EDUCATION': ['#D97706', '#3b2306'],
-  'REAL ESTATE': ['#9A3412', '#2e1208'],
-  'RETAIL': ['#BE185D', '#35102a']
+  'LEADERSHIP': ['#C9A25E', '#2a1d0c'],
+  'STRATEGY': ['#E6C98A', '#3b2a10'],
+  'AI & TECH': ['#8F6B2F', '#140e06'],
+  'GCC MARKETS': ['#B38B45', '#22170a'],
+  'FINANCE': ['#D4AF37', '#2e2208'],
+  'HEALTHCARE': ['#A67C3D', '#1d1408'],
+  'EDUCATION': ['#CDA95F', '#18110a'],
+  'REAL ESTATE': ['#94702F', '#1a1207'],
+  'RETAIL': ['#E0BE72', '#2b1f0b']
 };
 
 /** CSS background value: category gradient laid over the article photo (gradient only when there is no photo). */

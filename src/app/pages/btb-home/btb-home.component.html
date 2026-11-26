@@ -1,82 +1,6 @@
 <main class="btb-home">
-  <!-- SECTION A: TOP EDITORIAL HERO & VOICES GRID -->
-  <section class="hero-voices-section">
-    <div class="container">
-      <div class="hero-voices-grid">
-        <!-- Left: Main Feature Story Card -->
-        <article class="hero-feature-card hero-slider" (mouseenter)="pauseAutoSlide()" (mouseleave)="startAutoSlide()" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
-          <div class="hero-track" [style.transform]="'translateX(-' + (currentSlide < heroSlides.length ? currentSlide : 0) * 100 + '%)'">
-            @for (s of heroSlides; track s.id) {
-              <div class="hero-slide">
-                <img [src]="s.image" [alt]="s.title" class="hero-bg-img" />
-                <div class="hero-slide-overlay">
-                  <div class="hero-content">
-                    <span class="hero-slide-tag">{{ s.tag }}</span>
-                    <h1 class="hero-slide-title">{{ s.title }}</h1>
-                    <div class="hero-slide-meta">
-                      <span class="by">By {{ s.author }}</span>
-                      <span class="sep">|</span>
-                      <span class="time">⏳ {{ s.readMins }} min read</span>
-                    </div>
-                    <ul class="hero-slide-bullets">
-                      @for (b of s.bullets; track b) { <li>{{ b }}</li> }
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-
-          @if (heroSlides.length === 0) {
-            <div class="hero-empty">Featured stories will appear here.</div>
-          }
-
-          <button class="hero-arrow prev" (click)="prevSlide()" aria-label="Previous story">‹</button>
-          <button class="hero-arrow next" (click)="nextSlide()" aria-label="Next story">›</button>
-
-          <div class="hero-dots">
-            @for (s of heroSlides; track s.id; let i = $index) {
-              <button class="dot" [class.active]="i === currentSlide" (click)="goToSlide(i)" [attr.aria-label]="'Go to story ' + (i + 1)"></button>
-            }
-          </div>
-        </article>
-
-        <!-- Right: People & Voices Column (the 3 latest insights from Supabase) -->
-        <aside class="people-voices-col">
-          <div class="voices-top-block">
-            <!-- Vertical Section Title -->
-            <h2 class="vertical-section-title">PEOPLE & VOICES</h2>
-
-            <!-- Featured insight: the newest one -->
-            @if (voicesFeatured; as f) {
-              <a class="voices-featured-card" [routerLink]="['/insights', f.id]">
-                <img [src]="insightImg(f.img)" [alt]="f.title" class="voices-featured-img" />
-                <h3 class="voices-featured-title">{{ f.title }}</h3>
-              </a>
-            } @else {
-              <p class="voices-empty">Insights will appear here.</p>
-            }
-
-            <!-- Accent Bar -->
-            <div class="magenta-accent-bar"></div>
-          </div>
-
-          <!-- Compact Thumbnail Story Items: the next two insights -->
-          <div class="voices-mini-list">
-            @for (i of voicesMini; track i.id) {
-              <a class="voices-mini-item" [routerLink]="['/insights', i.id]">
-                <img [src]="insightImg(i.img)" [alt]="i.title" class="mini-thumb" />
-                <div>
-                  <h4 class="mini-title">{{ i.title }}</h4>
-                  <span class="mini-time">{{ i.date | date: 'MMM d' }} · {{ i.mins }} min read</span>
-                </div>
-              </a>
-            }
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
+  <!-- SECTION A: EXECUTIVE SHOWCASE -->
+  <app-exec-showcase></app-exec-showcase>
 
   <!-- SECTION B: BREAKING / LATEST NEWS STRIP -->
   <!-- <section class="latest-news-strip">
@@ -195,6 +119,9 @@
   </section>
 
   
+  <!-- WOMEN EMPOWERMENT: three parts (1 large + 2 + 2), rotating with a fade-and-slide transition -->
+  <app-women-empowerment />
+
   <!-- SECTION: LATEST INSIGHTS -->
   <section class="home-insights-section">
     <div class="container">
@@ -417,8 +344,6 @@
     </div>
   </section>
 
-  <!-- SECTION K: MARKETS, WEALTH & UNICORN TRACKER -->
-  
   <!-- SECTION M: JOIN WITH US (CONTRIBUTE) -->
   <section class="join-section">
     <div class="container">

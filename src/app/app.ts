@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
@@ -17,6 +17,8 @@ export class App {
 
   constructor() {
     inject(VisitTrackerService).start();
+    // The black-and-gold look belongs to the public website; the admin area keeps its own light styling.
+    effect(() => document.body.classList.toggle('admin-area', this.isAdmin()));
   }
 
   /** True on /b-admin routes: the public header and footer are hidden. */

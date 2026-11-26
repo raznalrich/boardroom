@@ -14,7 +14,7 @@ export class AdminBannersComponent {
   private svc = inject(BannersService);
 
   readonly banners = this.svc.all;
-  readonly tagSuggestions = ['EDITORIAL', 'MARKETS', 'INNOVATION', 'LEADERSHIP', 'STRATEGY', 'ECONOMY'];
+  readonly tagSuggestions = ['EDITORIAL', 'INNOVATION', 'LEADERSHIP', 'STRATEGY', 'ECONOMY'];
 
   /** 'list' shows the banners (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');

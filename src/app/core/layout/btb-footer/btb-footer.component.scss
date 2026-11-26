@@ -1,13 +1,4 @@
 :host {
-  --btb-ivory: #F6EFE4;
-  --btb-ivory-light: #FBF8F3;
-  --btb-ivory-border: #DECBB1;
-  --btb-gold: #B58A55;
-  --btb-gold-dark: #966E3D;
-  --btb-magenta: #C21867;
-  --btb-charcoal: #181818;
-  --btb-text-dark: #121212;
-  --btb-text-muted: #8C8379;
   display: block;
 }
 .container { max-width: 1380px; margin: 0 auto; padding: 0 24px; }
@@ -63,7 +54,7 @@
   font-family: 'Inter', sans-serif;
   font-size: 24px;
   font-weight: 600;
-  color: var(--btb-ivory);
+  color: #F4EEE2;
   letter-spacing: 1px;
 }
 
@@ -89,7 +80,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--btb-ivory);
+  color: #F4EEE2;
   margin: 0;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--btb-ivory-border);
@@ -127,7 +118,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--btb-ivory);
+  color: #F4EEE2;
   margin-bottom: 24px;
 }
 
@@ -154,7 +145,7 @@
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, var(--btb-gold), var(--btb-gold-dark));
-  color: var(--btb-text-dark);
+  color: #121212;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
