@@ -1,7 +1,16 @@
+<div class="region-bar">
+  <div class="pg-container region-tabs" role="tablist" aria-label="Magazine regions">
+    <a role="tab" routerLink="/e-magazine" [class.on]="!region()" [attr.aria-selected]="!region()">All</a>
+    @for (r of regions; track r) {
+      <a role="tab" routerLink="/e-magazine" [queryParams]="{ region: r }" [class.on]="region() === r" [attr.aria-selected]="region() === r">{{ r }}</a>
+    }
+  </div>
+</div>
+
 <section class="pg-hero">
   @if (current(); as m) {
     <div class="pg-container mag-hero">
-      <a class="cover" [href]="m.pdfUrl" target="_blank" rel="noopener" [attr.aria-label]="'Read ' + m.title"
+      <a class="cover" href="#" (click)="read($event, m)" [attr.aria-label]="'Read ' + m.title"
          [style.background-image]="m.cover ? 'url(' + m.cover + ')' : null">
         @if (!m.cover) {
           <div class="cover-inner">
@@ -12,20 +21,20 @@
         }
       </a>
       <div>
-        <span class="eyebrow">The E-Magazine · Latest issue</span>
+        <span class="eyebrow">The Magazine · {{ m.region }} · Latest issue</span>
         <h1>{{ m.title }}</h1>
         <p class="issue-date">{{ m.publishedOn | date: 'longDate' }}</p>
         @if (m.description) { <p class="desc">{{ m.description }}</p> }
         <div class="actions">
-          <a class="pg-btn" [href]="m.pdfUrl" target="_blank" rel="noopener">Read online</a>
-          <a class="pg-btn ghost" [href]="m.pdfUrl" target="_blank" rel="noopener" download>Download PDF</a>
+          <button type="button" class="pg-btn" (click)="read($event, m)">Read online</button>
+          <button type="button" class="pg-btn ghost" (click)="askDownload(m)">Download PDF</button>
         </div>
       </div>
     </div>
   } @else {
     <div class="pg-container">
-      <span class="eyebrow">The E-Magazine</span>
-      <h1>{{ loaded() ? 'No issues published yet' : 'Loading…' }}</h1>
+      <span class="eyebrow">The Magazine</span>
+      <h1>{{ loaded() ? (region() ? 'No ' + region() + ' issues yet' : 'No issues published yet') : 'Loading…' }}</h1>
       @if (loaded()) { <p>Our next issue is on its way. Check back soon.</p> }
     </div>
   }
@@ -37,7 +46,7 @@
       <div class="pg-title-row"><h2>Past Issues</h2><span class="rule"></span></div>
       <div class="arch-grid">
         @for (m of past(); track m.id; let i = $index) {
-          <a class="issue" [href]="m.pdfUrl" target="_blank" rel="noopener">
+          <a class="issue" href="#" (click)="read($event, m)">
             <div class="thumb" [style.background-color]="fallback[i % fallback.length]" [style.background-image]="m.cover ? 'url(' + m.cover + ')' : null">
               @if (!m.cover) { <span>{{ m.title }}</span> }
             </div>
@@ -48,4 +57,34 @@
       </div>
     </div>
   </section>
+}
+
+@if (target(); as t) {
+  <div class="dl-backdrop" (click)="close()">
+    <div class="dl-modal" role="dialog" aria-modal="true" aria-labelledby="dl-title" (click)="$event.stopPropagation()">
+      <button type="button" class="dl-x" (click)="close()" aria-label="Close">×</button>
+      @if (state() === 'ok') {
+        <div class="dl-done">
+          <div class="dl-tick">✓</div>
+          <h2 id="dl-title">Welcome back, member</h2>
+          <p>Your download of <strong>{{ t.title }}</strong> has started.</p>
+          <button type="button" class="pg-btn" (click)="close()">Close</button>
+        </div>
+      } @else {
+        <h2 id="dl-title">Download for members</h2>
+        <p class="dl-sub">Enter the email you used for your membership application to download <strong>{{ t.title }}</strong>.</p>
+        <form (ngSubmit)="verify()" #f="ngForm" novalidate>
+          <label for="dl-email">Email address</label>
+          <input id="dl-email" name="email" type="email" required email autocomplete="email" placeholder="you@company.com" [(ngModel)]="email" />
+          @if (state() === 'no') { <p class="dl-err">You are not a member. Your membership may still be awaiting approval, or you can <a routerLink="/network" [queryParams]="{ apply: 1 }" (click)="close()">apply for membership</a>.</p> }
+          @if (state() === 'error') { <p class="dl-err">We could not check your membership right now. Please try again.</p> }
+          <button type="submit" class="pg-btn dl-submit" [disabled]="f.invalid || state() === 'checking'">{{ state() === 'checking' ? 'Checking…' : 'Verify and download' }}</button>
+        </form>
+      }
+    </div>
+  </div>
+}
+
+@if (reading(); as r) {
+  <app-pdf-reader [title]="r.title" [url]="r.pdfUrl" (closed)="reading.set(null)" />
 }

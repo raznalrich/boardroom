@@ -25,6 +25,11 @@
 
       <!-- Actions (Right) -->
       <div class="masthead-actions">
+        <nav class="region-links" aria-label="Magazine regions">
+          @for (r of regions; track r) {
+            <a [routerLink]="'/e-magazine'" [queryParams]="{ region: r }" (click)="isMobileMenuOpen = false">{{ r }}</a>
+          }
+        </nav>
         <a class="btn-gold" routerLink="/network" (click)="isMobileMenuOpen = false">MEMBERSHIP</a>
       </div>
     </div>

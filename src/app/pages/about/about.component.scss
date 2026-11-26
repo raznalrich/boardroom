@@ -27,3 +27,22 @@ a.pg-btn { text-decoration: none; text-align: center; }
 @media (max-width: 600px) { .story p { font-size: 16px; } .cta h2 { font-size: 22px; } }
 
 .pillar .ico { filter: sepia(1) saturate(2.2) hue-rotate(-12deg) brightness(1.15); }
+
+.about-hero { padding-bottom: 56px; }
+.about-hero h1 { font-size: clamp(32px, 5vw, 58px); line-height: 1.08; max-width: 860px;
+  em { font-style: italic; padding-right: .12em; background: linear-gradient(180deg, #F6E3B0, #C9A25E 70%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; } }
+.about-hero .lead { max-width: 760px; font-size: 18px; line-height: 1.8; }
+.stats { display: flex; flex-wrap: wrap; gap: 36px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--btb-ivory-border);
+  div { display: flex; flex-direction: column; gap: 2px; }
+  strong { font-size: 34px; font-weight: 800; color: var(--btb-gold); } span { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--btb-text-muted); } }
+
+.founders { background: radial-gradient(ellipse at 50% 0%, rgba(201,162,94,.14), transparent 60%); }
+.founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 28px; }
+.founder { text-align: center; padding: 28px 22px 26px; background: var(--btb-ivory-light); border: 1px solid var(--btb-ivory-border); border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.45); transition: transform .3s, border-color .3s;
+  &:hover { transform: translateY(-6px); border-color: var(--btb-gold); }
+  h3 { margin: 14px 0 6px; font-size: 22px; }
+  .f-role { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: #121212; background: linear-gradient(90deg, #E6C98A, #C9A25E); padding: 5px 12px; border-radius: 3px; }
+  p { margin: 14px 0 0; font-size: 14.5px; line-height: 1.7; font-style: italic; color: #E5DCCB; } }
+.f-photo { position: relative; height: 280px; display: flex; justify-content: center; align-items: flex-end; background: radial-gradient(circle at 50% 40%, rgba(201,162,94,.2), transparent 65%);
+  img { position: relative; z-index: 1; height: 100%; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(0,0,0,.6)); -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent); mask-image: linear-gradient(to bottom, #000 85%, transparent); } }
+.f-floor { position: absolute; bottom: -4px; left: 50%; width: 80%; height: 28px; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(201,162,94,.5), rgba(0,0,0,.7) 50%, transparent 72%); filter: blur(8px); }

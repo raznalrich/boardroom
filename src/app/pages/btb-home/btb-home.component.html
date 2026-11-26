@@ -122,6 +122,18 @@
   <!-- WOMEN EMPOWERMENT: three parts (1 large + 2 + 2), rotating with a fade-and-slide transition -->
   <app-women-empowerment />
 
+  <!-- SECTION: KNOW MORE ABOUT THE BOARDROOM -->
+  <section class="know-more">
+    <div class="km-inner">
+      <div>
+        <span class="km-eyebrow">About us</span>
+        <h2>Want to know more about The Boardroom?</h2>
+        <p>Meet the founders and the story behind the platform where leaders meet, learn and lead.</p>
+      </div>
+      <a routerLink="/about-us" class="km-btn">Know more →</a>
+    </div>
+  </section>
+
   <!-- SECTION: LATEST INSIGHTS -->
   <section class="home-insights-section">
     <div class="container">
@@ -304,7 +316,7 @@
           <h3 class="showcase-subtitle">Issue Showcase <a routerLink="/e-magazine" class="showcase-all">View all →</a></h3>
           <div class="magazine-covers-grid">
             @for (issue of homeMagazines; track issue.id) {
-            <a class="magazine-item" [href]="issue.pdfUrl" target="_blank" rel="noopener" [attr.aria-label]="'Read ' + issue.title">
+            <a class="magazine-item" href="#" (click)="readIssue($event, issue)" [attr.aria-label]="'Read ' + issue.title">
               <div class="magazine-cover-card">
                 @if (issue.cover) {
                   <img [src]="issue.cover" [alt]="issue.title" class="cover-bg-img" />
@@ -387,7 +399,7 @@
         <ul class="git-points">
           <li><span>✓</span> Weekly executive intelligence</li>
           <li><span>✓</span> Invitations to private roundtables</li>
-          <li><span>✓</span> Priority access to the E-Magazine</li>
+          <li><span>✓</span> Priority access to the Magazine</li>
         </ul>
       </div>
 
@@ -428,3 +440,6 @@
 
 </main>
 
+@if (reading) {
+  <app-pdf-reader [title]="reading.title" [url]="reading.pdfUrl" (closed)="reading = null" />
+}

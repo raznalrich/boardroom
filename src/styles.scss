@@ -56,3 +56,7 @@ body.admin-area { background: #F3EEE6; color: #121212; }
 
 /* Grids that use minmax(260px+) need a floor of 100% on very narrow screens */
 .pg-container { min-width: 0; }
+
+/* public forms: typed text is white on the dark fields (the admin keeps its own light inputs) */
+body:not(.admin-area) input, body:not(.admin-area) textarea { color: #fff; }
+body:not(.admin-area) input::placeholder, body:not(.admin-area) textarea::placeholder { color: #8C8379; }

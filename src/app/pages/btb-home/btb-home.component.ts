@@ -13,6 +13,7 @@ import { SubscribersService } from '../../core/data/subscribers.service';
 import { InsightsService, insightImage } from '../../core/data/insights.service';
 import { AppEvent, EventsService, eventDay, eventMonth, eventYear, eventStart } from '../../core/data/events.service';
 import { ExecShowcaseComponent } from '../../shared/exec-showcase/exec-showcase.component';
+import { PdfReaderComponent } from '../../shared/pdf-reader/pdf-reader.component';
 import { WomenEmpowermentComponent } from '../../shared/women-empowerment/women-empowerment.component';
 import { EventCountdownComponent } from '../../shared/event-countdown/event-countdown.component';
 import { EventDetailModalComponent } from '../../shared/event-detail-modal/event-detail-modal.component';
@@ -39,7 +40,7 @@ export interface PowerListGroup {
 @Component({
   selector: 'app-btb-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, EventCountdownComponent, EventDetailModalComponent, WomenEmpowermentComponent, ExecShowcaseComponent],
+  imports: [CommonModule, RouterLink, FormsModule, EventCountdownComponent, EventDetailModalComponent, WomenEmpowermentComponent, ExecShowcaseComponent, PdfReaderComponent],
   templateUrl: './btb-home.component.html',
   styleUrls: ['./btb-home.component.scss']
 })
@@ -316,6 +317,8 @@ export class BtbHomeComponent implements OnInit, OnDestroy {
 
   private magazinesSvc = inject(MagazinesService);
   /** The three newest enabled magazines (uploaded in the admin console, stored on Cloudflare R2). */
+  reading: { title: string; pdfUrl: string } | null = null;
+  readIssue(e: Event, issue: { title: string; pdfUrl: string }): void { e.preventDefault(); this.reading = issue; }
   get homeMagazines() {
     return this.magazinesSvc.active().slice(0, 3);
   }

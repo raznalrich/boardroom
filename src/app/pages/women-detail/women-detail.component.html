@@ -1,0 +1,50 @@
+@if (woman(); as w) {
+  <section class="wd-top">
+    <div class="pg-container">
+      <a routerLink="/women-empowerment" class="back">← All women leaders</a>
+      <div class="wd-grid">
+        <div class="wd-portrait">
+          <span class="wd-initials">{{ initials(w.name) }}</span>
+          @if (w.image) { <div class="wd-img" [style.background-image]="'url(' + w.image + ')'"></div> }
+        </div>
+        <div class="wd-intro">
+          <span class="eyebrow">Women empowerment</span>
+          <h1>{{ w.name }}</h1>
+          <div class="wd-role">{{ w.role }}@if (w.organisation) { <span>, {{ w.organisation }}</span> }</div>
+          @if (w.quote) { <blockquote>“{{ w.quote }}”</blockquote> }
+          <dl class="wd-facts">
+            <div><dt>Role</dt><dd>{{ w.role }}</dd></div>
+            @if (w.organisation) { <div><dt>Organisation</dt><dd>{{ w.organisation }}</dd></div> }
+          </dl>
+          <div class="wd-actions">
+            <a routerLink="/events" class="pg-btn">View events</a>
+            <a routerLink="/network" class="pg-btn ghost">Join the network</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  @if (others().length) {
+    <section class="pg-section">
+      <div class="pg-container">
+        <div class="pg-title-row"><h2>More women leaders</h2><span class="rule"></span></div>
+        <div class="wd-more">
+          @for (o of others(); track o.id) {
+            <a class="wd-card" [routerLink]="['/women-empowerment', o.id]">
+              <div class="wd-thumb"><span>{{ initials(o.name) }}</span>@if (o.image) { <div class="wd-img" [style.background-image]="'url(' + o.image + ')'"></div> }</div>
+              <h3>{{ o.name }}</h3>
+              <div class="wd-r">{{ o.role }}</div>
+              <span class="wd-go">View profile →</span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  }
+} @else if (loaded()) {
+  <section class="pg-section"><div class="pg-container">
+    <h1>Profile not found</h1>
+    <p><a routerLink="/women-empowerment" class="pg-btn">← All women leaders</a></p>
+  </div></section>
+}

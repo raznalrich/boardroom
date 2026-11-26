@@ -4,11 +4,13 @@ import { Router } from '@angular/router';
 import { AdminArticlesComponent } from '../admin-articles/admin-articles.component';
 import { AdminProfilesComponent } from '../admin-profiles/admin-profiles.component';
 import { AdminEventsComponent } from '../admin-events/admin-events.component';
+import { AdminMembershipComponent } from '../admin-membership/admin-membership.component';
 import { AdminSubscribersComponent } from '../admin-subscribers/admin-subscribers.component';
 import { AdminInsightsComponent } from '../admin-insights/admin-insights.component';
 import { AdminBannersComponent } from '../admin-banners/admin-banners.component';
 import { AdminMagazinesComponent } from '../admin-magazines/admin-magazines.component';
 import { AdminSettingsComponent } from '../admin-settings/admin-settings.component';
+import { AdminSpotlightComponent } from '../admin-spotlight/admin-spotlight.component';
 import { AdminWomenComponent } from '../admin-women/admin-women.component';
 import { AdminAuthService } from '../../../core/auth/admin-auth.service';
 import { ArticlesService } from '../../../core/data/articles.service';
@@ -20,13 +22,13 @@ interface ActivityItem { text: string; when: Date; }
 
 const SECTION_NAMES: Record<string, string> = {
   'home': 'Home', 'insights': 'Insights', 'articles': 'Articles', 'leadership-profiles': 'Leadership',
-  'network': 'The Network', 'events': 'Events', 'e-magazine': 'E-Magazine', 'submit-blog': 'Submit a blog', 'about-us': 'About Us', 'contact-us': 'Contact Us', 'privacy-policy': 'Privacy Policy', 'refund-and-cancellation': 'Refunds', 'submit-magazine': 'Submit a magazine'
+  'network': 'The Network', 'events': 'Events', 'e-magazine': 'Magazine', 'submit-blog': 'Submit a blog', 'about-us': 'About Us', 'contact-us': 'Contact Us', 'privacy-policy': 'Privacy Policy', 'refund-and-cancellation': 'Refunds', 'submit-magazine': 'Submit a magazine'
 };
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, AdminSettingsComponent, AdminWomenComponent, DatePipe, DecimalPipe],
+  imports: [AdminArticlesComponent, AdminProfilesComponent, AdminEventsComponent, AdminSubscribersComponent, AdminMembershipComponent, AdminInsightsComponent, AdminBannersComponent, AdminMagazinesComponent, AdminSettingsComponent, AdminWomenComponent, AdminSpotlightComponent, DatePipe, DecimalPipe],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss']
 })
@@ -38,7 +40,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   private insightsSvc = inject(InsightsService);
   private leadersSvc = inject(LeadersService);
 
-  nav = ['Dashboard', 'Banners', 'Articles', 'Insights', 'Profiles', 'Women', 'Events', 'Subscribers', 'E-Magazine', 'Settings'];
+  nav = ['Dashboard', 'Spotlight', 'Banners', 'Articles', 'Insights', 'Profiles', 'Women', 'Events', 'Subscribers', 'Membership', 'Magazine', 'Settings'];
   activeNav = signal('Dashboard');
   sidebarOpen = signal(false);
 

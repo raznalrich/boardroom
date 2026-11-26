@@ -1,8 +1,13 @@
 <section class="pg-hero about-hero">
   <div class="pg-container">
     <span class="eyebrow">About us</span>
-    <h1>Executive intelligence for people who lead</h1>
-    <p>{{ site.name }} is a media and community platform for business leaders in the Gulf, India and beyond. We bring together news, analysis, profiles, events and a private network, so decision-makers can see further and connect faster.</p>
+    <h1>Where leaders meet, learn and <em>lead</em></h1>
+    <p class="lead">{{ site.name }} is a media and community platform for business leaders in the Gulf, India and beyond. We bring together news, analysis, profiles, events and a private network, so decision-makers can see further and connect faster.</p>
+    <div class="stats">
+      <div><strong>6+</strong><span>Years of insight</span></div>
+      <div><strong>500+</strong><span>Leaders profiled</span></div>
+      <div><strong>40+</strong><span>Events hosted</span></div>
+    </div>
   </div>
 </section>
 
@@ -17,6 +22,22 @@
       <h3>Our mission</h3>
       <p>To give leaders the intelligence, perspective and relationships they need to make better decisions.</p>
     </aside>
+  </div>
+</section>
+
+<section class="pg-section founders">
+  <div class="pg-container">
+    <div class="pg-title-row"><h2>Meet our founders</h2><span class="rule"></span></div>
+    <div class="founder-grid">
+      @for (f of founders; track f.name) {
+        <article class="founder">
+          <div class="f-photo"><img [src]="f.img" [alt]="f.name" /><div class="f-floor"></div></div>
+          <h3>{{ f.name }}</h3>
+          <span class="f-role">{{ f.role }}</span>
+          <p>{{ f.bio }}</p>
+        </article>
+      }
+    </div>
   </div>
 </section>
 

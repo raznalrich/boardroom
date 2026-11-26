@@ -20,6 +20,8 @@ import { InsightDetailComponent } from './pages/insight-detail/insight-detail.co
 
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 
+import { WomenComponent } from './pages/women/women.component';
+import { WomenDetailComponent } from './pages/women-detail/women-detail.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LegalComponent } from './pages/legal/legal.component';
@@ -33,8 +35,10 @@ export const routes: Routes = [
   { path: 'articles/:id', component: ArticleDetailComponent, title: 'Article | BoardRoom' },
   { path: 'articles', component: ArticlesComponent, title: 'Articles | BoardRoom' },
   { path: 'network', component: NetworkComponent, title: 'The Network | BoardRoom' },
+  { path: 'women-empowerment', component: WomenComponent, title: 'Women Empowerment | BoardRoom' },
+  { path: 'women-empowerment/:id', component: WomenDetailComponent, title: 'Women Leader | BoardRoom' },
   { path: 'events', component: EventsComponent, title: 'Events | BoardRoom' },
-  { path: 'e-magazine', component: EMagazineComponent, title: 'The E-Magazine | BoardRoom' },
+  { path: 'e-magazine', component: EMagazineComponent, title: 'The Magazine | BoardRoom' },
   { path: 'submit-blog', component: SubmitBlogComponent, title: 'Submit a Blog | BoardRoom' },
   { path: 'submit-magazine', component: SubmitMagazineComponent, title: 'Send Your Magazine | BoardRoom' },
   { path: 'about-us', component: AboutComponent, title: 'About Us | BoardRoom' },

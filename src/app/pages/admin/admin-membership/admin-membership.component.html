@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="head">
+    <h3>Membership applications <span class="count">{{ all().length }}</span></h3>
+    <div class="tools">
+      <input type="search" placeholder="Search name, email or phone…" [value]="query()" (input)="query.set($any($event.target).value)" />
+      <button type="button" class="btn" (click)="refresh()">Refresh</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button [class.on]="filter() === 'pending'" (click)="filter.set('pending')">Pending <b>{{ pending().length }}</b></button>
+    <button [class.on]="filter() === 'approved'" (click)="filter.set('approved')">Approved <b>{{ approved().length }}</b></button>
+    <button [class.on]="filter() === 'declined'" (click)="filter.set('declined')">Declined <b>{{ declined().length }}</b></button>
+    <button [class.on]="filter() === 'all'" (click)="filter.set('all')">All <b>{{ all().length }}</b></button>
+  </div>
+
+  @if (error()) {
+    <div class="errbox">Could not load — {{ error() }}<br /><small>Run <code>supabase/membership.sql</code> in the Supabase SQL Editor, then press Refresh.</small></div>
+  }
+  @if (message()) { <div class="msg">{{ message() }}</div> }
+  @if (loading()) { <p class="loading">Loading…</p> }
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th class="n">#</th><th>Name</th><th>Email</th><th>Phone</th><th>Applied</th><th>Status</th><th>is member</th><th>Decision</th></tr>
+      </thead>
+      <tbody>
+        @for (a of filtered(); track a.id; let i = $index) {
+          <tr>
+            <td class="n">{{ i + 1 }}</td>
+            <td><div class="person"><span class="avatar">{{ initials(a.name) }}</span><strong>{{ a.name }}</strong></div></td>
+            <td><a [href]="'mailto:' + a.email">{{ a.email }}</a></td>
+            <td><a [href]="'tel:' + a.phone.replaceAll(' ', '')">{{ a.phone }}</a></td>
+            <td>{{ a.date | date: 'medium' }}</td>
+            <td><span class="st" [class.ok]="a.status === 'approved'" [class.no]="a.status === 'rejected'">{{ a.status === 'rejected' ? 'Declined' : a.status === 'approved' ? 'Approved' : 'Pending' }}</span></td>
+            <td><strong>{{ a.isMember ? 'true' : 'false' }}</strong></td>
+            <td class="acts">
+              @if (!a.isMember) {
+                <button type="button" class="btn ok" [disabled]="busy() === a.id" (click)="decide(a, true)">Approve</button>
+              }
+              @if (a.status !== 'rejected') {
+                <button type="button" class="btn no" [disabled]="busy() === a.id" (click)="decide(a, false)">{{ a.isMember ? 'Revoke' : 'Decline' }}</button>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="8" class="empty">No applications in this list.</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

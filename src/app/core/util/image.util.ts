@@ -1,7 +1,7 @@
 import { UploadedFile, uploadToR2 } from '../supabase/r2-upload';
 
 /** Resize an image file to a max width and re-encode as JPEG. */
-export function downscaleToBlob(file: File, maxW = 1000, quality = 0.82): Promise<Blob> {
+export function downscaleToBlob(file: File, maxW = 1000, quality = 0.82, png = false): Promise<Blob> {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file);
     const img = new Image();
@@ -12,7 +12,7 @@ export function downscaleToBlob(file: File, maxW = 1000, quality = 0.82): Promis
       canvas.height = Math.round(img.height * scale);
       canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
       URL.revokeObjectURL(url);
-      canvas.toBlob(b => (b ? resolve(b) : reject(new Error('Could not process image'))), 'image/jpeg', quality);
+      canvas.toBlob(b => (b ? resolve(b) : reject(new Error('Could not process image'))), png ? 'image/png' : 'image/jpeg', quality);
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
@@ -26,7 +26,9 @@ export function downscaleToBlob(file: File, maxW = 1000, quality = 0.82): Promis
 export async function uploadImage(
   file: File,
   folder: 'articles' | 'insights' | 'profiles' | 'magazines',
-  maxW = 1000
+  maxW = 1000,
+  /** keep transparency (PNG) instead of flattening to JPEG */
+  png = false
 ): Promise<UploadedFile> {
   if (!file.type.startsWith('image/')) {
     throw new Error('Please choose an image file (JPG, PNG, WebP).');
@@ -34,8 +36,8 @@ export async function uploadImage(
   if (file.size > 8 * 1024 * 1024) {
     throw new Error('Image is too large (max 8 MB).');
   }
-  const blob = await downscaleToBlob(file, maxW);
-  return uploadToR2(blob, folder, 'jpg');
+  const blob = await downscaleToBlob(file, maxW, 0.82, png);
+  return uploadToR2(blob, folder, png ? 'png' : 'jpg');
 }
 
 /** Validates a PDF and uploads it to Cloudflare R2. Throws an Error with a user-friendly message. */

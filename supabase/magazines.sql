@@ -32,3 +32,9 @@ begin
       for each statement execute function public.notify_dashboard();
   end if;
 end $$;
+
+
+-- ---------- Regions (America, Africa, Europe, Middle East, Asia) -------
+alter table public.magazines add column if not exists region text not null default 'Middle East';
+alter table public.magazines drop constraint if exists magazines_region_check;
+alter table public.magazines add constraint magazines_region_check check (region in ('America','Africa','Europe','Middle East','Asia'));

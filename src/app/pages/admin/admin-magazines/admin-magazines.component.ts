@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Magazine, MagazinesService } from '../../../core/data/magazines.service';
+import { MAGAZINE_REGIONS, Magazine, MagazineRegion, MagazinesService } from '../../../core/data/magazines.service';
 import { uploadImage, uploadPdf } from '../../../core/util/image.util';
 
 @Component({
@@ -14,7 +14,12 @@ import { uploadImage, uploadPdf } from '../../../core/util/image.util';
 export class AdminMagazinesComponent {
   private svc = inject(MagazinesService);
 
-  readonly magazines = this.svc.all;
+  readonly regions = MAGAZINE_REGIONS;
+  /** List filter: '' = every region */
+  regionFilter = signal('');
+  private all = this.svc.all;
+  readonly magazines = computed(() => this.all().filter(m => !this.regionFilter() || m.region === this.regionFilter()));
+  countFor(r: string): number { return this.all().filter(m => m.region === r).length; }
 
   /** 'list' shows the uploaded magazines (default); 'form' shows the add/edit page. */
   view = signal<'list' | 'form'>('list');
@@ -32,7 +37,7 @@ export class AdminMagazinesComponent {
 
   private emptyModel() {
     return {
-      title: '', description: '', publishedOn: new Date().toISOString().slice(0, 10),
+      region: 'Middle East' as MagazineRegion, title: '', description: '', publishedOn: new Date().toISOString().slice(0, 10),
       cover: '', coverKey: null as string | null, pdfUrl: '', pdfKey: null as string | null, active: true
     };
   }
@@ -113,7 +118,7 @@ export class AdminMagazinesComponent {
     this.view.set('form');
     this.editingId.set(m.id);
     this.model = {
-      title: m.title, description: m.description, publishedOn: m.publishedOn,
+      region: m.region, title: m.title, description: m.description, publishedOn: m.publishedOn,
       cover: m.cover, coverKey: m.coverKey ?? null, pdfUrl: m.pdfUrl, pdfKey: m.pdfKey ?? null, active: m.active
     };
     this.pdfName.set('');

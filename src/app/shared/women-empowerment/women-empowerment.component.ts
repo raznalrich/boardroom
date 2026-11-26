@@ -1,4 +1,4 @@
-import { Component, OnDestroy, computed, effect, inject, signal, untracked } from '@angular/core';
+import { Component, OnDestroy, computed, input, effect, inject, signal, untracked } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Woman, WomenService } from '../../core/data/women.service';
@@ -24,7 +24,21 @@ interface Layer { key: string; w: Woman; out: boolean; }
 })
 export class WomenEmpowermentComponent implements OnDestroy {
   private svc = inject(WomenService);
+  /** The "Meet more leaders" link is hidden on the Women Empowerment page itself. */
+  showLink = input(true);
+  /** Page mode: every profile in a fixed grid (no rotation, no transitions). */
+  static = input(false);
 
+  /** Page mode: profiles in blocks of five. Even blocks put the big card first, odd blocks put it last (right side). */
+  blocks = computed(() => {
+    const pool = this.svc.shown();
+    const out: { bigRight: boolean; big: Woman; rest: Woman[] }[] = [];
+    for (let i = 0; i < pool.length; i += 5) {
+      const chunk = pool.slice(i, i + 5);
+      out.push({ bigRight: (i / 5) % 2 === 1, big: chunk[0], rest: chunk.slice(1) });
+    }
+    return out;
+  });
   /** 1 large + 2 + 2 */
   private readonly SLOTS = 5;
   private readonly INTERVAL_MS = 3200;
@@ -77,7 +91,7 @@ export class WomenEmpowermentComponent implements OnDestroy {
   }
 
   private tick(): void {
-    if (this.paused) return;
+    if (this.paused || this.static()) return;
     const pool = this.svc.shown();
     const slots = this.slots();
     if (pool.length < 2 || !slots.length) return;

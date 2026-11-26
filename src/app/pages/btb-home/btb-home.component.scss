@@ -2883,3 +2883,10 @@ article.he-card { cursor: default; }
 /* pink infinity artwork -> gold */
 .infinity-bg-watermark, .infinity-pill { filter: sepia(1) saturate(2.4) hue-rotate(-12deg) brightness(.95); }
 .join-icon { filter: sepia(1) saturate(2.2) hue-rotate(-12deg) brightness(1.15); }
+
+.know-more { padding: 34px 24px; background: linear-gradient(90deg, #15110C 0%, #231A0E 55%, #120E09 100%); border-top: 1px solid rgba(201,162,94,.4); border-bottom: 1px solid rgba(201,162,94,.4);
+  .km-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .km-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--btb-gold); }
+  h2 { margin: 6px 0 6px; font-size: 26px; color: #F4EEE2; } p { margin: 0; max-width: 560px; font-size: 14.5px; line-height: 1.6; color: var(--btb-text-muted); }
+  .km-btn { padding: 13px 28px; border-radius: 4px; background: linear-gradient(135deg, #C9A25E, #A98239); color: #121212; font-weight: 800; font-size: 13px; letter-spacing: .8px; text-transform: uppercase; text-decoration: none; white-space: nowrap; &:hover { filter: brightness(1.1); } } }
+@media (max-width: 600px) { .know-more { padding: 28px 16px; .km-btn { width: 100%; text-align: center; box-sizing: border-box; } h2 { font-size: 22px; } } }

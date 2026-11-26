@@ -1,14 +1,26 @@
 <section class="we-section" (mouseenter)="paused = true" (mouseleave)="paused = false">
   <div class="we-container">
+    @if (!static()) {
     <div class="we-head">
       <div>
         <span class="we-eyebrow">WOMEN EMPOWERMENT</span>
         <h2 class="we-title">Celebrating women who lead</h2>
         <p class="we-sub">The executives, founders and changemakers shaping boardrooms across the region.</p>
       </div>
-      <a routerLink="/leadership-profiles" class="we-all">Meet more leaders →</a>
+      @if (showLink()) { <a routerLink="/women-empowerment" class="we-all">Meet more leaders →</a> }
     </div>
+    }
 
+    @if (static()) {
+      @for (b of blocks(); track $index) {
+        <div class="we-grid we-block" [class.big-right]="b.bigRight" [class.few]="b.rest.length < 3">
+          <div class="we-cell we-bigcell"><ng-container *ngTemplateOutlet="big; context: { $implicit: b.big }" /></div>
+          @for (w of b.rest; track w.id) {
+            <div class="we-cell"><ng-container *ngTemplateOutlet="small; context: { $implicit: w }" /></div>
+          }
+        </div>
+      }
+    } @else {
     <div class="we-grid">
       <!-- Part 1: one large profile -->
       <div class="we-part we-one">
@@ -47,6 +59,7 @@
         }
       </div>
     </div>
+    }
   </div>
 </section>
 
@@ -63,6 +76,7 @@
       <h3>{{ w.name }}</h3>
       <div class="we-role">{{ w.role }}@if (w.organisation) { <span> · {{ w.organisation }}</span> }</div>
       @if (w.quote) { <p class="we-quote">“{{ w.quote }}”</p> }
+      <a class="we-view" [routerLink]="['/women-empowerment', w.id]">View profile →</a>
     </div>
   </article>
 </ng-template>
@@ -79,6 +93,7 @@
       <div class="we-role">{{ w.role }}</div>
       @if (w.organisation) { <div class="we-org">{{ w.organisation }}</div> }
       @if (w.quote) { <p class="we-quote">“{{ w.quote }}”</p> }
+      <a class="we-view" [routerLink]="['/women-empowerment', w.id]">View profile →</a>
     </div>
   </article>
 </ng-template>

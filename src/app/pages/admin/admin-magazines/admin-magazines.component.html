@@ -10,6 +10,11 @@
             <input id="title" name="title" [(ngModel)]="model.title" required minlength="3" maxlength="140" placeholder="e.g. The Power Issue" #t="ngModel" />
             @if (t.invalid && (t.touched || f.submitted)) { <span class="e">Enter the magazine title.</span> }
 
+            <label for="region">Region</label>
+            <select id="region" name="region" [(ngModel)]="model.region" required>
+              @for (r of regions; track r) { <option [value]="r">{{ r }}</option> }
+            </select>
+
             <label for="date">Published date</label>
             <input id="date" name="date" type="date" [(ngModel)]="model.publishedOn" required #d="ngModel" />
             @if (d.invalid && (d.touched || f.submitted)) { <span class="e">Pick the published date.</span> }
@@ -79,6 +84,13 @@
         <div class="msg" [class.ok]="m.type === 'ok'" [class.err]="m.type === 'err'" role="status">{{ m.text }}</div>
       }
 
+      <div class="region-filter">
+        <button type="button" [class.on]="!regionFilter()" (click)="regionFilter.set('')">All</button>
+        @for (r of regions; track r) {
+          <button type="button" [class.on]="regionFilter() === r" (click)="regionFilter.set(r)">{{ r }} <b>{{ countFor(r) }}</b></button>
+        }
+      </div>
+
       <div class="list">
         @for (m of magazines(); track m.id) {
           <article class="row" [class.off]="!m.active">
@@ -87,6 +99,7 @@
             </div>
             <div class="info">
               <div class="top">
+                <span class="tag region">{{ m.region }}</span>
                 <span class="tag" [class.off]="!m.active">{{ m.active ? 'Shown' : 'Hidden' }}</span>
               </div>
               <h4>{{ m.title }}</h4>

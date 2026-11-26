@@ -125,7 +125,7 @@ export const LEGAL_DOCS: Record<'privacy' | 'refund', LegalDoc> = {
         ]
       },
       {
-        id: 'subscriptions', heading: '2. E-Magazine subscriptions',
+        id: 'subscriptions', heading: '2. Magazine subscriptions',
         bullets: [
           'You can cancel a subscription at any time. Cancellation stops future renewals and takes effect at the end of the period you have already paid for.',
           'If you cancel within 7 days of your first purchase and have not downloaded more than one issue, we will refund the subscription fee in full.',

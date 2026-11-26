@@ -1,3 +1,4 @@
+import { MAGAZINE_REGIONS } from '../../data/magazines.service';
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, NavigationEnd, ActivatedRoute } from '@angular/router';
@@ -79,13 +80,15 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
     return `GLOBAL EDITION • ${date}`;
   });
 
+  readonly regions = MAGAZINE_REGIONS;
   @Input() navItems: NavItem[] = [
     { label: 'INSIGHTS', route: '/insights' },
     { label: 'ARTICLES', route: '/articles' },
     { label: 'LEADERSHIP & CEO PROFILES', route: '/leadership-profiles' },
     { label: 'THE NETWORK', route: '/network' },
+    { label: 'WOMEN EMPOWERMENT', route: '/women-empowerment' },
     { label: 'EVENTS', route: '/events' },
-    { label: 'THE E-MAGAZINE', route: '/e-magazine' }
+    { label: 'THE MAGAZINE', route: '/e-magazine' }
   ];
 
   @Output() searchSubmit = new EventEmitter<string>();

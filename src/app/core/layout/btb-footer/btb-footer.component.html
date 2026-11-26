@@ -55,14 +55,15 @@
         </ul>
       </div>
 
-      <!-- Col 6: Stay Ahead of the Curve (Newsletter) -->
-      <div class="footer-col newsletter-col">
-        <h4 class="footer-col-heading white">Stay Ahead of the Curve</h4>
-        <p class="newsletter-sub">Get exclusive executive briefs directly to your inbox.</p>
-        <div class="newsletter-form">
-          <input type="email" placeholder="Enter email address" class="newsletter-input" />
-          <button class="btn-gold-full">Subscribe</button>
-        </div>
+      <!-- Col 6: Location & contact -->
+      <div class="footer-col contact-col">
+        <h4 class="footer-col-heading white">Find us</h4>
+        <ul class="contact-list">
+          <li><span class="ci">📍</span><span>{{ site.address }}</span></li>
+          <li><span class="ci">✉️</span><a [href]="'mailto:' + site.email">{{ site.email }}</a></li>
+          <li><span class="ci">📞</span><a [href]="'tel:' + site.phone.replaceAll(' ', '')">{{ site.phone }}</a></li>
+        </ul>
+        <a routerLink="/about-us" class="btn-gold-full about-btn">About us</a>
         <div class="footer-social-icons">
           <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Facebook">f</a>
           <a href="#" class="social-icon" (click)="$event.preventDefault()" aria-label="Instagram">ig</a>

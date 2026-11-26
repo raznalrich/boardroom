@@ -2,7 +2,12 @@ import { Injectable, computed, signal } from '@angular/core';
 import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
+/** Regions magazines are filed under, in display order. */
+export const MAGAZINE_REGIONS = ['America', 'Africa', 'Europe', 'Middle East', 'Asia'] as const;
+export type MagazineRegion = (typeof MAGAZINE_REGIONS)[number];
+
 export interface Magazine {
+  region: MagazineRegion;
   id: string;
   title: string;
   description: string;
@@ -52,7 +57,8 @@ export class MagazinesService {
       pdf_url: m.pdfUrl,
       pdf_key: m.pdfKey ?? null,
       published_on: m.publishedOn,
-      is_active: m.active
+      is_active: m.active,
+      region: m.region
     };
     const { error } = m.id
       ? await supabase.from('magazines').update(row).eq('id', m.id)
@@ -72,6 +78,7 @@ export class MagazinesService {
 
 function toMagazine(r: any): Magazine {
   return {
+    region: (MAGAZINE_REGIONS as readonly string[]).includes(r.region) ? r.region : 'Middle East',
     id: r.id, title: r.title, description: r.description ?? '', cover: r.cover_image_url ?? '', coverKey: r.cover_image_key,
     pdfUrl: r.pdf_url, pdfKey: r.pdf_key, publishedOn: r.published_on, active: r.is_active !== false
   };

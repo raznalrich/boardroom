@@ -20,3 +20,24 @@ a.cover { text-decoration: none; background-size: cover; background-position: ce
 a.issue { text-decoration: none; color: inherit; }
 .thumb { background-size: cover; background-position: center; }
 a.actions, .actions a { text-decoration: none; }
+
+button.pg-btn { cursor: pointer; font-family: inherit; }
+.dl-backdrop { position: fixed; inset: 0; z-index: 3000; background: rgba(0, 0, 0, .65); display: grid; place-items: center; padding: 20px; }
+.dl-modal { position: relative; width: 100%; max-width: 440px; background: #17130F; border: 1px solid rgba(201, 162, 94, .35); border-top: 4px solid #C9A25E; border-radius: 12px; padding: 32px 30px 28px; color: #F4EEE2; box-shadow: 0 30px 70px rgba(0, 0, 0, .5);
+  h2 { margin: 0 0 8px; font-size: 22px; } }
+.dl-sub { margin: 0 0 14px; font-size: 14px; line-height: 1.6; color: #B9AE9B; }
+.dl-x { position: absolute; top: 10px; right: 14px; width: 34px; height: 34px; border: 0; background: none; font-size: 28px; line-height: 1; color: #B9AE9B; cursor: pointer; &:hover { color: #D9B35F; } }
+.dl-modal form { display: flex; flex-direction: column; gap: 6px; }
+.dl-modal label { font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #B9AE9B; }
+.dl-modal input { width: 100%; padding: 12px 14px; border: 1px solid rgba(201, 162, 94, .28); border-radius: 6px; background: #1F1A15; color: #fff; font-family: inherit; font-size: 14px; outline: none;
+  &:focus { border-color: #C9A25E; box-shadow: 0 0 0 3px rgba(201, 162, 94, .22); } }
+.dl-err { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: #F87171; a { color: #E6C98A; } }
+.dl-submit { margin-top: 12px; width: 100%; &:disabled { opacity: .55; cursor: default; } }
+.dl-done { text-align: center; p { color: #B9AE9B; line-height: 1.6; margin: 0 0 18px; } }
+.dl-tick { width: 62px; height: 62px; margin: 0 auto 14px; border-radius: 50%; background: rgba(22, 163, 74, .16); color: #4ADE80; display: grid; place-items: center; font-size: 28px; font-weight: 700; }
+
+.region-bar { background: #0B0A09; border-bottom: 1px solid rgba(201, 162, 94, .28); }
+.region-tabs { display: flex; flex-wrap: nowrap; gap: 6px; overflow-x: auto; padding-top: 14px; padding-bottom: 14px; scrollbar-width: none;
+  a { flex: 0 0 auto; padding: 9px 20px; border: 1px solid rgba(201, 162, 94, .4); border-radius: 22px; font-size: 12.5px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; text-decoration: none; color: #E5DCCB; transition: all .2s; white-space: nowrap;
+    &:hover { border-color: #C9A25E; color: #E6C98A; }
+    &.on { background: #C9A25E; border-color: #C9A25E; color: #121212; } } }

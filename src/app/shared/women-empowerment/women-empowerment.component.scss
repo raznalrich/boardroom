@@ -93,7 +93,31 @@
   .we-org { font-size: 12.5px; color: var(--we-muted); }
   .we-quote { margin-top: 8px; font-size: 13px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden; } }
 
+/* "View profile" button on every card */
+.we-view { align-self: flex-start; margin-top: 12px; padding: 8px 16px; border: 1px solid var(--we-gold); border-radius: 3px; color: var(--we-gold-bright); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; background: rgba(14, 12, 10, .55); transition: all .25s;
+  &:hover { background: var(--we-gold); color: #0E0C0A; } }
+.we-small .we-view { margin-top: 8px; padding: 6px 12px; }
+.we-small .we-quote { -webkit-line-clamp: 2; line-clamp: 2; }
+.we-big .we-quote { -webkit-line-clamp: 2; line-clamp: 2; }
+
+/* ---------- page mode: every profile, fixed grid (big card first, then last, alternating) ---------- */
+.we-block { margin-bottom: 24px; grid-template-rows: 1fr 1fr; height: 560px; &:last-child { margin-bottom: 0; } }
+.we-cell { min-width: 0; min-height: 0; }
+.we-bigcell { grid-column: 1; grid-row: 1 / 3; }
+.we-block.big-right { grid-template-columns: 1fr 1fr 1.15fr; .we-bigcell { grid-column: 3; } }
+
+/* last, incomplete block: the remaining cards use the full height instead of leaving a gap */
+.we-block.few .we-cell:not(.we-bigcell) { grid-row: 1 / 3; }
+.we-big .we-view { margin-top: 16px; }
+
 /* ---------- smaller screens ---------- */
+@media (max-width: 1100px) {
+  .we-block.few .we-cell:not(.we-bigcell) { grid-row: auto; }
+  .we-block, .we-block.big-right { grid-template-columns: 1fr 1fr; grid-template-rows: auto; height: auto; grid-auto-rows: 250px; .we-bigcell { grid-column: 1 / -1; grid-row: auto; height: 460px; } }
+}
+@media (max-width: 700px) {
+  .we-block, .we-block.big-right { grid-template-columns: minmax(0, 1fr); .we-bigcell { height: 400px; } }
+}
 @media (max-width: 1100px) {
   .we-grid { grid-template-columns: 1fr 1fr; height: auto; grid-template-rows: 460px auto; }
   .we-one { grid-column: 1 / -1; }

@@ -13,12 +13,21 @@ import { SITE } from '../../core/data/site.config';
 export class AboutComponent {
   readonly site = SITE;
 
+  founders = [
+    { name: 'Layla Haddad', role: 'Co-Founder & Chief Executive Officer', img: 'assets/images/3-removebg-preview.png',
+      bio: 'A builder of regional brands, Layla set out to give leaders a place where honest conversations could happen. She guides the editorial vision and the community.' },
+    { name: 'Rafael Mendes', role: 'Co-Founder & Chairman', img: 'assets/images/4-removebg-preview.png',
+      bio: 'With two decades in boardrooms across three continents, Rafael brings the governance discipline and the relationships that open doors for our members.' },
+    { name: 'Daniel Tran', role: 'Co-Founder & Chief Strategy Officer', img: 'assets/images/5-removebg-preview.png',
+      bio: 'Daniel leads partnerships, events and expansion, pairing sharp analysis with a relentless focus on execution and long-term value.' }
+  ];
+
   pillars = [
     { icon: '💡', title: 'Insights & Articles', text: 'Long-form analysis and sector deep dives on strategy, technology, finance, healthcare, real estate and more.', link: '/insights' },
     { icon: '🧭', title: 'Leadership Profiles', text: 'In-depth conversations with the CEOs, chairs and founders steering the region’s most influential organisations.', link: '/leadership-profiles' },
     { icon: '🤝', title: 'The Network', text: 'A private community of executives, with regional chapters and curated roundtables and dinners.', link: '/network' },
     { icon: '🎤', title: 'Events', text: 'Summits, keynotes and invitation-only gatherings that bring decision-makers into the same room.', link: '/events' },
-    { icon: '📖', title: 'The E-Magazine', text: 'Our flagship publication, available to read online and download as a PDF.', link: '/e-magazine' }
+    { icon: '📖', title: 'The Magazine', text: 'Our flagship publication, available to read online and download as a PDF.', link: '/e-magazine' }
   ];
 
   values = [

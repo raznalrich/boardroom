@@ -1,0 +1,313 @@
+[     555ms] [LOG] Angular is running in development mode. @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:11226
+[    7856ms] [LOG] Angular is running in development mode. @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:11226
+[   11791ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   11975ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   12783ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   13780ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   14276ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   14781ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-1'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   15175ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   15782ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   16785ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   17476ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   17791ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   18375ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-2'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   18786ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   19784ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   20677ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   20786ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   21588ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   21786ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-3'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   22787ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-4'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   23782ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-4'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   23873ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-4'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   24785ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-4'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   25559ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   25781ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   26780ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   27085ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   27790ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   27992ms] [ERROR] ERROR RuntimeError: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value for '--o': '0'. Current value: '-5'. Expression location: _BtbHomeComponent component. Find more at https://v21.angular.dev/errors/NG0100
+    at throwErrorIfNoChangesMode (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:3812:9)
+    at bindingUpdated (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:8423:9)
+    at checkStylingProperty (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16177:30)
+    at Module.ɵɵstyleProp (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:16147:3)
+    at BtbHomeComponent_For_45_Template (http://localhost:4324/main.js:2132:10)
+    at executeTemplate (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5334:5)
+    at refreshView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:5995:7)
+    at detectChangesInView (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6135:5)
+    at detectChangesInViewIfAttached (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6118:3)
+    at detectChangesInEmbeddedViews (http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:6089:7) @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-UCS4ETW7.js?v=fe765e6a:3214
+[   28665ms] [LOG] Angular is running in development mode. @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:11226
+[   31783ms] [LOG] Angular is running in development mode. @ http://localhost:4324/@fs/D:/Pro/boardroom/.angular/cache/21.2.29/boardroom/vite/deps/chunk-LMWOJZEX.js?v=fe765e6a:11226
+[   52754ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4324/@vite/client:865

@@ -17,13 +17,15 @@
     </header>
 
     <main class="content">
-      @if (activeNav() === 'Articles') {
+      @if (activeNav() === 'Spotlight') {
+        <app-admin-spotlight />
+      } @else if (activeNav() === 'Articles') {
         <app-admin-articles />
       } @else if (activeNav() === 'Women') {
         <app-admin-women />
       } @else if (activeNav() === 'Settings') {
         <app-admin-settings />
-      } @else if (activeNav() === 'E-Magazine') {
+      } @else if (activeNav() === 'Magazine') {
         <app-admin-magazines />
       } @else if (activeNav() === 'Banners') {
         <app-admin-banners />
@@ -33,6 +35,8 @@
         <app-admin-profiles />
       } @else if (activeNav() === 'Events') {
         <app-admin-events />
+      } @else if (activeNav() === 'Membership') {
+        <app-admin-membership />
       } @else if (activeNav() === 'Subscribers') {
         <app-admin-subscribers />
       } @else if (activeNav() !== 'Dashboard') {
