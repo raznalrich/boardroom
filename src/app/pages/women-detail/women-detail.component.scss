@@ -18,3 +18,7 @@ blockquote { margin: 20px 0; padding-left: 18px; border-left: 3px solid var(--bt
   h3 { margin: 10px 0 0; font-size: 17px; } .wd-r { font-size: 13px; color: var(--btb-text-muted); } .wd-go { margin-top: 6px; font-size: 12px; font-weight: 700; color: var(--btb-gold); } }
 .wd-thumb { aspect-ratio: 4 / 3; border-radius: 8px; span { font-size: 36px; font-weight: 800; color: var(--btb-gold); } }
 @media (max-width: 800px) { .wd-grid { grid-template-columns: 1fr; gap: 24px; } .wd-portrait { max-width: 360px; } }
+
+.wd-about p { margin: 0; max-width: 820px; font-size: 17px; line-height: 1.85; color: #E5DCCB; white-space: pre-line; }
+
+.wd-bio { margin: 0 0 22px; h2 { margin: 0 0 8px; font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--btb-gold); } p { margin: 0; max-width: 680px; font-size: 16px; line-height: 1.8; color: #E5DCCB; white-space: pre-line; } }

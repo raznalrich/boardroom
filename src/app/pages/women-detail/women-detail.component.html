@@ -12,6 +12,9 @@
           <h1>{{ w.name }}</h1>
           <div class="wd-role">{{ w.role }}@if (w.organisation) { <span>, {{ w.organisation }}</span> }</div>
           @if (w.quote) { <blockquote>“{{ w.quote }}”</blockquote> }
+          @if (w.bio) {
+            <div class="wd-bio"><h2>About {{ w.name.split(' ')[0] === 'Dr.' ? w.name : w.name.split(' ')[0] }}</h2><p>{{ w.bio }}</p></div>
+          }
           <dl class="wd-facts">
             <div><dt>Role</dt><dd>{{ w.role }}</dd></div>
             @if (w.organisation) { <div><dt>Organisation</dt><dd>{{ w.organisation }}</dd></div> }

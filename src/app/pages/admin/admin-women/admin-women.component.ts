@@ -31,7 +31,7 @@ export class AdminWomenComponent {
   }
 
   private emptyModel() {
-    return { name: '', role: '', organisation: '', quote: '', image: '', imageKey: null as string | null, sortOrder: this.nextOrder(), active: true };
+    return { name: '', role: '', organisation: '', quote: '', bio: '', image: '', imageKey: null as string | null, sortOrder: this.nextOrder(), active: true };
   }
 
   async onFile(event: Event): Promise<void> {
@@ -90,7 +90,7 @@ export class AdminWomenComponent {
   edit(w: Woman): void {
     this.view.set('form');
     this.editingId.set(w.id);
-    this.model = { name: w.name, role: w.role, organisation: w.organisation, quote: w.quote, image: w.image, imageKey: w.imageKey ?? null, sortOrder: w.sortOrder, active: w.active };
+    this.model = { name: w.name, role: w.role, organisation: w.organisation, quote: w.quote, bio: w.bio, image: w.image, imageKey: w.imageKey ?? null, sortOrder: w.sortOrder, active: w.active };
     this.message.set(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

@@ -25,6 +25,10 @@
             <label for="quote">Quote (optional)</label>
             <textarea id="quote" name="quote" rows="3" maxlength="240" [(ngModel)]="model.quote" placeholder="A short, inspiring line shown on her card"></textarea>
 
+            <label for="bio">Short summary (optional)</label>
+            <textarea id="bio" name="bio" rows="5" maxlength="1200" [(ngModel)]="model.bio" placeholder="A few sentences about her career and achievements, shown on her profile page"></textarea>
+            <span class="hint">{{ model.bio.length }} / 1200</span>
+
             <div class="two">
               <div>
                 <label for="order">Display order</label>

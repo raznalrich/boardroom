@@ -70,3 +70,21 @@ begin
       for each statement execute function public.notify_dashboard();
   end if;
 end $$;
+
+
+-- ---------- Short summary (bio) shown on each woman's profile page -------
+alter table public.women_profiles add column if not exists bio text not null default '' check (char_length(bio) <= 1200);
+
+-- Sample summaries for the starter profiles (only fills in empty ones, so your own edits are never overwritten)
+update public.women_profiles w set bio = v.bio
+from (values
+  ('Aisha Al-Falasi', 'Aisha leads Gulf Renewables, one of the region''s fastest-growing clean-energy groups. Under her leadership the company has tripled its capacity in five years while building one of the industry''s most diverse leadership teams. She mentors young engineers and sits on two national sustainability councils.'),
+  ('Meera Kapoor', 'Meera took over her family''s logistics business and turned it into a multi-country operation with a reputation for reliability. She is known for investing in people first, from driver training programmes to a fast-track path for women into operations management.'),
+  ('Noor Al-Thani', 'Noor oversees finance, risk and investor relations at Doha Capital. A former auditor, she is respected for plain-spoken reporting and disciplined capital allocation, and she chairs an initiative that teaches financial literacy to women entrepreneurs.'),
+  ('Priya Raghavan', 'Priya founded HealthBridge after seeing how hard it was for families to reach specialist care. The platform now connects patients and clinics across three countries. She speaks widely on building technology that is trusted with sensitive health data.'),
+  ('Dr. Hana Mansour', 'Dr. Mansour is Chief Medical Officer at Horizon Health, where she leads clinical quality across a network of hospitals. A practising physician for twenty years, she champions patient-safety standards and the training of the next generation of clinical leaders.'),
+  ('Sofia Almeida', 'Sofia shapes the long-term direction of Meridian Global, from market entry to partnerships. Her approach is to decide clearly what the company will not do, then execute the rest with focus. She is a frequent speaker on strategy in emerging markets.'),
+  ('Fatima Zahra', 'Fatima chairs the Najd Education Trust, which funds scholarships and school-leadership programmes. She believes that educating a woman strengthens a whole community, and has helped thousands of girls complete their studies.'),
+  ('Ananya Rao', 'Ananya is Chief Technology Officer at NeuraGulf, where she leads work on applied AI for energy and finance. She is a vocal advocate for responsible AI and runs an engineering fellowship that has placed more than a hundred women in technical roles.')
+) as v(name, bio)
+where w.name = v.name and w.bio = '';
