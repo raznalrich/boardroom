@@ -68,10 +68,13 @@
 }
 
 .footer-tagline {
-  font-size: 13px;
-  color: var(--btb-text-muted);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: .3px;
+  line-height: 1.5;
+  color: #E5DCCB;
   font-family: 'Inter', sans-serif;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .footer-col h4 {
@@ -226,14 +229,15 @@
 /* Gold logo replaces the plain "B" monogram */
 .footer-logo {
   display: block;
-  height: 96px;
-  width: auto;
-  margin: 0 auto 16px;
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 14px;
   object-fit: contain;
 }
 
 @media (max-width: 640px) {
-  .footer-logo { height: 72px; }
+  .footer-logo { width: 200px; }
 }
 
 .footer-legal { display: inline-flex; gap: 16px; margin-right: 20px; flex-wrap: wrap;
@@ -259,3 +263,9 @@
 .about-btn { display: block; text-align: center; text-decoration: none; box-sizing: border-box; }
 .footer-col a.about-btn, .footer-col a.about-btn:hover { color: #121212; font-weight: 700; }
 .footer-col a.about-btn:hover { filter: brightness(1.1); }
+
+.footer-social { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; padding: 26px 0 22px; border-top: 1px solid var(--btb-ivory-border);
+  .fs-label { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--btb-text-muted); }
+  .fs-icons { display: flex; gap: 12px; }
+  a { display: inline-flex; line-height: 0; border-radius: 50%; transition: transform .2s, box-shadow .2s; &:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 18px rgba(0,0,0,.55); } } }
+.footer-logo { filter: brightness(1.18) saturate(1.1); }

@@ -10,6 +10,14 @@ export const SITE = {
   address: 'Dubai International Financial Centre, Dubai, United Arab Emirates',
   hours: 'Sunday to Thursday, 9:00 – 18:00 (GST)',
   website: 'beyondtheboardroom.com',
+  /** Social media pages. !! Placeholders: put your real page addresses here, they are used by the footer icons !! */
+  social: {
+    facebook: 'https://www.facebook.com/beyondtheboardroom',
+    instagram: 'https://www.instagram.com/beyondtheboardroom',
+    linkedin: 'https://www.linkedin.com/company/beyondtheboardroom',
+    x: 'https://x.com/beyondboardroom',
+    youtube: 'https://www.youtube.com/@beyondtheboardroom'
+  },
   /** Shown as "Last updated" on the policy pages */
   policiesUpdated: '21 November 2026'
 };

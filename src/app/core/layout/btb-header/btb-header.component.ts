@@ -84,12 +84,12 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
   readonly regions = MAGAZINE_REGIONS;
   @Input() navItems: NavItem[] = [
     { label: 'INSIGHTS', route: '/insights' },
-    { label: 'ARTICLES', route: '/articles' },
     { label: 'LEADERSHIP & CEO PROFILES', route: '/leadership-profiles' },
-    { label: 'THE NETWORK', route: '/network' },
     { label: 'WOMEN EMPOWERMENT', route: '/women-empowerment' },
-    { label: 'EVENTS', route: '/events' },
-    { label: 'THE MAGAZINE', route: '/e-magazine' }
+    { label: 'THE MAGAZINE', route: '/e-magazine' },
+    { label: 'ARTICLES', route: '/articles' },
+    { label: 'THE NETWORK', route: '/network' },
+    { label: 'UPCOMING EVENTS', route: '/events' }
   ];
 
   @Output() searchSubmit = new EventEmitter<string>();

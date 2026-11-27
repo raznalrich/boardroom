@@ -27,11 +27,11 @@
 
 <section class="pg-section founders">
   <div class="pg-container">
-    <div class="pg-title-row"><h2>Meet our founders</h2><span class="rule"></span></div>
+    <div class="pg-title-row"><h2>Meet our team</h2><span class="rule"></span></div>
     <div class="founder-grid">
       @for (f of founders; track f.name) {
         <article class="founder">
-          <div class="f-photo"><img [src]="f.img" [alt]="f.name" /><div class="f-floor"></div></div>
+          <div class="f-photo"><img [src]="f.img" [alt]="f.name" /></div>
           <h3>{{ f.name }}</h3>
           <span class="f-role">{{ f.role }}</span>
           <p>{{ f.bio }}</p>

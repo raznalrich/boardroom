@@ -14,12 +14,12 @@ export class AboutComponent {
   readonly site = SITE;
 
   founders = [
-    { name: 'Layla Haddad', role: 'Co-Founder & Chief Executive Officer', img: 'assets/images/3-removebg-preview.png',
-      bio: 'A builder of regional brands, Layla set out to give leaders a place where honest conversations could happen. She guides the editorial vision and the community.' },
-    { name: 'Rafael Mendes', role: 'Co-Founder & Chairman', img: 'assets/images/4-removebg-preview.png',
-      bio: 'With two decades in boardrooms across three continents, Rafael brings the governance discipline and the relationships that open doors for our members.' },
-    { name: 'Daniel Tran', role: 'Co-Founder & Chief Strategy Officer', img: 'assets/images/5-removebg-preview.png',
-      bio: 'Daniel leads partnerships, events and expansion, pairing sharp analysis with a relentless focus on execution and long-term value.' }
+    { name: 'Abin Krishna Nambiar', role: 'Founder', img: 'assets/images/abin.jpg',
+      bio: 'Driven by curiosity and a belief that every remarkable journey deserves a voice, Abin Krishna Nambiar founded Beyond the Boardroom to uncover the vision, ambition and human stories behind business success. His mission is to connect ideas, inspire minds and amplify leadership beyond borders.' },
+    { name: 'Dr. Snehal Chandorkar', role: 'Chief Executive Officer', img: 'assets/images/snehal.jpg',
+      bio: 'Where vision meets influence, Dr. Snehal Chandorkar brings strategic intelligence, media expertise and a global perspective to Beyond the Boardroom. Her leadership is driven by a defining ambition to shape conversations that matter, amplify transformative ideas and establish a media platform that transcends borders and conventional narratives.' },
+    { name: 'Sreejesh', role: 'Creative Director', img: 'assets/images/sree.jpg',
+      bio: 'A passionate creative professional specializing in digital marketing, brand strategy, and creative innovation. Focused on transforming ideas into impactful brand experiences through strategic thinking, compelling storytelling, and result-driven digital campaigns. Dedicated to delivering creative solutions that inspire audiences and drive business growth.' }
   ];
 
   pillars = [

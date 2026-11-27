@@ -326,8 +326,8 @@ a.btn-gold { display: inline-block; text-decoration: none; line-height: 1.2; }
   .search-results { position: static; flex: 0 0 100%; margin-top: 6px; max-height: 50vh; }
 }
 
-/* the logo artwork has a pink accent: tint the whole mark gold-on-black */
-.header-logo-img { filter: sepia(.9) saturate(1.7) brightness(1.08) contrast(1.05); }
+/* the logo keeps its own colours: gold lettering with the light-pink infinity */
+.header-logo-img { filter: brightness(1.18) saturate(1.1); }
 
 .region-links { display: flex; align-items: center; gap: 4px; margin-right: 14px;
   a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; text-decoration: none; color: #F4EEE2; border-bottom: 2px solid transparent; white-space: nowrap; transition: color .2s, border-color .2s;
