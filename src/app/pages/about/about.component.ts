@@ -14,7 +14,7 @@ export class AboutComponent {
   readonly site = SITE;
 
   founders = [
-    { name: 'Abin Krishna Nambiar', role: 'Founder', img: 'assets/images/abin.jpg',
+    { name: 'Abin Krishna Nambiar', role: 'Founder & Chairman', img: 'assets/images/abin.jpg',
       bio: 'Driven by curiosity and a belief that every remarkable journey deserves a voice, Abin Krishna Nambiar founded Beyond the Boardroom to uncover the vision, ambition and human stories behind business success. His mission is to connect ideas, inspire minds and amplify leadership beyond borders.' },
     { name: 'Dr. Snehal Chandorkar', role: 'Chief Executive Officer', img: 'assets/images/snehal.jpg',
       bio: 'Where vision meets influence, Dr. Snehal Chandorkar brings strategic intelligence, media expertise and a global perspective to Beyond the Boardroom. Her leadership is driven by a defining ambition to shape conversations that matter, amplify transformative ideas and establish a media platform that transcends borders and conventional narratives.' },
