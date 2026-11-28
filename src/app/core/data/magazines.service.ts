@@ -3,7 +3,7 @@ import { supabase, dbError } from '../supabase/supabase';
 import { SaveResult } from './leaders.service';
 
 /** Regions magazines are filed under, in display order. */
-export const MAGAZINE_REGIONS = ['America', 'Africa', 'Europe', 'Middle East', 'Asia'] as const;
+export const MAGAZINE_REGIONS = ['Middle East', 'Asia', 'Africa', 'America', 'Europe'] as const;
 export type MagazineRegion = (typeof MAGAZINE_REGIONS)[number];
 
 export interface Magazine {

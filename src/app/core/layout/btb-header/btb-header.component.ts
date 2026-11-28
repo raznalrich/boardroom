@@ -86,9 +86,9 @@ export class BtbHeaderComponent implements OnInit, OnDestroy {
     { label: 'INSIGHTS', route: '/insights' },
     { label: 'LEADERSHIP & CEO PROFILES', route: '/leadership-profiles' },
     { label: 'WOMEN EMPOWERMENT', route: '/women-empowerment' },
-    { label: 'THE MAGAZINE', route: '/e-magazine' },
+    { label: 'MAGAZINE', route: '/e-magazine' },
     { label: 'ARTICLES', route: '/articles' },
-    { label: 'THE NETWORK', route: '/network' },
+    { label: 'NETWORK', route: '/network' },
     { label: 'UPCOMING EVENTS', route: '/events' }
   ];
 

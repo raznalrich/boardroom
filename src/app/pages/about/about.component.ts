@@ -25,9 +25,9 @@ export class AboutComponent {
   pillars = [
     { icon: '💡', title: 'Insights & Articles', text: 'Long-form analysis and sector deep dives on strategy, technology, finance, healthcare, real estate and more.', link: '/insights' },
     { icon: '🧭', title: 'Leadership Profiles', text: 'In-depth conversations with the CEOs, chairs and founders steering the region’s most influential organisations.', link: '/leadership-profiles' },
-    { icon: '🤝', title: 'The Network', text: 'A private community of executives, with regional chapters and curated roundtables and dinners.', link: '/network' },
+    { icon: '🤝', title: 'Network', text: 'A private community of executives, with regional chapters and curated roundtables and dinners.', link: '/network' },
     { icon: '🎤', title: 'Events', text: 'Summits, keynotes and invitation-only gatherings that bring decision-makers into the same room.', link: '/events' },
-    { icon: '📖', title: 'The Magazine', text: 'Our flagship publication, available to read online and download as a PDF.', link: '/e-magazine' }
+    { icon: '📖', title: 'Magazine', text: 'Our flagship publication, available to read online and download as a PDF.', link: '/e-magazine' }
   ];
 
   values = [

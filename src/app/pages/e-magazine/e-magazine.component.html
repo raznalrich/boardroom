@@ -21,7 +21,7 @@
         }
       </a>
       <div>
-        <span class="eyebrow">The Magazine · {{ m.region }} · Latest issue</span>
+        <span class="eyebrow">Magazine · {{ m.region }} · Latest issue</span>
         <h1>{{ m.title }}</h1>
         <p class="issue-date">{{ m.publishedOn | date: 'longDate' }}</p>
         @if (m.description) { <p class="desc">{{ m.description }}</p> }
@@ -33,7 +33,7 @@
     </div>
   } @else {
     <div class="pg-container">
-      <span class="eyebrow">The Magazine</span>
+      <span class="eyebrow">Magazine</span>
       <h1>{{ loaded() ? (region() ? 'No ' + region() + ' issues yet' : 'No issues published yet') : 'Loading…' }}</h1>
       @if (loaded()) { <p>Our next issue is on its way. Check back soon.</p> }
     </div>
